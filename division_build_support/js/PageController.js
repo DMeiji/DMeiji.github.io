@@ -232,14 +232,16 @@
                 if (cnt < 2) {
                     return;
                 }
-                var desc = this._setBounusData[setName].desc[cnt];
-                if (desc == null || desc === '') {
-                    return;
+                for (var i = 2; i <= cnt; i++) {
+                    var desc = this._setBounusData[setName].desc[i];
+                    if (desc == null || desc === '') {
+                        continue;
+                    }
+                    this._setBounusList.push({
+                        setNum: SET_NAME_MAP[setName] + ' ' + i + 'セット効果：',
+                        setDesc: desc
+                    });
                 }
-                this._setBounusList.push({
-                    setNum: SET_NAME_MAP[setName] + ' ' + cnt + 'セット効果：',
-                    setDesc: desc
-                });
             }));
         },
 
@@ -247,7 +249,7 @@
             this._toggleSelectContainer($el);
         },
 
-        _toggleSelectContainer: function($statusArea) {
+        _toggleSelectContainer: function ($statusArea) {
             // 選択された部位ですでに選択されているステータスを非選択状態にする
             var $parentContainer = $statusArea.parent('.armorStatusContainer');
             var $selected = $parentContainer.find('.armorStatusArea.selectedStatus');

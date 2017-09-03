@@ -67,7 +67,7 @@ html,body {
     top: 0;
     left: 600px;
     width: 350px;
-    height: 150px;
+    height: 300px;
     border: solid 1px;
     overflow: auto;
 }
@@ -88,6 +88,10 @@ html,body {
 
 .setBounusList > ul {
     padding-left: 20px;
+}
+
+.setNum {
+    font-weight: bold;
 }
 
 .armorStatusContainer {
