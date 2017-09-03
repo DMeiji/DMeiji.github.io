@@ -33,11 +33,32 @@
         <!-- 防具タレント -->
         <div class="armorTalentContainer" data-h5-loop-context="armorItems">
             <div class="selectTalentContainer">
+                <!-- 防具部位名 -->
                 <div class="partName" data-h5-bind="partName"></div>
+                <!-- 防具タレントリスト -->
                 <select class="armorTalentList" data-h5-loop-context="data">
                     <option class="item" data-h5-bind="name; attr(desc):desc; attr(data-set-name):setName;"></option>
                 </select>
+                <!-- 防具タレント説明 -->
                 <div class="talentDescArea"></div>
+                <!-- 防具ステータス -->
+                <div class="armorStatusContainer">
+                    <!-- 銃器 -->
+                    <div class="firearmsArea armorStatusArea selectedStatus">
+                        <div class="armorStatusLabel">銃器</div>
+                        <div class="statusVal">1272</div>
+                    </div>
+                    <!-- スタミナ -->
+                    <div class="staminaArea armorStatusArea">
+                        <div class="armorStatusLabel">スタミナ</div>
+                        <div class="statusVal">205</div>
+                    </div>
+                    <!-- 電子 -->
+                    <div class="electronArea armorStatusArea">
+                        <div class="armorStatusLabel">電子</div>
+                        <div class="statusVal">205</div>
+                    </div>
+                </div>
             </div>
         </div>
 

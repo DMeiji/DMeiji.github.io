@@ -31,7 +31,7 @@ html,body {
 .selectTalentContainer {
     display: inline-block;
     height: 150px;
-    width: 280px;
+    width: 270px;
     margin-bottom: 10px;
 }
 .partName {
@@ -42,7 +42,7 @@ html,body {
     border-top: solid 1px;
     border-left: solid 1px;
     border-right: solid 1px;
-    border-color: #a9a9a9;
+    /*border-color: #a9a9a9;*/
     background: #d8edf9;
 }
 
@@ -52,12 +52,12 @@ html,body {
 }
 
 .talentDescArea {
-    height: calc(100% - 22px - 25px);
+    height: 40px;
     width: 100%;
     border-left: solid 1px;
     border-right: solid 1px;
     border-bottom: solid 1px;
-    border-color: #a9a9a9;
+    /*border-color: #a9a9a9;*/
     overflow: auto;
     padding: 3px;
 }
@@ -88,4 +88,40 @@ html,body {
 
 .setBounusList > ul {
     padding-left: 20px;
+}
+
+.armorStatusContainer {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.armorStatusArea.selectedStatus {
+    background: #caf8fd;
+    font-weight: bold;
+    color: #242525
+}
+
+.armorStatusArea {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    height: 100%;
+    width: calc(100% / 3);
+    border-left: solid 1px;
+    border-bottom: solid 1px;
+}
+
+.firearmsArea {
+    left: 0;
+}
+
+.staminaArea {
+    left: 90px;
+}
+
+.electronArea {
+    left: 180px;
+    border-right: solid 1px;
 }

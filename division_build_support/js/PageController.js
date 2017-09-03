@@ -232,15 +232,30 @@
                 if (cnt < 2) {
                     return;
                 }
-                if (5 < cnt) {
-                    cnt = 4;
-                }
                 var desc = this._setBounusData[setName].desc[cnt];
+                if (desc == null || desc === '') {
+                    return;
+                }
                 this._setBounusList.push({
                     setNum: SET_NAME_MAP[setName] + ' ' + cnt + 'セット効果：',
                     setDesc: desc
                 });
             }));
+        },
+
+        '.armorStatusArea click': function (context, $el) {
+            this._toggleSelectContainer($el);
+        },
+
+        _toggleSelectContainer: function($statusArea) {
+            // 選択された部位ですでに選択されているステータスを非選択状態にする
+            var $parentContainer = $statusArea.parent('.armorStatusContainer');
+            var $selected = $parentContainer.find('.armorStatusArea.selectedStatus');
+            $selected.toggleClass('selectedStatus');
+            $selected.find('.statusVal').text('205');
+            // 選択された部位のステータスを選択状態にする
+            $statusArea.toggleClass('selectedStatus');
+            $statusArea.find('.statusVal').text('1272');
         }
     };
 
