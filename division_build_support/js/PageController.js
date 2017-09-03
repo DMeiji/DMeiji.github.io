@@ -164,7 +164,7 @@
 
             rowAry.forEach(function (rowStr) {
                 var ary = rowStr.split(',');
-                result[ary[0].slice(2)] = {
+                result[ary[0].replace(/\r\n|\r|\n/, '')] = {
                     name: ary[2],
                     desc: {
                         '2': ary[3],
