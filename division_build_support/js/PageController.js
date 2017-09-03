@@ -2,46 +2,15 @@
     'use strict';
 
     // =========================
-    // 画面ロジック
+    // 定数
     // =========================
-    var pageLogic = {
+    var DIVISION_CONST = division_build_support.const;
+    var ARMOR_CONST = DIVISION_CONST.ARMOR;
+    var SET_NAME_MAP = DIVISION_CONST.SET.NAME_MAP;
 
-        __name: 'division_build_support.logic.PageLogic',
-
-        getArmorTalentData: function () {
-            var dfd = h5.async.deferred();
-
-            var mask = h5.ajax('./csv/armor_talent-mask.csv');
-            var body = h5.ajax('./csv/armor_talent-body.csv');
-            var backpack = h5.ajax('./csv/armor_talent-backpack.csv');
-            var glove = h5.ajax('./csv/armor_talent-glove.csv');
-            var knee = h5.ajax('./csv/armor_talent-knee.csv');
-            var holster = h5.ajax('./csv/armor_talent-holster.csv');
-
-            $.when(mask, body, backpack, glove, knee, holster).then(
-                function (maskRes, bodyRes, backpackRes, gloveRes, kneeRes, holsterRes) {
-                    dfd.resolve({
-                        body: bodyRes[0],
-                        backpack: backpackRes[0],
-                        mask: maskRes[0],
-                        glove: gloveRes[0],
-                        knee: kneeRes[0],
-                        holster: holsterRes[0]
-                    });
-                },
-                function () {
-                    throw new Error('error: getArmorTalentData');
-                }
-            );
-
-            return dfd.promise();
-        },
-
-        getSetBounusData: function () {
-            return h5.ajax('./csv/armor_talent-setbounus.csv');
-        }
-    };
-
+    // =========================
+    // 静的変数
+    // =========================
     var manager = h5.core.data.createManager('divisionArmor');
     var armorTalentModel = manager.createModel({
         name: 'divisionArmorModel',
@@ -50,23 +19,10 @@
             name: { type: 'string' }
         }
     });
-    var SET_NAME_MAP = {
-        d3fnc: 'D3-FNC',
-        banshee: 'バンシー',
-        firecrest: 'ファイアークレスト',
-        reclaimer: 'リクレーマー',
-        deadeye: 'デッドアイ',
-        alphabridge: 'アルファブリッジ',
-        hunters: 'ハンターズクリード',
-        final: 'ファイナルメジャー',
-        predator: 'プレデターマーク',
-        lonestar: 'ローンスター',
-        striker: 'ストライカー',
-        sentry: 'セントリーコール',
-        tactisian: 'タクティシャン',
-        nomad: 'ノーマッド'
-    };
 
+    // =========================
+    // 関数
+    // =========================
     var errAlert = function () {
         alert('想定外のエラー');
     };
@@ -78,8 +34,10 @@
 
         __name: 'division_build_support.controller.PageController',
 
-        _logic: pageLogic,
-        _setBounusList: h5.core.data.createObservableArray(),
+        _logic: division_build_support.logic.PageLogic,
+        _setBounusList: h5.core.data.createObservableArray(),// 発動しているセット効果の一覧
+        
+        // 各部位の選択されているセット防具名のマップ。非セット防具ならnullまたは空文字
         _selectedSetMap: {
             mask: null,
             body: null,
@@ -90,14 +48,17 @@
         },
 
         __init: function () {
+            // 防具タレントのデータを取得
             this._logic.getArmorTalentData().done(this.own(function (armorTalentDataRes) {
+                // 取得したデータを画面表示用に変換してバインド
                 this._armorTalentData = this._convertResToArmorTalentData(armorTalentDataRes);
                 h5.core.view.bind('.armorTalentContainer', {
                     armorItems: this._armorTalentData
                 });
             }));
-
+            // セットボーナスのデータを取得
             this._logic.getSetBounusData().done(this.own(function (setBounusDataRes) {
+                // 取得したデータを画面表示用に変換してバインド
                 this._setBounusData = this._convertResToSetBounusData(setBounusDataRes);
                 h5.core.view.bind('.setBounusContainer', {
                     setBounusList: this._setBounusList
@@ -119,7 +80,7 @@
             // }]
             var result = h5.core.data.createObservableArray();
 
-            var keys = Object.keys(res);
+            var keys = Object.keys(res);// 部位名の配列
             keys.forEach(function (key) {
                 var partDataAry = h5.core.data.createObservableArray();
                 var strAry = res[key].split(/\r\n|\r|\n/);// 各要素が'name,desc'の配列
@@ -133,8 +94,13 @@
                 });
 
                 result.push({
-                    partName: key,
-                    data: partDataAry
+                    partName: key,// 部位名
+                    data: partDataAry,// 当該部位の各タレントとセット防具
+                    
+                    // 防具の銃器・スタミナ・電子のステータス値。初期表示では銃器が選択状態なのでMAX値
+                    firearmsStatusVal: ARMOR_CONST.STATUS.MAX,
+                    staminaStatusVal: ARMOR_CONST.STATUS.MIN,
+                    electronStatusVal: ARMOR_CONST.STATUS.MIN
                 });
             });
 
@@ -197,18 +163,6 @@
             var desc = option.attributes.desc.nodeValue;
             return desc;
         },
-
-        // _getArmorDataIdx: function (armorName, talentName) {
-        //     var armorItems = this._armorTalentData[armorName];
-        //     var idx = -1;
-        //     for (var i = 0, len = armorItems.length; i < len; i++) {
-        //         if (armorItems[i].talentName === talentName) {
-        //             idx = i;
-        //             break;
-        //         }
-        //     }
-        //     return idx;
-        // },
 
         _updateSetArmorMap: function ($list) {
             var optionIdx = $list[0].selectedIndex;

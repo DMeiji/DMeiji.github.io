@@ -21,6 +21,7 @@
 
     <!-- js -->
     <script src="./js/const.js"></script>
+    <script src="./js/PageLogic.js"></script>
     <script src="./js/PageController.js"></script>
 
     <!-- css -->
@@ -47,17 +48,17 @@
                     <!-- 銃器 -->
                     <div class="firearmsArea armorStatusArea selectedStatus">
                         <div class="armorStatusLabel">銃器</div>
-                        <div class="statusVal">1272</div>
+                        <div class="statusVal" data-h5-bind="firearmsStatusVal"></div>
                     </div>
                     <!-- スタミナ -->
                     <div class="staminaArea armorStatusArea">
                         <div class="armorStatusLabel">スタミナ</div>
-                        <div class="statusVal">205</div>
+                        <div class="statusVal" data-h5-bind="staminaStatusVal"></div>
                     </div>
                     <!-- 電子 -->
                     <div class="electronArea armorStatusArea">
                         <div class="armorStatusLabel">電子</div>
-                        <div class="statusVal">205</div>
+                        <div class="statusVal" data-h5-bind="electronStatusVal"></div>
                     </div>
                 </div>
             </div>
