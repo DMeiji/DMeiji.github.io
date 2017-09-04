@@ -64,6 +64,8 @@
             holster: null
         },
 
+        _armorItemsMap: {},// keyがpartName、valueがデータアイテムのマップ
+
         __init: function () {
             var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
             var mainTokuseiDataPromise = this._logic.getMainTokuseiData();// メイン特性データ取得
@@ -71,10 +73,20 @@
 
             $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise).then(this.own(
                 function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
-                    this._armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
+                    // 防具タレント名とタレント説明のマップをキャッシュ
+                    this._armorTalentDescMap = this._convertResToArmorTalentDescMap(armorTalentRes);
+
+                    // 各部位を初期表示
+                    var armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
                     h5.core.view.bind('.armorItemsContainer', {
-                        armorItems: this._armorItemsData
+                        armorItems: armorItemsData
                     });
+
+                    // 各部位のデータアイテムをキャッシュ
+                    armorItemsData.forEach(this.own(function (armorItem) {
+                        var partName = armorItem.get('partName');
+                        this._armorItemsMap[partName] = armorItem;
+                    }));
                 },
                 function () {
                     errAlert();
@@ -89,6 +101,21 @@
                     setBounusList: this._setBounusList
                 });
             }));
+        },
+
+        _convertResToArmorTalentDescMap: function (res) {
+            var result = {};
+            $.each(res, function (partName, dataStr) {
+                result[partName] = {};
+                var strAry = dataStr.split(/\r\n|\r|\n/);// 各要素は当該部位のタレント名と説明、setName(カンマで分ける前)
+                strAry.forEach(function (str) {
+                    var ary = str.split(',');//カンマで分ける。name,desc,setNameに分離
+                    var name = ary[0];
+                    var desc = ary[1];
+                    result[partName][name] = desc;
+                });
+            });
+            return result;
         },
 
         _convertToArmorItemsData: function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
@@ -257,8 +284,11 @@
 
         _updateArmorTalentDesc: function ($list) {
             var desc = this._getArmorTalentDesc($list);// talentのdescを取得
-            var descArea = $list.next('.talentDescArea')[0];
-            descArea.innerText = desc;
+            var $parentArmorItem = $list.parent('.armorItem');
+            var partName = $parentArmorItem.data('partName');
+            this._armorItemsMap[partName].set('talentDesc', desc);
+            // var descArea = $list.next('.talentDescArea')[0];
+            // descArea.innerText = desc;
         },
 
         _getArmorTalentDesc: function ($list) {
