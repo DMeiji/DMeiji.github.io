@@ -120,47 +120,6 @@
             }));
         },
 
-        /**
-         * 防具タレントのデータを表示用データに変換
-         */
-        _convertResToArmorTalentData: function (res) {
-            // returnするデータの型
-            // [{
-            //     partName: 'mask',
-            //     data: [
-            //         { name: 'エンデュアリング', setName: '' },
-            //         { name: 'D3-FNC', setName: 'd3fnc' }
-            //     ]
-            // }]
-            var result = h5.core.data.createObservableArray();
-
-            var keys = Object.keys(res);// 部位名の配列
-            keys.forEach(function (key) {
-                var partDataAry = h5.core.data.createObservableArray();
-                var strAry = res[key].split(/\r\n|\r|\n/);// 各要素が'name,desc'の配列
-                strAry.forEach(function (str) {
-                    var ary = str.split(',');
-                    partDataAry.push({
-                        name: ary[0],
-                        desc: ary[1],
-                        setName: ary[2]
-                    });
-                });
-
-                result.push({
-                    partName: key,// 部位名
-                    data: partDataAry,// 当該部位の各タレントとセット防具
-
-                    // 防具の銃器・スタミナ・電子のステータス値。初期表示では銃器が選択状態なのでMAX値
-                    firearmsStatusVal: ARMOR_CONST.STATUS.MAX,
-                    staminaStatusVal: ARMOR_CONST.STATUS.MIN,
-                    electronStatusVal: ARMOR_CONST.STATUS.MIN
-                });
-            });
-
-            return result;
-        },
-
         _convertToArmorItemsData: function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
             // 返す型はデータアイテムのObsAry(長さは6)
             var result = h5.core.data.createObservableArray();
