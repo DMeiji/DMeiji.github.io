@@ -65,20 +65,6 @@
         },
 
         __init: function () {
-            var ma = h5.core.data.createManager('hoge');
-            var mo = ma.createModel({
-                name: 'hogeModel',
-                schema: {
-                    id: { id: true },
-                    hoge: null
-                }
-            });
-            var item = mo.create({
-                id: 'xxx',
-                hoge: 'yyy'
-            });
-            console.log(item);
-
             var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
             var mainTokuseiDataPromise = this._logic.getMainTokuseiData();// メイン特性データ取得
             var subTokuseiDataPromise = this._logic.getSubTokuseiData();// サブ特性データ取得
