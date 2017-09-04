@@ -47,17 +47,17 @@
                 <!-- 防具ステータス -->
                 <div class="armorStatusContainer">
                     <!-- 銃器 -->
-                    <div class="firearmsArea armorStatusArea selectedStatus">
+                    <div class="firearmsArea armorStatusArea selectedStatus" data-h5-bind="attr(data-part-name):partName;" data-status-name="firearms">
                         <div class="armorStatusLabel">銃器</div>
                         <div class="statusVal" data-h5-bind="firearms"></div>
                     </div>
                     <!-- スタミナ -->
-                    <div class="staminaArea armorStatusArea">
+                    <div class="staminaArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="stamina">
                         <div class="armorStatusLabel">スタミナ</div>
                         <div class="statusVal" data-h5-bind="stamina"></div>
                     </div>
                     <!-- 電子 -->
-                    <div class="electronArea armorStatusArea">
+                    <div class="electronArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="electron">
                         <div class="armorStatusLabel">電子</div>
                         <div class="statusVal" data-h5-bind="electron"></div>
                     </div>
@@ -82,6 +82,31 @@
                         <span data-h5-bind="setDesc"></span>
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- 総計 -->
+        <div class="grandTotalContainer" data-h5-context="grandTotal">
+            <div class="grandTotalLabel">合計性能</div>
+            <div class="grandTotalArea">
+                <!-- 合計ステータス -->
+                <div class="totalStatus">
+                    <!-- 銃器 -->
+                    <div class="totalStatusItem totalFirearmsArea">
+                        <div class="totalStatusLabel">銃器</div>
+                        <div class="totalStatusVal" data-h5-bind="firearms"></div>
+                    </div>
+                    <!-- スタミナ -->
+                    <div class="totalStatusItem totalStaminaArea">
+                        <div class="armorStatusLabel">スタミナ</div>
+                        <div class="totalStatusVal" data-h5-bind="stamina"></div>
+                    </div>
+                    <!-- 電子 -->
+                    <div class="totalStatusItem totalElectronArea">
+                        <div class="armorStatusLabel">電子</div>
+                        <div class="totalStatusVal" data-h5-bind="electron"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

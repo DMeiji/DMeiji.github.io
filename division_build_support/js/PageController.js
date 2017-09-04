@@ -66,6 +66,8 @@
 
         _armorItemsMap: {},// keyがpartName、valueがデータアイテムのマップ
 
+        _selectedArmorStatusItem: null,
+
         __init: function () {
             var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
             var mainTokuseiDataPromise = this._logic.getMainTokuseiData();// メイン特性データ取得
@@ -335,6 +337,10 @@
 
         '.armorStatusArea click': function (context, $el) {
             this._toggleSelectContainer($el);
+
+            var partName = $el.data('partName');
+            var armorStatusName = $el.data('statusName');
+            this._setArmorStatus(partName, armorStatusName);
         },
 
         _toggleSelectContainer: function ($statusArea) {
@@ -346,6 +352,18 @@
             // 選択された部位のステータスを選択状態にする
             $statusArea.toggleClass('selectedStatus');
             $statusArea.find('.statusVal').text('1272');
+        },
+
+        _setArmorStatus: function (partName, armorStatusName) {
+
+        },
+
+        _calcTotalStatus: function () {
+
+        },
+
+        _redrawTotalStatus: function () {
+
         }
     };
 

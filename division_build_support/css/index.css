@@ -66,7 +66,7 @@ html,body {
     position: absolute;
     top: 0;
     left: 600px;
-    width: 350px;
+    width: 360px;
     height: 300px;
     border: solid 1px;
     overflow: auto;
@@ -115,6 +115,7 @@ html,body {
     width: calc(100% / 3);
     border-left: solid 1px;
     border-bottom: solid 1px;
+    font-size: 16px;
 }
 
 .firearmsArea {
@@ -132,4 +133,61 @@ html,body {
 
 .tokuseiList {
     width: 100%;
+}
+
+.grandTotalContainer {
+    position: absolute;
+    top: 310px;
+    left: 600px;
+    width: 360px;
+    height: 300px;
+}
+
+.grandTotalLabel {
+    height: 22px;
+    width: 100%;
+    border: solid 1px;
+    text-align: center;
+    background: #A4A9E2;
+}
+
+.grandTotalArea {
+    height: calc(100% - 22px);
+    width: 100%;
+}
+
+.totalStatus {
+    position: relative;
+    height: 80px;
+    width: 100%;
+}
+
+.totalStatusItem {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100% / 3);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    border-left: solid 1px;
+    border-bottom: solid 1px;    
+}
+
+.totalFirearmsArea {
+    left: 0;
+}
+
+.totalStaminaArea {
+    left: 120px;
+}
+
+.totalElectronArea {
+    left: 240px;
+    border-right: solid 1px;
+}
+
+.totalStatusLabel {
+    font-weight: bold;
 }
