@@ -86,7 +86,7 @@
             $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise).then(this.own(
                 function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
                     this._armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
-                    h5.core.view.bind('.armorTalentContainer', {
+                    h5.core.view.bind('.armorItemsContainer', {
                         armorItems: this._armorItemsData
                     });
                 },

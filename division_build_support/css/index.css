@@ -19,7 +19,7 @@ html,body {
     position: relative;
 }
 
-.armorTalentContainer {
+.armorItemsContainer {
     position: absolute;
     top: 0;
     left: 0;
@@ -28,7 +28,7 @@ html,body {
     padding-right: 10px;
 }
 
-.selectTalentContainer {
+.armorItem {
     display: inline-block;
     width: 270px;
     margin-bottom: 10px;
