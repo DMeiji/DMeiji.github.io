@@ -5,18 +5,35 @@
     // 定数
     // =========================
     var DIVISION_CONST = division_build_support.const;
-    var ARMOR_CONST = DIVISION_CONST.ARMOR;
+    var ARMOR_STATUS = DIVISION_CONST.ARMOR.STATUS;
+    var ARMOR_TOKUSEI_LEN_MAP = DIVISION_CONST.ARMOR.TOKUSEI_LEN_MAP;
+    var ARMOR_TOKUSEI_PROPERTY_MAP = DIVISION_CONST.ARMOR.TOKUSEI_PROPERTY_MAP;
     var SET_NAME_MAP = DIVISION_CONST.SET.NAME_MAP;
 
     // =========================
     // 静的変数
     // =========================
-    var manager = h5.core.data.createManager('divisionArmor');
-    var armorTalentModel = manager.createModel({
-        name: 'divisionArmorModel',
+    var manager = h5.core.data.createManager('divisionManager');
+    var armorItemModel = manager.createModel({
+        name: 'divisionArmorItemModel',
         schema: {
             id: { id: true },
-            name: { type: 'string' }
+            // 部位名
+            partName: null,
+            // 当該部位の防具タレント一覧
+            talentList: null,
+            // 選択したタレントの説明文
+            talentDesc: null,
+            // 銃器ステータス値
+            firearms: null,
+            // スタミナステータス値
+            stamina: null,
+            // 電子機器ステータス値
+            electron: null,
+            // 特性一覧
+            tokuseiList: null,
+            // 選択した特性のマップ
+            selectedTokusei: null
         }
     });
 
@@ -36,7 +53,7 @@
 
         _logic: division_build_support.logic.PageLogic,
         _setBounusList: h5.core.data.createObservableArray(),// 発動しているセット効果の一覧
-        
+
         // 各部位の選択されているセット防具名のマップ。非セット防具ならnullまたは空文字
         _selectedSetMap: {
             mask: null,
@@ -48,14 +65,51 @@
         },
 
         __init: function () {
-            // 防具タレントのデータを取得
-            this._logic.getArmorTalentData().done(this.own(function (armorTalentDataRes) {
-                // 取得したデータを画面表示用に変換してバインド
-                this._armorTalentData = this._convertResToArmorTalentData(armorTalentDataRes);
-                h5.core.view.bind('.armorTalentContainer', {
-                    armorItems: this._armorTalentData
-                });
-            }));
+            var ma = h5.core.data.createManager('hoge');
+            var mo = ma.createModel({
+                name: 'hogeModel',
+                schema: {
+                    id: { id: true },
+                    hoge: null
+                }
+            });
+            var item = mo.create({
+                id: 'xxx',
+                hoge: 'yyy'
+            });
+            console.log(item);
+
+            var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
+            var mainTokuseiDataPromise = this._logic.getMainTokuseiData();// メイン特性データ取得
+            var subTokuseiDataPromise = this._logic.getSubTokuseiData();// サブ特性データ取得
+
+            $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise).then(this.own(
+                function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
+                    // 取得したデータを画面表示用に変換してバインド
+                    // this._armorTalentData = this._convertResToArmorTalentData(armorTalentRes);
+                    // h5.core.view.bind('.armorTalentContainer', {
+                    //     armorItems: this._armorTalentData
+                    // });
+
+                    this._armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
+                    h5.core.view.bind('.armorTalentContainer', {
+                        armorItems: this._armorItemsData
+                    });
+                },
+                function () {
+                    errAlert();
+                }
+            ));
+
+            // // 防具タレントのデータを取得
+            // this._logic.getArmorTalentData().done(this.own(function (armorTalentDataRes) {
+            //     // 取得したデータを画面表示用に変換してバインド
+            //     this._armorTalentData = this._convertResToArmorTalentData(armorTalentDataRes);
+            //     h5.core.view.bind('.armorTalentContainer', {
+            //         armorItems: this._armorTalentData
+            //     });
+            // }));
+
             // セットボーナスのデータを取得
             this._logic.getSetBounusData().done(this.own(function (setBounusDataRes) {
                 // 取得したデータを画面表示用に変換してバインド
@@ -96,7 +150,7 @@
                 result.push({
                     partName: key,// 部位名
                     data: partDataAry,// 当該部位の各タレントとセット防具
-                    
+
                     // 防具の銃器・スタミナ・電子のステータス値。初期表示では銃器が選択状態なのでMAX値
                     firearmsStatusVal: ARMOR_CONST.STATUS.MAX,
                     staminaStatusVal: ARMOR_CONST.STATUS.MIN,
@@ -105,6 +159,118 @@
             });
 
             return result;
+        },
+
+        _convertToArmorItemsData: function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
+            // 返す型はデータアイテムのObsAry(長さは6)
+            var result = h5.core.data.createObservableArray();
+
+            var partNames = Object.keys(armorTalentRes);// 各部位名の配列
+            partNames.forEach(this.own(function (partName) {
+                var mainTokuseiList = this._convertResToMainTokuseiList(mainTokuseiRes, partName);
+                var subTokuseiList = this._convertResToSubTokuseiList(subTokuseiRes, partName);
+                var tokuseiList = this._convertResToTokuseiList(mainTokuseiList, subTokuseiList, partName);
+
+                var armorItem = armorItemModel.create({
+                    id: partName,
+                    partName: partName,// 部位名
+                    talentList: this._convertResToArmorTalentData(armorTalentRes, partName),// 当該部位の防具タレント一覧
+                    talentDesc: '',// 選択したタレントの説明文。初期は空文字
+                    firearms: ARMOR_STATUS.MAX,// 銃器ステータス値。初期は選択状態なのでMAX値を設定
+                    stamina: ARMOR_STATUS.MIN,// スタミナステータス値。初期は非選択状態なのでMIN値を設定
+                    electron: ARMOR_STATUS.MIN,// 電子機器ステータス値。初期は非選択状態なのでMIN値を設定
+                    tokuseiList: tokuseiList,// 特性一覧
+                    selectedTokusei: null// 選択した特性のマップ
+                });
+                result.push(armorItem);
+            }));
+            return result;
+        },
+
+        /**
+         * csvデータを指定した部位の防具タレント情報の配列に変換
+         */
+        _convertResToArmorTalentData: function (res, partName) {
+            var result = [];
+            var strAry = res[partName].split(/\r\n|\r|\n/);// 各要素は当該部位のタレント名と説明、setName(カンマで分ける前)
+            strAry.forEach(function (str) {
+                var ary = str.split(',');//カンマで分ける。name,desc,setNameに分離
+                result.push({
+                    name: ary[0],
+                    desc: ary[1],
+                    setName: ary[2]
+                });
+            });
+            return result;
+        },
+
+        /**
+         * csvデータを指定した部位の特性情報に変換
+         */
+        _convertResToTokuseiList: function (mainTokuseiList, subTokuseiList, partName) {
+            var tokuseiLenMap = ARMOR_TOKUSEI_LEN_MAP[partName];
+            var mainLen = tokuseiLenMap.mainLen;
+            var subLen = tokuseiLenMap.subLen;
+            var result = [];
+
+            for (var i = 0; i < mainLen; i++) {
+                result.push({
+                    tokuseiItemsList: mainTokuseiList
+                });
+            }
+            for (i = 0; i < subLen; i++) {
+                result.push({
+                    tokuseiItemsList: subTokuseiList
+                });
+            }
+            return result;
+        },
+
+        _convertResToMainTokuseiList: function (mainTokuseiRes, partName) {
+            var result = [];
+            var partRes = mainTokuseiRes[partName];
+            var strAry = partRes.split(/\r\n|\r|\n/);
+            strAry.forEach(this.own(function (str) {
+                var ary = str.split(',');
+                var property = ary[0];
+                var min = ary[1];
+                var max = ary[2];
+                result.push({
+                    label: this._createTokuseiLabel(property, min, max),
+                    property: property,
+                    min: min,
+                    max: max
+                });
+            }));
+            return result;
+        },
+
+        _convertResToSubTokuseiList: function (subTokuseiRes, partName) {
+            var result = [];
+            var partRes = subTokuseiRes[partName];
+            if (partRes == null) {
+                return result;
+            }
+            var strAry = partRes.split(/\r\n|\r|\n/);
+            strAry.forEach(this.own(function (str) {
+                var ary = str.split(',');
+                var property = ary[0];
+                var min = ary[1];
+                var max = ary[2];
+                result.push({
+                    label: this._createTokuseiLabel(property, min, max),
+                    property: property,
+                    min: min,
+                    max: max
+                });
+            }));
+            return result;
+        },
+
+        _createTokuseiLabel: function (property, min, max) {
+            var label = ARMOR_TOKUSEI_PROPERTY_MAP[property] || property;
+            label += ' ' + min + '-' + max;
+            return label;
         },
 
         /**

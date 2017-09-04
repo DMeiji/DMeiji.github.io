@@ -1,0 +1,9 @@
+property,min,max
+vselite,10,12
+resshock,27,33
+resfire,27,33
+resconfu,27,33
+resaudiovis,27,33
+resjack,27,33
+resbleed,27,33
+killxp,46,56

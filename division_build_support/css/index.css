@@ -30,7 +30,6 @@ html,body {
 
 .selectTalentContainer {
     display: inline-block;
-    height: 150px;
     width: 270px;
     margin-bottom: 10px;
 }
@@ -128,4 +127,8 @@ html,body {
 .electronArea {
     left: 180px;
     border-right: solid 1px;
+}
+
+.tokuseiList {
+    width: 100%;
 }
