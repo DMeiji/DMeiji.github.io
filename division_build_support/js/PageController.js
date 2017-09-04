@@ -85,12 +85,6 @@
 
             $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise).then(this.own(
                 function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
-                    // 取得したデータを画面表示用に変換してバインド
-                    // this._armorTalentData = this._convertResToArmorTalentData(armorTalentRes);
-                    // h5.core.view.bind('.armorTalentContainer', {
-                    //     armorItems: this._armorTalentData
-                    // });
-
                     this._armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
                     h5.core.view.bind('.armorTalentContainer', {
                         armorItems: this._armorItemsData
@@ -100,15 +94,6 @@
                     errAlert();
                 }
             ));
-
-            // // 防具タレントのデータを取得
-            // this._logic.getArmorTalentData().done(this.own(function (armorTalentDataRes) {
-            //     // 取得したデータを画面表示用に変換してバインド
-            //     this._armorTalentData = this._convertResToArmorTalentData(armorTalentDataRes);
-            //     h5.core.view.bind('.armorTalentContainer', {
-            //         armorItems: this._armorTalentData
-            //     });
-            // }));
 
             // セットボーナスのデータを取得
             this._logic.getSetBounusData().done(this.own(function (setBounusDataRes) {
@@ -189,7 +174,17 @@
             var result = [];
             var partRes = mainTokuseiRes[partName];
             var strAry = partRes.split(/\r\n|\r|\n/);
-            strAry.forEach(this.own(function (str) {
+            strAry.forEach(this.own(function (str, idx) {
+                // リストの先頭はselectの初期表示用の項目にする
+                if (idx === 0) {
+                    result.push({
+                        label: 'メイン特性値  (最小 - 最大)',
+                        property: null,
+                        min: null,
+                        max: null
+                    });
+                    return;
+                }
                 var ary = str.split(',');
                 var property = ary[0];
                 var min = ary[1];
@@ -211,7 +206,17 @@
                 return result;
             }
             var strAry = partRes.split(/\r\n|\r|\n/);
-            strAry.forEach(this.own(function (str) {
+            strAry.forEach(this.own(function (str, idx) {
+                // リストの先頭はselectの初期表示用の項目にする
+                if (idx === 0) {
+                    result.push({
+                        label: 'サブ特性値  (最小 - 最大)',
+                        property: null,
+                        min: null,
+                        max: null
+                    });
+                    return;
+                }
                 var ary = str.split(',');
                 var property = ary[0];
                 var min = ary[1];
@@ -228,7 +233,7 @@
 
         _createTokuseiLabel: function (property, min, max) {
             var label = ARMOR_TOKUSEI_PROPERTY_MAP[property] || property;
-            label += ' ' + min + '-' + max;
+            label += '  (' + min + ' - ' + max + ')';
             return label;
         },
 
@@ -236,18 +241,6 @@
          * セット効果のデータをキャッシュする型に変換
          */
         _convertResToSetBounusData: function (res) {
-            // retusnするデータの型
-            // {
-            //     d3fnc: {
-            //         name: 'D3-FNC',
-            //         desc: {
-            //             '2': 'xxx',
-            //             '3': 'yyy',
-            //             ...
-            //         }
-            //     },
-            //     ...
-            // }
             var result = {};
 
             // 各要素は１セット分の文字列。先頭の要素はヘッダ部分なので除外。最後の要素はsplitによる空行なので除外
