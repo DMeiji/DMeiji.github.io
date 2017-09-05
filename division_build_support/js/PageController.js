@@ -369,16 +369,32 @@
         },
 
         _updateSetBounus: function () {
-            this._setBounusList.splice(0, this._setBounusList.length);
+            this._setBounusList.splice(0, this._setBounusList.length);// セットボーナス一覧をクリア
+            var isSelectedNinja = false;// ニンジャバイクが選択されているかどうか
+            // 各部位で選択したセット効果数をカウント
             var selectSetList = {};
-            $.each(this._selectedSetMap, this.own(function (key, setName) {
+            $.each(this._selectedSetMap, this.own(function (partName, setName) {
+                // セット防具が選択されていなければ何もしない
                 if (setName == null || setName === '') {
                     return;
+                }
+                // ニンジャバイクが選択されていればフラグをたてる
+                if (partName === 'backpack') {
+                    isSelectedNinja = setName === 'ninja';
                 }
                 selectSetList[setName] = selectSetList[setName] == null ? 1 : ++selectSetList[setName];
             }));
 
             $.each(selectSetList, this.own(function (setName, cnt) {
+                // setNameがninjaの場合、ニンジャバイク自体にセット効果はないため何もしない
+                if (setName === 'ninja') {
+                    return;
+                }
+                // ニンジャバイクが選択されている、かつ、セット効果カウントが３以下であれば+１する
+                // MEMO ver1.7現在、ニンジャバイクでは５、６セット効果は発動しない
+                if (isSelectedNinja && cnt < 4) {
+                    cnt++;
+                }
                 if (cnt < 2) {
                     return;
                 }
