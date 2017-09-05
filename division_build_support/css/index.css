@@ -42,8 +42,9 @@ html,body {
     border-top: solid 1px;
     border-left: solid 1px;
     border-right: solid 1px;
-    /*border-color: #a9a9a9;*/
     background: #d8edf9;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .armorTalentList {
@@ -57,7 +58,6 @@ html,body {
     border-left: solid 1px;
     border-right: solid 1px;
     border-bottom: solid 1px;
-    /*border-color: #a9a9a9;*/
     overflow: auto;
     padding: 3px;
 }
@@ -78,12 +78,16 @@ html,body {
     border-bottom: solid 1px;
     text-align: center;
     background: #87f5a9;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .setBounusList {
     height: calc(100% - 22px);
     width: 100%;
     overflow: auto;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .setBounusList > ul {
@@ -116,6 +120,8 @@ html,body {
     border-left: solid 1px;
     border-bottom: solid 1px;
     font-size: 16px;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .firearmsArea {
@@ -149,6 +155,8 @@ html,body {
     border: solid 1px;
     text-align: center;
     background: #A4A9E2;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .grandTotalArea {
@@ -172,7 +180,9 @@ html,body {
     vertical-align: middle;
     font-size: 22px;
     border-left: solid 1px;
-    border-bottom: solid 1px;    
+    border-bottom: solid 1px;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .totalFirearmsArea {

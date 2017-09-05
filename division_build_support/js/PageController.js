@@ -18,22 +18,80 @@
         name: 'divisionArmorItemModel',
         schema: {
             id: { id: true },
-            // 部位名
-            partName: null,
-            // 当該部位の防具タレント一覧
-            talentList: null,
-            // 選択したタレントの説明文
-            talentDesc: null,
-            // 銃器ステータス値
+            partName: null,// 部位名
+            talentList: null,// 当該部位の防具タレント一覧
+            talentDesc: null,// 選択したタレントの説明文
+            // 銃器
+            firearms: {
+                depend: {
+                    on: ['selectedStatus'],
+                    calc: function (ev) {
+                        return this.get('selectedStatus') === 'firearms' ? ARMOR_STATUS.MAX : ARMOR_STATUS.MIN;
+                    }
+                }
+            },
+            // スタミナ
+            stamina: {
+                depend: {
+                    on: ['selectedStatus'],
+                    calc: function (ev) {
+                        return this.get('selectedStatus') === 'stamina' ? ARMOR_STATUS.MAX : ARMOR_STATUS.MIN;
+                    }
+                }
+            },
+            // 電子機器
+            electron: {
+                depend: {
+                    on: ['selectedStatus'],
+                    calc: function (ev) {
+                        return this.get('selectedStatus') === 'electron' ? ARMOR_STATUS.MAX : ARMOR_STATUS.MIN;
+                    }
+                }
+            },
+            tokuseiList: null,// 特性一覧
+
+            // 選択したステータス
+            selectedStatus: {
+                defaultValue: 'firearms'
+            },
+            selectedTokusei: null// 選択した特性のマップ
+        }
+    });
+    var grandTotalModel = manager.createModel({
+        name: 'divisionGrandTotalItemModel',
+        schema: {
+            id: { id: true },
             firearms: null,
-            // スタミナステータス値
             stamina: null,
-            // 電子機器ステータス値
             electron: null,
-            // 特性一覧
-            tokuseiList: null,
-            // 選択した特性のマップ
-            selectedTokusei: null
+
+            ch: {
+                defaultValue: 0
+            },
+            cd: {
+                defaultValue: 0
+            },
+            armordmg: {
+                defaultValue: 0
+            },
+            sh: {
+                defaultValue: 0
+            },
+            sp: {
+                defaultValue: 0
+            },
+            stability: {
+                defaultValue: 0
+            },
+            reload: {
+                defaultValue: 0
+            },
+            vselite: {
+                defaultValue: 0
+            },
+            ammo: {
+                defaultValue: 0
+            }
         }
     });
 
@@ -41,7 +99,7 @@
     // 関数
     // =========================
     var errAlert = function () {
-        alert('想定外のエラー');
+        alert('error');
     };
 
     // =========================
@@ -54,18 +112,8 @@
         _logic: division_build_support.logic.PageLogic,
         _setBounusList: h5.core.data.createObservableArray(),// 発動しているセット効果の一覧
 
-        // 各部位の選択されているセット防具名のマップ。非セット防具ならnullまたは空文字
-        _selectedSetMap: {
-            mask: null,
-            body: null,
-            backpack: null,
-            glove: null,
-            knee: null,
-            holster: null
-        },
-
+        _selectedSetMap: {},// 各部位の選択されているセット防具名のマップ。非セット防具ならnullまたは空文字
         _armorItemsMap: {},// keyがpartName、valueがデータアイテムのマップ
-
         _selectedArmorStatusItem: null,
 
         __init: function () {
@@ -89,6 +137,18 @@
                         var partName = armorItem.get('partName');
                         this._armorItemsMap[partName] = armorItem;
                     }));
+
+                    // 合計性能欄にデータアイテムをバインド
+                    var totalStatus = this._calcTotalStatus();
+                    var grandTotalItem = this._grandTotalItem = grandTotalModel.create({
+                        id: 'grandTotalItem',
+                        firearms: totalStatus.firearms,
+                        stamina: totalStatus.stamina,
+                        electron: totalStatus.electron
+                    });
+                    h5.core.view.bind('.grandTotalContainer', {
+                        grandTotal: grandTotalItem
+                    });
                 },
                 function () {
                     errAlert();
@@ -135,11 +195,11 @@
                     partName: partName,// 部位名
                     talentList: this._convertResToArmorTalentData(armorTalentRes, partName),// 当該部位の防具タレント一覧
                     talentDesc: '',// 選択したタレントの説明文。初期は空文字
-                    firearms: ARMOR_STATUS.MAX,// 銃器ステータス値。初期は選択状態なのでMAX値を設定
-                    stamina: ARMOR_STATUS.MIN,// スタミナステータス値。初期は非選択状態なのでMIN値を設定
-                    electron: ARMOR_STATUS.MIN,// 電子機器ステータス値。初期は非選択状態なのでMIN値を設定
+                    // firearms: ARMOR_STATUS.MAX,// 銃器ステータス値。初期は選択状態なのでMAX値を設定
+                    // stamina: ARMOR_STATUS.MIN,// スタミナステータス値。初期は非選択状態なのでMIN値を設定
+                    // electron: ARMOR_STATUS.MIN,// 電子機器ステータス値。初期は非選択状態なのでMIN値を設定
                     tokuseiList: tokuseiList,// 特性一覧
-                    selectedTokusei: null// 選択した特性のマップ
+                    // selectedTokusei: null// 選択した特性のマップ
                 });
                 result.push(armorItem);
             }));
@@ -336,34 +396,49 @@
         },
 
         '.armorStatusArea click': function (context, $el) {
-            this._toggleSelectContainer($el);
-
+            this._toggleSelectedStatus($el);// 選択状態のステータスを切り換え
             var partName = $el.data('partName');
             var armorStatusName = $el.data('statusName');
-            this._setArmorStatus(partName, armorStatusName);
+            this._setArmorStatus(partName, armorStatusName);// 対象部位のデータアイテムに選択したステータスをセット
+            var totalStatus = this._calcTotalStatus();// 各ステータスの合計値を算出
+            this._updateTotalStatus(totalStatus);// ステータス合計値を更新
         },
 
-        _toggleSelectContainer: function ($statusArea) {
-            // 選択された部位ですでに選択されているステータスを非選択状態にする
+        _toggleSelectedStatus: function ($statusArea) {
             var $parentContainer = $statusArea.parent('.armorStatusContainer');
-            var $selected = $parentContainer.find('.armorStatusArea.selectedStatus');
+            // ステータスを非選択状態にする
+            var $selected = $parentContainer.find('.selectedStatus');
             $selected.toggleClass('selectedStatus');
-            $selected.find('.statusVal').text('205');
-            // 選択された部位のステータスを選択状態にする
+            // 選択されたステータスを選択状態にする
             $statusArea.toggleClass('selectedStatus');
-            $statusArea.find('.statusVal').text('1272');
         },
 
         _setArmorStatus: function (partName, armorStatusName) {
-
+            this._armorItemsMap[partName].set('selectedStatus', armorStatusName);
         },
 
         _calcTotalStatus: function () {
-
+            var result = {
+                firearms: 0,
+                stamina: 0,
+                electron: 0
+            };
+            // 各部位のデータアイテム毎にステータスの値を加算する
+            // 加算する値は選択ステータスはARMOR_STATUS.MAX、非選択ステータスはARMOR_STATUS.MIN
+            $.each(this._armorItemsMap, this.own(function (partName, armorItem) {
+                var selectedStatus = armorItem.get('selectedStatus');
+                $.each(result, this.own(function (status, val) {
+                    result[status] += status === selectedStatus ? ARMOR_STATUS.MAX : ARMOR_STATUS.MIN;
+                }));
+            }));
+            return result;
         },
 
-        _redrawTotalStatus: function () {
-
+        _updateTotalStatus: function (totalStatus) {
+            var item = this._grandTotalItem;
+            $.each(totalStatus, this.own(function (status, val) {
+                item.set(status, val);
+            }));
         }
     };
 
