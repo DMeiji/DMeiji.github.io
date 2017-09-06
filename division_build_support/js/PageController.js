@@ -55,9 +55,7 @@
                 defaultValue: 'firearms'
             },
             // 選択した特性のマップ
-            selectedTokuseiMap: {
-                defaultValue: {}
-            }
+            selectedTokuseiMap: null
         }
     });
     var grandTotalModel = manager.createModel({
@@ -252,11 +250,8 @@
                     partName: partName,// 部位名
                     talentList: this._convertResToArmorTalentData(armorTalentRes, partName),// 当該部位の防具タレント一覧
                     talentDesc: '',// 選択したタレントの説明文。初期は空文字
-                    // firearms: ARMOR_STATUS.MAX,// 銃器ステータス値。初期は選択状態なのでMAX値を設定
-                    // stamina: ARMOR_STATUS.MIN,// スタミナステータス値。初期は非選択状態なのでMIN値を設定
-                    // electron: ARMOR_STATUS.MIN,// 電子機器ステータス値。初期は非選択状態なのでMIN値を設定
                     tokuseiList: tokuseiList,// 特性一覧
-                    // selectedTokuseiMap: null// 選択した特性のマップ
+                    selectedTokuseiMap: {}// 選択した特性のマップ
                 });
                 result.push(armorItem);
             }));
@@ -404,7 +399,7 @@
                 strAry.forEach(this.own(function (tokuseiRowStr) {
                     var ary = tokuseiRowStr.split(',');
                     var property = ary[0];
-                    var max = ary[2];
+                    var max = parseFloat(ary[2]);
                     result[partName][property] = max;
                 }));
             }));
@@ -414,7 +409,7 @@
                 strAry.forEach(this.own(function (tokuseiRowStr) {
                     var ary = tokuseiRowStr.split(',');
                     var property = ary[0];
-                    var max = ary[2];
+                    var max = parseFloat(ary[2]);
                     result[partName][property] = max;
                 }));
             }));
@@ -543,17 +538,22 @@
             var $parentArmorItem = $el.parents('.armorItem');
             var partName = $parentArmorItem.data('partName');// 部位名
             var max = this._tokuseiMap[partName][property];// 選択した特性のmax値
-            var idx = $el[0].selectedIndex;// 選択したoptionタグのindex
             var armorItem = this._armorItemsMap[partName];// 当該部位のデータアイテム
             var selectedTokuseiMap = armorItem.get('selectedTokuseiMap');// 当該部位の選択した特性のマップ
-
             // 当該部位ですでに選択されている特性であれば更新しない
             if (this._isSelectedTokusie(property, selectedTokuseiMap)) {
                 return;
             }
-            this._updateSelectTokusei(selectedTokuseiMap, idx, property, max);// 当該部位の選択した特性のマップを更新
+            var optionIdx = $el[0].selectedIndex;// 選択したoptionタグのindex
+            var $parentContainer = $el.parent('.tokuseiContainer');
+            var selectIdx = $parentContainer.find('.tokuseiList').index($el);// 選択したselectタグのindex
+            // optionIdxが0の場合は先頭option(プレースホルダ用option)を選択された場合なので、
+            // 当該部位のidxに紐づく選択特性をnullにする
+            // 0以外の場合は当該部位の選択した特性でマップを更新
+            optionIdx === 0 ? this._clearSelectTokusei(selectedTokuseiMap, selectIdx) : this._updateSelectTokusei(selectedTokuseiMap, selectIdx, property, max);
 
-            var totalTokuseiMap = this._calcTotalTokusei();
+            var totalTokuseiMap = this._calcTotalTokusei();// 特性の合計を再計算
+            // 選択した特性毎に表示をデータアイテムを更新
             $.each(totalTokuseiMap, this.own(function (property, val) {
                 this._grandTotalItem.set(property, val);
             }));
@@ -564,28 +564,63 @@
             $.each(selectedTokuseiMap, function (idx, selectedTokusei) {
                 // selectedTokuseiは{property: 選択した特性名, val: 選択した特性の最大値 }
                 if (property === selectedTokusei.property) {
-                    isSelected;
+                    isSelected = true;
+                    return false;
                 }
             });
             return isSelected;
         },
 
-        _updateSelectTokusei: function (selectedTokuseiMap, idx, property, max) {
-            selectedTokuseiMap[idx] = selectedTokuseiMap[idx] || {};
-            selectedTokuseiMap[idx] = {
+        _clearSelectTokusei: function (selectedTokuseiMap, selectIdx) {
+            delete selectedTokuseiMap[selectIdx];
+        },
+
+        _updateSelectTokusei: function (selectedTokuseiMap, selectIdx, property, max) {
+            selectedTokuseiMap[selectIdx] = selectedTokuseiMap[selectIdx] || {};
+            selectedTokuseiMap[selectIdx] = {
                 property: property,
-                val: parseFloat(max)
+                val: max
             }
         },
 
         _calcTotalTokusei: function () {
-            var result = {};
+            // 選択状態から非選択状態になった値は0にする必要があるため、
+            // 各特性の値を初期値0としてセットする
+            var result = {
+                ch: 0,
+                cd: 0,
+                smgdmg: 0,
+                ardmg: 0,
+                sgdmg: 0,
+                lmgdmg: 0,
+                pistoldmg: 0,
+                mmr: 0,
+                armordmg: 0,
+                resall: 0,
+                life: 0,
+                killlife: 0,
+                exdmgheal: 0,
+                sh: 0,
+                sp: 0,
+                stability: 0,
+                reload: 0,
+                vselite: 0,
+                resshock: 0,
+                resfire: 0,
+                resconfu: 0,
+                resaudiovis: 0,
+                resjack: 0,
+                resbleed: 0,
+                killxp: 0,
+                ammo: 0
+            };
+            // 選択した特性に紐づく値を加算する
             $.each(this._armorItemsMap, this.own(function (partName, armorItem) {
                 var selectedTokuseiMap = armorItem.get('selectedTokuseiMap');
                 $.each(selectedTokuseiMap, this.own(function (idx, selectedTokusei) {
                     var property = selectedTokusei.property;
                     var val = selectedTokusei.val;
-                    result[property] = result[property] == null ? val : result[property] + val;
+                    result[property] += val;
                 }));
             }));
             return result;

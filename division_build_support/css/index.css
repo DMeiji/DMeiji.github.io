@@ -213,15 +213,19 @@ html,body {
     height: 100%;
     width: 100%;
     border-right: solid 1px;
+    table-layout: fixed;
 }
 
 .tokuseiTable td {
     border-left: solid 1px;
     border-bottom: solid 1px;
-    text-align: center;
 }
 
 .tokuseiNameCell {
-    /* width: 160px; */
-    padding-left: 5px;
+    padding-left: 2px;
+    font-size: 12px;
+}
+
+.tokuseiValCell {
+    text-align: center;
 }
