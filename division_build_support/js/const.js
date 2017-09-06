@@ -64,7 +64,51 @@
             }
         },
         WEAPON: {
-
+            TALENT_NAME_MAP: {
+                accurate: 'アキュレート',
+                adept: 'アデプト',
+                anforgiving: 'アンフォーギビング',
+                ambusher: 'アンブッシャー',
+                intense: 'インテンス',
+                expert: 'エキスパート',
+                elevated: 'エレベーテッド',
+                coolhead: 'クールヘッド',
+                capable: 'ケーパブル',
+                commanding: 'コマンディング',
+                competent: 'コンピテント',
+                sustained: 'サステインド',
+                swift: 'スウィフト',
+                skilled: 'スキルド',
+                selfpreserved: 'セルフプリザーブド',
+                talented: 'タレンテッド',
+                discipline: 'ディシプリン',
+                destructive: 'ディストラクティブ',
+                dermination: 'ディターミネーション',
+                deadly: 'デッドリー',
+                toxic: 'トキシック',
+                trained: 'トレインド',
+                dominant: 'ドミナント',
+                haled: 'ハリード',
+                hamfull: 'ハームフル',
+                balance: 'バランス',
+                fierce: 'フィアース',
+                fellowchase: 'フェローシャス',
+                focus: 'フォーカス',
+                brutal: 'ブルータル',
+                prepared: 'プリペアード',
+                predatory: 'プレダトリー',
+                proficient: 'プロフィシェント',
+                meticulus: 'メティキュラス',
+                responsive: 'レスポンシブ',
+                vicious: 'ヴィシャス',
+            },
+            TYPE_NAME_MAP: {
+                smg: 'サブマシンガン',
+                sg: 'ショットガン',
+                lmg: 'ライトマシンガン',
+                ar: 'アサルトライフル',
+                mmr: 'マークスマンライフル'
+            }
         },
         SET: {
             NAME_MAP: {

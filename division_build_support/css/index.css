@@ -17,15 +17,18 @@ html,body {
 
 .bodyContainer {
     position: relative;
+    height: calc(100% - 41px);
 }
 
-.armorItemsContainer {
+.equipmentContainer {
     position: absolute;
     top: 0;
     left: 0;
-    width: 600px;
+    height: 100%;
+    width: 585px;
     padding-left: 10px;
     padding-right: 10px;
+    overflow: auto;
 }
 
 .armorItem {
@@ -52,7 +55,7 @@ html,body {
     width: 100%;
 }
 
-.talentDescArea {
+.armorItem .talentDescArea {
     height: 40px;
     width: 100%;
     border-left: solid 1px;
@@ -124,15 +127,15 @@ html,body {
     -ms-user-select: none;
 }
 
-.firearmsArea {
+.armorStatusArea.firearmsArea {
     left: 0;
 }
 
-.staminaArea {
+.armorStatusArea.staminaArea {
     left: 90px;
 }
 
-.electronArea {
+.armorStatusArea.electronArea {
     left: 180px;
     border-right: solid 1px;
 }
@@ -228,4 +231,75 @@ html,body {
 
 .tokuseiValCell {
     text-align: center;
+}
+
+.weaponItem {
+    margin-bottom: 10px;
+}
+
+.weaponTypeContainer {
+    display: flex;
+}
+
+.weaponTypeList {
+    width: 175px;
+    height: 23px;
+}
+
+.typeDesc {
+    display: inline-block;
+    height: 23px;
+    width: 250px;
+    border-top: solid 1px;
+    border-right: solid 1px;
+    border-bottom: solid 1px;
+}
+
+.weaponTalentContainer {
+    display: flex;
+    margin-top: -1px;
+}
+
+.weaponTalentList {
+    width: 175px;
+}
+
+.weaponTalentStatusContainer {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    width: 300px;
+    border-top: solid 1px;
+}
+
+.weaponStatusArea {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100% / 3);
+    border-bottom: solid 1px;
+    border-right: solid 1px;
+    font-size: 16px;
+    user-select: none;
+    -ms-user-select: none;
+}
+
+.weaponStatusArea.firearmsArea {
+    left: 0;
+}
+
+.weaponStatusArea.staminaArea {
+    left: 100px;
+}
+
+.weaponStatusArea.electronArea {
+    left: 200px;
+}
+
+.weaponItem .talentDescArea {
+    height: 60px;
+    width: 475px;
+    border-left: solid 1px;
+    border-bottom: solid 1px;
+    border-right: solid 1px;
 }

@@ -9,6 +9,8 @@
     var ARMOR_TOKUSEI_LEN_MAP = DIVISION_CONST.ARMOR.TOKUSEI_LEN_MAP;
     var ARMOR_TOKUSEI_PROPERTY_MAP = DIVISION_CONST.ARMOR.TOKUSEI_PROPERTY_MAP;
     var SET_NAME_MAP = DIVISION_CONST.SET.NAME_MAP;
+    var WEAPON_TYPE_NAME_MAP = DIVISION_CONST.WEAPON.TYPE_NAME_MAP;
+    var WEAPON_TALENT_NAME_MAP = DIVISION_CONST.WEAPON.TALENT_NAME_MAP;
 
     // =========================
     // 静的変数
@@ -49,13 +51,29 @@
                 }
             },
             tokuseiList: null,// 特性一覧
-
-            // 選択したステータス
-            selectedStatus: {
-                defaultValue: 'firearms'
+            selectedStatus: { defaultValue: 'firearms' },// 選択したステータス
+            selectedTokuseiMap: null// 選択した特性のマップ
+        }
+    });
+    var weaponItemModel = manager.createModel({
+        name: 'divisionWeaponItemModel',
+        schema: {
+            id: { id: true },
+            typeList: null,
+            selectedType: null,
+            typeDesc: null,
+            talentList: null,
+            selectedTalent: null,
+            talentDesc: null,
+            firearms: {
+                defaultValue: 0
             },
-            // 選択した特性のマップ
-            selectedTokuseiMap: null
+            stamina: {
+                defaultValue: 0
+            },
+            electron: {
+                defaultValue: 0
+            }
         }
     });
     var grandTotalModel = manager.createModel({
@@ -66,84 +84,32 @@
             stamina: null,
             electron: null,
 
-            ch: {
-                defaultValue: 0
-            },
-            cd: {
-                defaultValue: 0
-            },
-            smgdmg: {
-                defaultValue: 0
-            },
-            ardmg: {
-                defaultValue: 0
-            },
-            sgdmg: {
-                defaultValue: 0
-            },
-            lmgdmg: {
-                defaultValue: 0
-            },
-            pistoldmg: {
-                defaultValue: 0
-            },
-            mmr: {
-                defaultValue: 0
-            },
-            armordmg: {
-                defaultValue: 0
-            },
-            resall: {
-                defaultValue: 0
-            },
-            life: {
-                defaultValue: 0
-            },
-            killlife: {
-                defaultValue: 0
-            },
-            exdmgheal: {
-                defaultValue: 0
-            },
-            sh: {
-                defaultValue: 0
-            },
-            sp: {
-                defaultValue: 0
-            },
-            stability: {
-                defaultValue: 0
-            },
-            reload: {
-                defaultValue: 0
-            },
-            vselite: {
-                defaultValue: 0
-            },
-            resshock: {
-                defaultValue: 0
-            },
-            resfire: {
-                defaultValue: 0
-            },
-            resconfu: {
-                defaultValue: 0
-            },
-            resaudiovis: {
-                defaultValue: 0
-            },
-            resjack: {
-                defaultValue: 0
-            },
-            resbleed: {
-                defaultValue: 0
-            },
-            killxp: {
-                defaultValue: 0
-            },
-            ammo: {
-                defaultValue: 0
-            }
+            ch: { defaultValue: 0 },
+            cd: { defaultValue: 0 },
+            smgdmg: { defaultValue: 0 },
+            ardmg: { defaultValue: 0 },
+            sgdmg: { defaultValue: 0 },
+            lmgdmg: { defaultValue: 0 },
+            pistoldmg: { defaultValue: 0 },
+            mmr: { defaultValue: 0 },
+            armordmg: { defaultValue: 0 },
+            resall: { defaultValue: 0 },
+            life: { defaultValue: 0 },
+            killlife: { defaultValue: 0 },
+            exdmgheal: { defaultValue: 0 },
+            sh: { defaultValue: 0 },
+            sp: { defaultValue: 0 },
+            stability: { defaultValue: 0 },
+            reload: { defaultValue: 0 },
+            vselite: { defaultValue: 0 },
+            resshock: { defaultValue: 0 },
+            resfire: { defaultValue: 0 },
+            resconfu: { defaultValue: 0 },
+            resaudiovis: { defaultValue: 0 },
+            resjack: { defaultValue: 0 },
+            resbleed: { defaultValue: 0 },
+            killxp: { defaultValue: 0 },
+            ammo: { defaultValue: 0 }
         }
     });
 
@@ -172,16 +138,28 @@
             var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
             var mainTokuseiDataPromise = this._logic.getMainTokuseiData();// メイン特性データ取得
             var subTokuseiDataPromise = this._logic.getSubTokuseiData();// サブ特性データ取得
+            var weaponTalentDataPromise = this._logic.getWeaponTalentData();// 武器タレントデータ取得
+            var weaponTypeDataPromise = this._logic.getWeaponTypeData();// 武器タイプデータ取得
 
-            $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise).then(this.own(
-                function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
+            $.when(armorTalentDataPromise, mainTokuseiDataPromise, subTokuseiDataPromise, weaponTalentDataPromise, weaponTypeDataPromise).then(this.own(
+                function (armorTalentRes, mainTokuseiRes, subTokuseiRes, weaponTalentRes, weaponTypeRes) {
                     // 防具タレント名とタレント説明のマップをキャッシュ
                     this._armorTalentDescMap = this._convertResToArmorTalentDescMap(armorTalentRes);
+                    // 武器タレントデータのマップをキャッシュ
+                    this._weaponTalentDataMap = this._convertResToWeaponTalentDataMap(weaponTalentRes);
+                    // 武器タイプのマップをキャッシュ
+                    this._weaponTypeDataMap = this._convertResToWeaponTypeDataMap(weaponTypeRes);
 
                     // 各部位を初期表示
                     var armorItemsData = this._convertToArmorItemsData(armorTalentRes, mainTokuseiRes, subTokuseiRes);
                     h5.core.view.bind('.armorItemsContainer', {
                         armorItems: armorItemsData
+                    });
+
+                    // 武器を初期表示
+                    var weaponItemsData = this._convertToWeaponItemsData(weaponTypeRes, weaponTalentRes);
+                    h5.core.view.bind('.weaponItemsContainer', {
+                        weaponItems: weaponItemsData
                     });
 
                     // 各部位のデータアイテムをキャッシュ
@@ -233,6 +211,31 @@
                 });
             });
             return result;
+        },
+
+        _convertResToWeaponTalentDataMap: function (res) {
+            var result = {};
+            var strAry = res.split(/\r\n|\r|\n/);
+            strAry.forEach(function (str) {
+                var ary = str.split(',');
+                var property = ary[0];
+                var firearms = ary[1];
+                var stamina = ary[2];
+                var electron = ary[3];
+                var desc = ary[4];
+
+                result[property] = {
+                    firearms: firearms,
+                    stamina: stamina,
+                    electron: electron,
+                    desc: desc
+                };
+            });
+            return result;
+        },
+
+        _convertResToWeaponTypeDataMap: function (res) {
+
         },
 
         _convertToArmorItemsData: function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
@@ -362,6 +365,59 @@
             var label = ARMOR_TOKUSEI_PROPERTY_MAP[property] || property;
             label += '  (' + min + ' - ' + max + ')';
             return label;
+        },
+
+        _convertToWeaponItemsData: function (weaponTypeRes, weaponTalentRes) {
+            var result = [];
+            var typeList = this._convertResToWeaponTypeList(weaponTypeRes);
+            var talentList = this._convertResToWeaponTalentList(weaponTalentRes);
+            for (var i = 0; i < 2; i++) {
+                var weaponItem = weaponItemModel.create({
+                    id: 'weapon' + i,
+                    typeList: typeList,
+                    typeDesc: '',
+                    talentList: talentList,
+                    talentDesc: ''
+                });
+                result.push(weaponItem);
+            }
+            return result;
+        },
+
+        _convertResToWeaponTypeList: function (res) {
+            var result = [];
+            var strAry = res.split(/\r\n|\r|\n/);
+            strAry.forEach(this.own(function (typeRowStr) {
+                var ary = typeRowStr.split(',');
+                var type = ary[0];
+                var property = ary[1];
+                var min = parseFloat(ary[2]);
+                var max = parseFloat(ary[3]);
+                result.push({
+                    type: type,
+                    name: WEAPON_TYPE_NAME_MAP[type],
+                    property: property,
+                    min: min,
+                    max: max
+                });
+            }));
+            return result;
+        },
+
+        _convertResToWeaponTalentList: function (res) {
+            var result = [];
+            var strAry = res.split(/\r\n|\r|\n/);
+            strAry.forEach(this.own(function (talentRowStr) {
+                var ary = talentRowStr.split(',');
+                var property = ary[0];
+                var desc = ary[4];
+                result.push({
+                    property: property,
+                    name: WEAPON_TALENT_NAME_MAP[property],
+                    desc: desc
+                });
+            }));
+            return result;
         },
 
         /**

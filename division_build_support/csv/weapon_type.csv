@@ -1,0 +1,6 @@
+type,property,min,max
+smg,ch,18,22
+sg,stagger,300,330
+lmg,outsidedmg,15,18
+ar,armordmg,18,22
+mmr,hsdmg,110,130
