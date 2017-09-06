@@ -62,18 +62,8 @@
             typeList: null,
             selectedType: null,
             typeDesc: null,
-            talentList: null,
-            selectedTalent: null,
-            talentDesc: null,
-            firearms: {
-                defaultValue: 0
-            },
-            stamina: {
-                defaultValue: 0
-            },
-            electron: {
-                defaultValue: 0
-            }
+            weaponTalentItems: null,
+            weaponTalentList: null
         }
     });
     var grandTotalModel = manager.createModel({
@@ -370,14 +360,24 @@
         _convertToWeaponItemsData: function (weaponTypeRes, weaponTalentRes) {
             var result = [];
             var typeList = this._convertResToWeaponTypeList(weaponTypeRes);
-            var talentList = this._convertResToWeaponTalentList(weaponTalentRes);
+            var weaponTalentList = this._convertResToWeaponTalentList(weaponTalentRes);
             for (var i = 0; i < 2; i++) {
+                var weaponTalentItems = [];
+                for (var j = 0; j < 3; j++) {
+                    weaponTalentItems.push({
+                        weaponTalentList: weaponTalentList,
+                        talentDesc: '',
+                        firearms: 0,
+                        stamina: 0,
+                        electron: 0
+                    });
+                }
                 var weaponItem = weaponItemModel.create({
                     id: 'weapon' + i,
                     typeList: typeList,
                     typeDesc: '',
-                    talentList: talentList,
-                    talentDesc: ''
+                    selectedType: '',
+                    weaponTalentItems: weaponTalentItems
                 });
                 result.push(weaponItem);
             }

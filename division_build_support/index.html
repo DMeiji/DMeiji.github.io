@@ -85,7 +85,7 @@
             <div class="weaponItemsContainer" data-h5-loop-context="weaponItems">
                 <div class="weaponItem">
                     <div class="weaponTypeContainer">
-                        <!-- 武器種別(smg,sg,lmg,ar,mmr) -->
+                        <!-- 武器種別 -->
                         <select class="weaponTypeList" data-h5-loop-context="typeList">
                             <option class="item" data-h5-bind="name"></option>
                         </select>
@@ -93,33 +93,34 @@
                         <div class="typeDesc" data-h5-bind="typeDesc"></div>
                     </div>
                     
-                    <div class="weaponTalentContainer">
-                        <!-- タレントリスト -->
-                        <select class="weaponTalentList" data-h5-loop-context="talentList">
-                            <option class="item" data-h5-bind="name; attr(desc):desc;"></option>
-                        </select>
-                        <!-- タレント要求ステータス -->
-                        <div class="weaponTalentStatusContainer">
-                            <!-- 銃器 -->
-                            <div class="firearmsArea weaponStatusArea">
-                                <div class="weaponStatusLabel">銃器</div>
-                                <div class="statusVal" data-h5-bind="firearms"></div>
+                    <div class="weaponTalentContainer" data-h5-loop-context="weaponTalentItems">
+                        <div class="weaponTalentItem">
+                            <!-- タレントリスト -->
+                            <select name="weaponTalent" class="weaponTalentList" data-h5-loop-context="weaponTalentList">
+                                <option class="item" data-h5-bind="name; attr(desc):desc;"></option>
+                            </select>
+                            <!-- タレント要求ステータス -->
+                            <div class="weaponTalentStatusContainer">
+                                <!-- 銃器 -->
+                                <div class="firearmsArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">銃器</div>
+                                    <div class="weaponStatusVal" data-h5-bind="firearms"></div>
+                                </div>
+                                <!-- スタミナ -->
+                                <div class="staminaArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">スタミナ</div>
+                                    <div class="weaponStatusVal" data-h5-bind="stamina"></div>
+                                </div>
+                                <!-- 電子 -->
+                                <div class="electronArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">電子</div>
+                                    <div class="weaponStatusVal" data-h5-bind="electron"></div>
+                                </div>
                             </div>
-                            <!-- スタミナ -->
-                            <div class="staminaArea weaponStatusArea">
-                                <div class="weaponStatusLabel">スタミナ</div>
-                                <div class="statusVal" data-h5-bind="stamina"></div>
-                            </div>
-                            <!-- 電子 -->
-                            <div class="electronArea weaponStatusArea">
-                                <div class="weaponStatusLabel">電子</div>
-                                <div class="statusVal" data-h5-bind="electron"></div>
-                            </div>
+                            <!-- タレント説明 -->
+                            <div class="talentDescArea" data-h5-bind="talentDesc"></div>
                         </div>
                     </div>
-                    
-                    <!-- タレント説明 -->
-                    <div class="talentDescArea" data-h5-bind="talentDesc"></div>
                 </div>
             </div>
         </div>

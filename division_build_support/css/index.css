@@ -10,9 +10,10 @@ html,body {
 }
 
 .headerContainer {
-    font-size: 22px;
+    text-align: right;
+    font-size: 12px;
     font-weight: bold;
-    padding: 5px 10px;
+    padding-right: 5px;
 }
 
 .bodyContainer {
@@ -252,54 +253,50 @@ html,body {
     width: 250px;
     border-top: solid 1px;
     border-right: solid 1px;
-    border-bottom: solid 1px;
 }
 
-.weaponTalentContainer {
+.weaponTalentItem {
     display: flex;
-    margin-top: -1px;
+    height: 36px;
+    width: 540px;
+    /* margin-top: -1px; */
 }
 
 .weaponTalentList {
-    width: 175px;
+    width: 150px;
 }
 
 .weaponTalentStatusContainer {
-    display: inline-block;
+    display: flex;
     position: relative;
-    height: 50px;
-    width: 300px;
+    width: 160px;
     border-top: solid 1px;
 }
 
 .weaponStatusArea {
-    position: absolute;
-    top: 0;
     height: 100%;
     width: calc(100% / 3);
     border-bottom: solid 1px;
     border-right: solid 1px;
-    font-size: 16px;
     user-select: none;
     -ms-user-select: none;
+    text-align: center;
 }
 
-.weaponStatusArea.firearmsArea {
-    left: 0;
+.weaponStatusLabel {
+    height: 18px;
+    border-bottom: solid 1px;
+    background: #f1e0bc;
 }
 
-.weaponStatusArea.staminaArea {
-    left: 100px;
-}
-
-.weaponStatusArea.electronArea {
-    left: 200px;
+.weaponStatusVal {
+    height: calc(100% - 18px);
 }
 
 .weaponItem .talentDescArea {
-    height: 60px;
-    width: 475px;
-    border-left: solid 1px;
+    height: 36px;
+    width: 200px;
+    border-top: solid 1px;
     border-bottom: solid 1px;
     border-right: solid 1px;
 }
