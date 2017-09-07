@@ -32,42 +32,95 @@
     <div class="headerContainer">division 1.7</div>
 
     <div class="bodyContainer">
-
-        <!-- 防具タレント -->
-        <div class="armorItemsContainer" data-h5-loop-context="armorItems">
-            <div class="armorItem" data-h5-bind="attr(data-part-name):partName;">
-                <!-- 防具部位名 -->
-                <div class="partName" data-h5-bind="partName"></div>
-                <!-- 防具タレントリスト -->
-                <select class="armorTalentList" data-h5-loop-context="talentList">
-                    <option class="item" data-h5-bind="name; attr(desc):desc; attr(data-set-name):setName;"></option>
-                </select>
-                <!-- 防具タレント説明 -->
-                <div class="talentDescArea" data-h5-bind="talentDesc"></div>
-                <!-- 防具ステータス -->
-                <div class="armorStatusContainer">
-                    <!-- 銃器 -->
-                    <div class="firearmsArea armorStatusArea selectedStatus" data-h5-bind="attr(data-part-name):partName;" data-status-name="firearms">
-                        <div class="armorStatusLabel">銃器</div>
-                        <div class="statusVal" data-h5-bind="firearms"></div>
-                    </div>
-                    <!-- スタミナ -->
-                    <div class="staminaArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="stamina">
-                        <div class="armorStatusLabel">スタミナ</div>
-                        <div class="statusVal" data-h5-bind="stamina"></div>
-                    </div>
-                    <!-- 電子 -->
-                    <div class="electronArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="electron">
-                        <div class="armorStatusLabel">電子</div>
-                        <div class="statusVal" data-h5-bind="electron"></div>
-                    </div>
-                </div>
-                <!-- 特性一覧 -->
-                <div class="tokuseiContainer" data-h5-loop-context="tokuseiList">
-                    <!-- 特性(部位によってメイン特性、サブ特性の数は異なる -->
-                    <select class="tokuseiList" name="tokusei" data-h5-loop-context="tokuseiItemsList">
-                        <option data-h5-bind="label; attr(value):property;"></option>
+        <!-- 装備 -->
+        <div class="equipmentContainer">
+            <!-- 防具 -->
+            <div class="armorItemsContainer" data-h5-loop-context="armorItems">
+                <div class="armorItem" data-h5-bind="attr(data-part-name):partName;">
+                    <!-- 防具部位名 -->
+                    <div class="partName" data-h5-bind="partName"></div>
+                    <!-- 防具タレントリスト -->
+                    <select class="armorTalentList decorateSelect" data-h5-loop-context="talentList">
+                        <option class="item" data-h5-bind="name; attr(desc):desc; attr(data-set-name):setName;"></option>
                     </select>
+                    <!-- 防具タレント説明 -->
+                    <div class="talentDescArea" data-h5-bind="talentDesc; attr(title):talentDesc;"></div>
+                    <!-- 防具ステータス -->
+                    <div class="armorStatusContainer">
+                        <!-- 銃器 -->
+                        <div class="firearmsArea armorStatusArea selectedStatus" data-h5-bind="attr(data-part-name):partName;" data-status-name="firearms">
+                            <div class="armorStatusLabel">銃器</div>
+                            <div class="statusVal" data-h5-bind="firearms"></div>
+                        </div>
+                        <!-- スタミナ -->
+                        <div class="staminaArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="stamina">
+                            <div class="armorStatusLabel">スタミナ</div>
+                            <div class="statusVal" data-h5-bind="stamina"></div>
+                        </div>
+                        <!-- 電子 -->
+                        <div class="electronArea armorStatusArea" data-h5-bind="attr(data-part-name):partName;" data-status-name="electron">
+                            <div class="armorStatusLabel">電子</div>
+                            <div class="statusVal" data-h5-bind="electron"></div>
+                        </div>
+                    </div>
+                    <!-- 特性一覧 -->
+                    <div class="tokuseiContainer" data-h5-loop-context="tokuseiList">
+                        <!-- 特性(部位によってメイン特性、サブ特性の数は異なる -->
+                        <select class="tokuseiList decorateSelect" name="tokusei" data-h5-loop-context="tokuseiItemsList">
+                            <option data-h5-bind="label; attr(value):property;"></option>
+                        </select>
+                    </div>
+                    <!-- mod -->
+                    <!-- <div class="armorModContainer">
+                        <div class="armorModContainerLabel">Mod<span class="modToggleIcon">@</span></div>
+                        <div class="armorModListContainer hide" data-h5-loop-context="modList">
+                            <select class="armorModList" data-h5-loop-context="modItemsList">
+                                <option data-h5-bind="label; attr(value):property;"></option>
+                            </select>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <!-- 武器 -->
+            <div class="weaponItemsContainer" data-h5-loop-context="weaponItems">
+                <div class="weaponItem">
+                    <div class="weaponTypeContainer">
+                        <!-- 武器種別 -->
+                        <select class="weaponTypeList decorateSelect" data-h5-loop-context="typeList">
+                            <option class="item" data-h5-bind="name; attr(value):max; attr(data-type-property):property;"></option>
+                        </select>
+                        <!-- 武器特性 -->
+                        <div class="typeDesc" data-h5-bind="typeDesc"></div>
+                    </div>
+                    
+                    <div class="weaponTalentContainer" data-h5-loop-context="weaponTalentItems">
+                        <div class="weaponTalentItem">
+                            <!-- タレントリスト -->
+                            <select name="weaponTalent decorateSelect" class="weaponTalentList decorateSelect" data-h5-loop-context="weaponTalentList">
+                                <option class="item" data-h5-bind="name; attr(desc):desc; attr(value):property;"></option>
+                            </select>
+                            <!-- タレント要求ステータス -->
+                            <div class="weaponTalentStatusContainer">
+                                <!-- 銃器 -->
+                                <div class="firearmsArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">銃器</div>
+                                    <div class="weaponStatusVal" data-h5-bind="firearms"></div>
+                                </div>
+                                <!-- スタミナ -->
+                                <div class="staminaArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">スタミナ</div>
+                                    <div class="weaponStatusVal" data-h5-bind="stamina"></div>
+                                </div>
+                                <!-- 電子 -->
+                                <div class="electronArea weaponStatusArea">
+                                    <div class="weaponStatusLabel">電子</div>
+                                    <div class="weaponStatusVal" data-h5-bind="electron"></div>
+                                </div>
+                            </div>
+                            <!-- タレント説明 -->
+                            <div class="talentDescArea" data-h5-bind="talentDesc"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,7 +140,7 @@
 
         <!-- 総計 -->
         <div class="grandTotalContainer" data-h5-context="grandTotal">
-            <div class="grandTotalLabel">合計性能</div>
+            <div class="grandTotalLabel">合計性能 ※セット効果は含まない</div>
             <div class="grandTotalArea">
                 <!-- 合計ステータス -->
                 <div class="totalStatus">
@@ -106,6 +159,41 @@
                         <div class="totalStatusLabel">電子</div>
                         <div class="totalStatusVal" data-h5-bind="electron"></div>
                     </div>
+                </div>
+                <!-- 主要な特性合計 -->
+                <div class="totalTokusei">
+                    <table class="tokuseiTable">
+                        <tr>
+                            <td style="width:130px;" class="tokuseiNameCell">クリティカル率</td>
+                            <td class="tokuseiValCell" data-h5-bind="ch"></td>
+                            <td style="width:130px;" class="tokuseiNameCell">スキルヘイスト</td>
+                            <td class="tokuseiValCell" data-h5-bind="sh"></td>
+                        </tr>
+                        <tr>
+                            <td class="tokuseiNameCell">クリティカルダメージ</td>
+                            <td class="tokuseiValCell" data-h5-bind="cd"></td>
+                            <td class="tokuseiNameCell">スキルパワー</td>
+                            <td class="tokuseiValCell" data-h5-bind="sp"></td>
+                        </tr>
+                        <tr>
+                            <td class="tokuseiNameCell">敵アーマーダメージ</td>
+                            <td class="tokuseiValCell" data-h5-bind="armordmg"></td>
+                            <td class="tokuseiNameCell">武器安定性</td>
+                            <td class="tokuseiValCell" data-h5-bind="stability"></td>
+                        </tr>
+                        <tr>
+                            <td class="tokuseiNameCell">対エリートダメージ</td>
+                            <td class="tokuseiValCell" data-h5-bind="vselite"></td>
+                            <td class="tokuseiNameCell">リロード速度</td>
+                            <td class="tokuseiValCell" data-h5-bind="reload">
+                        </tr>
+                        <tr>
+                            <td class="tokuseiNameCell">弾薬数</td>
+                            <td class="tokuseiValCell" data-h5-bind="ammo"></td>
+                            <td class="tokuseiNameCell"></td>
+                            <td class="tokuseiValCell"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

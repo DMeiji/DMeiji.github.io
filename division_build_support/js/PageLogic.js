@@ -93,6 +93,22 @@
 
         getSetBounusData: function () {
             return h5.ajax('./csv/armor_talent-setbounus.csv');
+        },
+
+        getWeaponTalentData: function () {
+            var dfd = h5.async.deferred();
+            h5.ajax('./csv/weapon_talent.csv').done(function (res) {
+                dfd.resolve(res);
+            });
+            return dfd.promise();
+        },
+
+        getWeaponTypeData: function () {
+            var dfd = h5.async.deferred();
+            h5.ajax('./csv/weapon_type.csv').done(function (res) {
+                dfd.resolve(res);
+            });
+            return dfd.promise();
         }
     };
 

@@ -5,27 +5,31 @@ html,body {
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: Arial Meiryo;
+    font-family: Meiryo;
     box-sizing: border-box;
 }
 
 .headerContainer {
-    font-size: 22px;
+    text-align: right;
+    font-size: 12px;
     font-weight: bold;
-    padding: 5px 10px;
+    padding-right: 5px;
 }
 
 .bodyContainer {
     position: relative;
+    height: calc(100% - 41px);
 }
 
-.armorItemsContainer {
+.equipmentContainer {
     position: absolute;
     top: 0;
     left: 0;
-    width: 600px;
+    height: 100%;
+    width: 585px;
     padding-left: 10px;
     padding-right: 10px;
+    overflow: auto;
 }
 
 .armorItem {
@@ -42,6 +46,7 @@ html,body {
     border-top: solid 1px;
     border-left: solid 1px;
     border-right: solid 1px;
+    border-color: #cccccc;    
     background: #d8edf9;
     user-select: none;
     -ms-user-select: none;
@@ -52,12 +57,13 @@ html,body {
     width: 100%;
 }
 
-.talentDescArea {
-    height: 40px;
+.armorItem .talentDescArea {
+    height: 22px;
     width: 100%;
     border-left: solid 1px;
     border-right: solid 1px;
     border-bottom: solid 1px;
+    border-color: #cccccc;
     overflow: auto;
     padding: 3px;
 }
@@ -100,7 +106,7 @@ html,body {
 
 .armorStatusContainer {
     position: relative;
-    height: 50px;
+    height: 45px;
     width: 100%;
     text-align: center;
 }
@@ -119,22 +125,24 @@ html,body {
     width: calc(100% / 3);
     border-left: solid 1px;
     border-bottom: solid 1px;
+    border-color: #cccccc;
     font-size: 16px;
     user-select: none;
     -ms-user-select: none;
 }
 
-.firearmsArea {
+.armorStatusArea.firearmsArea {
     left: 0;
 }
 
-.staminaArea {
+.armorStatusArea.staminaArea {
     left: 90px;
 }
 
-.electronArea {
+.armorStatusArea.electronArea {
     left: 180px;
     border-right: solid 1px;
+    border-color: #cccccc;
 }
 
 .tokuseiList {
@@ -200,4 +208,131 @@ html,body {
 
 .totalStatusLabel {
     font-weight: bold;
+}
+
+.totalTokusei {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    overflow: auto;
+}
+
+.tokuseiTable {
+    height: 100%;
+    width: 100%;
+    border-right: solid 1px;
+    table-layout: fixed;
+}
+
+.tokuseiTable td {
+    border-left: solid 1px;
+    border-bottom: solid 1px;
+}
+
+.tokuseiNameCell {
+    padding-left: 2px;
+    font-size: 12px;
+}
+
+.tokuseiValCell {
+    text-align: center;
+}
+
+.weaponItem {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.weaponTypeContainer {
+    display: flex;
+}
+
+.weaponTypeList {
+    width: 175px;
+    height: 23px;
+}
+
+.typeDesc {
+    display: inline-block;
+    height: 23px;
+    width: 250px;
+    border-top: solid 1px;
+    border-right: solid 1px;
+    border-left: solid 1px;
+    border-color: #cccccc;
+}
+
+.weaponTalentItem {
+    display: flex;
+    height: 36px;
+    width: 540px;
+}
+
+.weaponTalentList {
+    width: 150px;
+}
+
+.weaponTalentStatusContainer {
+    display: flex;
+    position: relative;
+    width: 160px;
+    border-left: solid 1px;
+    border-color: #cccccc;
+}
+
+.weaponStatusArea {
+    height: 100%;
+    width: calc(100% / 3);
+    user-select: none;
+    -ms-user-select: none;
+    text-align: center;
+}
+
+.weaponStatusLabel {
+    height: 18px;
+    border-top: solid 1px;
+    border-right: solid 1px;
+    border-color: #cccccc;
+    background: #f1e0bc;
+}
+
+.weaponStatusVal {
+    height: calc(100% - 18px);
+    border-top: solid 1px;
+    border-right: solid 1px;
+    border-color: #cccccc;
+}
+
+.weaponItem .talentDescArea {
+    height: 36px;
+    width: 200px;
+    border-top: solid 1px;
+    border-right: solid 1px;
+    border-color: #cccccc;
+    overflow: auto;
+}
+
+.weaponTalentItem:last-child .weaponTalentStatusContainer {
+    border-bottom: solid 1px;
+    border-color: #cccccc;
+}
+
+.weaponTalentItem:last-child .talentDescArea {
+    border-bottom: solid 1px;
+    border-color: #cccccc;
+}
+
+.decorateSelect {
+    display: block;
+    padding: 2px 4px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.warnDispItem {
+    background: #f95858;
 }
