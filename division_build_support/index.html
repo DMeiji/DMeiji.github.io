@@ -44,7 +44,7 @@
                         <option class="item" data-h5-bind="name; attr(desc):desc; attr(data-set-name):setName;"></option>
                     </select>
                     <!-- 防具タレント説明 -->
-                    <div class="talentDescArea" data-h5-bind="talentDesc"></div>
+                    <div class="talentDescArea" data-h5-bind="talentDesc; attr(title):talentDesc;"></div>
                     <!-- 防具ステータス -->
                     <div class="armorStatusContainer">
                         <!-- 銃器 -->
@@ -87,7 +87,7 @@
                     <div class="weaponTypeContainer">
                         <!-- 武器種別 -->
                         <select class="weaponTypeList decorateSelect" data-h5-loop-context="typeList">
-                            <option class="item" data-h5-bind="name"></option>
+                            <option class="item" data-h5-bind="name; attr(value):max; attr(data-type-property):property;"></option>
                         </select>
                         <!-- 武器特性 -->
                         <div class="typeDesc" data-h5-bind="typeDesc"></div>
@@ -97,7 +97,7 @@
                         <div class="weaponTalentItem">
                             <!-- タレントリスト -->
                             <select name="weaponTalent decorateSelect" class="weaponTalentList decorateSelect" data-h5-loop-context="weaponTalentList">
-                                <option class="item" data-h5-bind="name; attr(desc):desc;"></option>
+                                <option class="item" data-h5-bind="name; attr(desc):desc; attr(value):property;"></option>
                             </select>
                             <!-- タレント要求ステータス -->
                             <div class="weaponTalentStatusContainer">

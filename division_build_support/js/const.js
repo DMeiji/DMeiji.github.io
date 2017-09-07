@@ -65,6 +65,7 @@
         },
         WEAPON: {
             TALENT_NAME_MAP: {
+                property: 'タレント',
                 accurate: 'アキュレート',
                 adept: 'アデプト',
                 anforgiving: 'アンフォーギビング',
@@ -103,6 +104,7 @@
                 vicious: 'ヴィシャス',
             },
             TYPE_NAME_MAP: {
+                type: '武器種',
                 smg: 'サブマシンガン',
                 sg: 'ショットガン',
                 lmg: 'ライトマシンガン',

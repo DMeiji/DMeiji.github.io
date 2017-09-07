@@ -63,6 +63,7 @@
             selectedType: null,
             typeDesc: null,
             weaponTalentItems: null,
+            // MEMO: DOM構造的にはweaponTalentItemsの中だが、データモデルにプロパティを登録しないとエラーが出るため設定する
             weaponTalentList: null
         }
     });
@@ -99,7 +100,10 @@
             resjack: { defaultValue: 0 },
             resbleed: { defaultValue: 0 },
             killxp: { defaultValue: 0 },
-            ammo: { defaultValue: 0 }
+            ammo: { defaultValue: 0 },
+            stagger: { defaultValue: 0 },
+            outsidedmg: { defaultValue: 0 },
+            hsdmg: { defaultValue: 0 }
         }
     });
 
@@ -121,8 +125,13 @@
         _setBounusList: h5.core.data.createObservableArray(),// 発動しているセット効果の一覧
 
         _selectedSetMap: {},// 各部位の選択されているセット防具名のマップ。非セット防具ならnullまたは空文字
-        _armorItemsMap: {},// keyがpartName、valueがデータアイテムのマップ
+        _armorItemsMap: {},// keyがpartName、valueが防具のデータアイテムのマップ
+        _weaponItemsMap: {},// keyがindex、valueが武器のデータアイテムのマップ
         _selectedArmorStatusItem: null,
+        _selectedWeaponTalentsMap: {
+            '0': { '0': {}, '1': {}, '2': {} },
+            '1': { '0': {}, '1': {}, '2': {} }
+        },
 
         __init: function () {
             var armorTalentDataPromise = this._logic.getArmorTalentData();// 防具タレントデータ取得
@@ -158,6 +167,11 @@
                         this._armorItemsMap[partName] = armorItem;
                     }));
 
+                    // 各武器のデータアイテムをキャッシュ
+                    weaponItemsData.forEach(this.own(function (weaponItem, idx) {
+                        this._weaponItemsMap[idx] = weaponItem;
+                    }));
+
                     // 合計性能欄にデータアイテムをバインド
                     var totalStatus = this._calcTotalStatus();
                     var grandTotalItem = this._grandTotalItem = grandTotalModel.create({
@@ -186,6 +200,14 @@
                     setBounusList: this._setBounusList
                 });
             }));
+
+            $.each(this._selectedWeaponTalentsMap, this.own(function (itemIdx, itemObj) {
+                $.each(itemObj, this.own(function (selectIdx, condition) {
+                    condition.firearms = 0;
+                    condition.stamina = 0;
+                    condition.electron = 0;
+                }));
+            }));
         },
 
         _convertResToArmorTalentDescMap: function (res) {
@@ -209,9 +231,9 @@
             strAry.forEach(function (str) {
                 var ary = str.split(',');
                 var property = ary[0];
-                var firearms = ary[1];
-                var stamina = ary[2];
-                var electron = ary[3];
+                var firearms = parseFloat(ary[1]);
+                var stamina = parseFloat(ary[2]);
+                var electron = parseFloat(ary[3]);
                 var desc = ary[4];
 
                 result[property] = {
@@ -362,22 +384,28 @@
             var typeList = this._convertResToWeaponTypeList(weaponTypeRes);
             var weaponTalentList = this._convertResToWeaponTalentList(weaponTalentRes);
             for (var i = 0; i < 2; i++) {
-                var weaponTalentItems = [];
+                var weaponTalentItems = h5.core.data.createObservableArray();
                 for (var j = 0; j < 3; j++) {
                     weaponTalentItems.push({
-                        weaponTalentList: weaponTalentList,
                         talentDesc: '',
                         firearms: 0,
                         stamina: 0,
-                        electron: 0
+                        electron: 0,
+                        // MEMO:
+                        // DOMに反映させるにはweaponTalentItemのプロパティとしてtalentListを持たせる必要がある
+                        // そのためweaponItemModelには定義のみを設定し、そのプロパティの一つである
+                        // weaponTalentItemsには実体をセットしている
+                        weaponTalentList: weaponTalentList
                     });
                 }
                 var weaponItem = weaponItemModel.create({
                     id: 'weapon' + i,
                     typeList: typeList,
+                    selectedType: null,
                     typeDesc: '',
-                    selectedType: '',
                     weaponTalentItems: weaponTalentItems
+                    // MEMO:
+                    // こちらはtalentListの実体は不要なためセットしない
                 });
                 result.push(weaponItem);
             }
@@ -393,12 +421,14 @@
                 var property = ary[1];
                 var min = parseFloat(ary[2]);
                 var max = parseFloat(ary[3]);
+                var propertyDesc = ary[4];
                 result.push({
                     type: type,
                     name: WEAPON_TYPE_NAME_MAP[type],
                     property: property,
                     min: min,
-                    max: max
+                    max: max,
+                    propertyDesc: propertyDesc
                 });
             }));
             return result;
@@ -544,12 +574,14 @@
         },
 
         '.armorStatusArea click': function (context, $el) {
+            this._clearWarn();// 武器タレント条件の警告を除去
             this._toggleSelectedStatus($el);// 選択状態のステータスを切り換え
             var partName = $el.data('partName');
             var armorStatusName = $el.data('statusName');
             this._setArmorStatus(partName, armorStatusName);// 対象部位のデータアイテムに選択したステータスをセット
             var totalStatus = this._calcTotalStatus();// 各ステータスの合計値を算出
             this._updateTotalStatus(totalStatus);// ステータス合計値を更新
+            this._checkFulfillWeaponTalentCondition();// 武器タレント条件を満たしているかチェック            
         },
 
         _toggleSelectedStatus: function ($statusArea) {
@@ -668,7 +700,11 @@
                 resjack: 0,
                 resbleed: 0,
                 killxp: 0,
-                ammo: 0
+                ammo: 0,
+                // 以下は武器の種別特性でのみ加算される？
+                stagger: 0,
+                outsidedmg: 0,
+                hsdmg: 0
             };
             // 選択した特性に紐づく値を加算する
             $.each(this._armorItemsMap, this.own(function (partName, armorItem) {
@@ -679,8 +715,139 @@
                     result[property] += val;
                 }));
             }));
+            // 各武器の種別特性を加算する
+            $.each(this._weaponItemsMap, this.own(function (itemIdx, weaponItem) {
+                var selectedType = weaponItem.get('selectedType');
+                // 武器種が一度も選択していない、またはプレースホルダー用のoptionを選択している場合は無視する
+                if (selectedType == null || selectedType === 'property') {
+                    return;
+                }
+                result[selectedType.property] += selectedType.val;
+            }));
             return result;
+        },
+
+        '.weaponTalentList change': function (context, $el) {
+            this._clearWarn();
+
+            var $weaponItemsContainer = $el.parents('.weaponItemsContainer');
+            var $weaponItem = $el.parents('.weaponItem');
+            var itemIdx = $weaponItemsContainer.find('.weaponItem').index($weaponItem);
+
+            var $weaponTalentContainer = $el.parents('.weaponTalentContainer');
+            var selectIdx = $weaponTalentContainer.find('.weaponTalentList').index($el);
+
+            var property = $el.val();
+            var optionIdx = $el[0].selectedIndex;
+            var $option = $el.find('option').eq(optionIdx);
+            var optionVal = $option.val();
+
+            this._updateSelectWeaponTalent(itemIdx, selectIdx, property, $weaponTalentContainer, optionVal);
+        },
+
+        _updateSelectWeaponTalent: function (talentItemIdx, selectIdx, property, $weaponTalentContainer, optionVal) {
+            var talentData = this._weaponTalentDataMap[property];
+            var weaponTalentItems = this._weaponItemsMap[talentItemIdx].get('weaponTalentItems');
+            var weaponTalentItem = weaponTalentItems.get(selectIdx);
+            var weaponTalentList = weaponTalentItem.weaponTalentList;
+            var newData = {
+                weaponTalentList: weaponTalentList,
+                talentDesc: talentData.desc,
+                firearms: talentData.firearms,
+                stamina: talentData.stamina,
+                electron: talentData.electron
+            };
+            weaponTalentItems.set(selectIdx, newData);
+            // MEMO:
+            // ObservableArrayの要素をセットするため動的にDOMも更新される
+            // ただしタレントリストも再描画されるため選択が初期状態になる
+            // そのためObservableArrayにセット(同期的にDOMも更新される)した後に
+            // タレントリストを前の選択状態にする
+            var $weaponTalentList = $weaponTalentContainer.find('.weaponTalentList').eq(selectIdx);
+            $weaponTalentList.val(optionVal);// この方法だとchangeイベントは発火しないため無限ループは起きない
+
+            // 選択した武器タレント情報をキャッシュ
+            this._selectedWeaponTalentsMap[talentItemIdx][selectIdx] = {
+                firearms: talentData.firearms,
+                stamina: talentData.stamina,
+                electron: talentData.electron
+            };
+
+            // 武器タレントが発動するかチェック
+            this._checkFulfillWeaponTalentCondition();
+        },
+
+        _checkFulfillWeaponTalentCondition: function () {
+            // 全武器タレントがチェック対象
+            // チェックすべきタイミングは以下を想定
+            // - ステータス変更
+            // - 武器鍛錬と変更
+            // - 防具mod変更（mod自体が未実装…）
+            var total = this._grandTotalItem;
+            $.each(this._selectedWeaponTalentsMap, this.own(function (itemIdx, itemTalent) {
+                $.each(itemTalent, this.own(function (selectIdx, condition) {
+                    var isFulfillFirearms = condition.firearms <= total.get('firearms');
+                    var isFulfillStamina = condition.stamina <= total.get('stamina');
+                    var isFulfillElectron = condition.electron <= total.get('electron');
+                    // 全条件を満たしていれば何もしない
+                    if (isFulfillFirearms && isFulfillStamina && isFulfillElectron) {
+                        return;
+                    }
+                    var $weaponTalentItem = this._getWeaponTalentItem(itemIdx, selectIdx);
+                    if (!isFulfillFirearms) {
+                        this._addWarn($weaponTalentItem.find('.firearmsArea'));
+                    }
+                    if (!isFulfillStamina) {
+                        this._addWarn($weaponTalentItem.find('.staminaArea'));
+                    }
+                    if (!isFulfillElectron) {
+                        this._addWarn($weaponTalentItem.find('.electronArea'));
+                    }
+                }));
+            }));
+        },
+
+        _getWeaponTalentItem: function (itemIdx, selectIdx, isFulfillFirearms, isFulfillStamina) {
+            var $weaponItem = this.$find('.weaponItem').eq(itemIdx);
+            var $weaponTalentItem = $weaponItem.find('.weaponTalentItem').eq(selectIdx);
+            return $weaponTalentItem;
+        },
+
+        '.weaponTypeList change': function (context, $el) {
+            var $weaponItemsContainer = $el.parents('.weaponItemsContainer');
+            var $weaponItem = $el.parents('.weaponItem');
+            var itemIdx = $weaponItemsContainer.find('.weaponItem').index($weaponItem);
+            var weaponItem = this._weaponItemsMap[itemIdx];
+            var optionIdx = $el[0].selectedIndex;
+            if (optionIdx === 0) {
+                weaponItem.set('selectedType', null);
+            } else {
+                var $option = $el.find('option').eq(optionIdx);
+                var property = $option.data('typeProperty');
+                var val = parseFloat($el.val());
+                weaponItem.set('selectedType', {
+                    property: property,
+                    val: val
+                });
+            }
+
+            var totalTokuseiMap = this._calcTotalTokusei();// 特性の合計を再計算
+            // 選択した特性毎に表示をデータアイテムを更新
+            $.each(totalTokuseiMap, this.own(function (property, val) {
+                this._grandTotalItem.set(property, val);
+            }));
+        },
+
+        _addWarn: function ($el) {
+            $el.addClass('warnDispItem');
+        },
+        _removeWarn: function ($el) {
+            $el.removeClass('warnDispItem');
+        },
+        _clearWarn: function () {
+            this.$find('.weaponTalentContainer').find('.warnDispItem').removeClass('warnDispItem');
         }
+
     };
 
     // ===============
