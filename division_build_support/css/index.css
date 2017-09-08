@@ -94,6 +94,7 @@ html,body {
     overflow: auto;
     user-select: none;
     -ms-user-select: none;
+    font-size: 13px;
 }
 
 .setBounusList > ul {
@@ -146,7 +147,9 @@ html,body {
 }
 
 .tokuseiList {
+    height: 21px;
     width: 100%;
+    font-size: 12px;
 }
 
 .grandTotalContainer {
@@ -241,6 +244,15 @@ html,body {
 .weaponItem {
     margin-bottom: 10px;
     font-size: 12px;
+    padding: 5px;
+}
+
+.weaponItem.selectedWeapon {
+    border: solid 2px #58bfd6;
+}
+
+.selectWeapon {
+    width: 100%;
 }
 
 .weaponTypeContainer {
@@ -252,7 +264,7 @@ html,body {
     height: 23px;
 }
 
-.typeDesc {
+.propertyDesc {
     display: inline-block;
     height: 23px;
     width: 250px;
@@ -260,6 +272,8 @@ html,body {
     border-right: solid 1px;
     border-left: solid 1px;
     border-color: #cccccc;
+    line-height: 22px;
+    padding-left: 5px;
 }
 
 .weaponTalentItem {

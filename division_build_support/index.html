@@ -71,10 +71,17 @@
                         </select>
                     </div>
                     <!-- mod -->
-                    <!-- <div class="armorModContainer">
-                        <div class="armorModContainerLabel">Mod<span class="modToggleIcon">@</span></div>
-                        <div class="armorModListContainer hide" data-h5-loop-context="modList">
-                            <select class="armorModList" data-h5-loop-context="modItemsList">
+                    <!-- <div class="modContainer">
+                        <div class="protoModContainer" data-h5-loop-context="protoModList">
+                            <select class="protoModList decorateSelect" name="protoMod" data-h5-loop-context="protoModList">
+                                <option data-h5-bind="label; attr(value):property;"></option>
+                            </select>
+                            <select class="protoModTokuseiList decorateSelect" name="protoModTokusei" data-h5-loop-context="protoModTokuseiList">
+                                <option data-h5-bind="label; attr(value):property;"></option>
+                            </select>
+                        </div>
+                        <div class="perfModContainer" data-h5-loop-context="perfModList">
+                            <select class="perfModList decorateSelect" name="perfMod" data-h5-loop-context="perfModList">
                                 <option data-h5-bind="label; attr(value):property;"></option>
                             </select>
                         </div>
@@ -84,13 +91,14 @@
             <!-- 武器 -->
             <div class="weaponItemsContainer" data-h5-loop-context="weaponItems">
                 <div class="weaponItem">
+                    <input type="radio" name="selectWeapon" class="selectWeapon" data-h5-bind="attr(value):id;">
                     <div class="weaponTypeContainer">
                         <!-- 武器種別 -->
                         <select class="weaponTypeList decorateSelect" data-h5-loop-context="typeList">
-                            <option class="item" data-h5-bind="name; attr(value):max; attr(data-type-property):property;"></option>
+                            <option class="item" data-h5-bind="name; attr(value):max; attr(data-type-property):property; attr(data-property-desc):propertyDesc;"></option>
                         </select>
                         <!-- 武器特性 -->
-                        <div class="typeDesc" data-h5-bind="typeDesc"></div>
+                        <div class="propertyDesc" data-h5-bind="propertyDesc"></div>
                     </div>
                     
                     <div class="weaponTalentContainer" data-h5-loop-context="weaponTalentItems">
@@ -190,8 +198,8 @@
                         <tr>
                             <td class="tokuseiNameCell">弾薬数</td>
                             <td class="tokuseiValCell" data-h5-bind="ammo"></td>
-                            <td class="tokuseiNameCell"></td>
-                            <td class="tokuseiValCell"></td>
+                            <td class="tokuseiNameCell">HSダメージ</td>
+                            <td class="tokuseiValCell" data-h5-bind="hsdmg"></td>
                         </tr>
                     </table>
                 </div>

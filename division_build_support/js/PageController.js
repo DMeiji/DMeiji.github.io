@@ -61,7 +61,7 @@
             id: { id: true },
             typeList: null,
             selectedType: null,
-            typeDesc: null,
+            propertyDesc: null,
             weaponTalentItems: null,
             // MEMO: DOM構造的にはweaponTalentItemsの中だが、データモデルにプロパティを登録しないとエラーが出るため設定する
             weaponTalentList: null
@@ -186,6 +186,8 @@
 
                     // 特性値のマップをキャッシュ
                     this._tokuseiMap = this._convertToTokuseiMap(mainTokuseiRes, subTokuseiRes);
+
+                    this.$find('.selectWeapon:eq(0)').trigger('click');
                 },
                 function () {
                     errAlert();
@@ -247,7 +249,23 @@
         },
 
         _convertResToWeaponTypeDataMap: function (res) {
-
+            var result = {};
+            var strAry = res.split(/\r\n|\r|\n/);
+            strAry.forEach(function (str) {
+                var ary = str.split(',');//カンマで分ける。name,desc,setNameに分離
+                var type = ary[0];
+                var property = ary[1];
+                var min = ary[2];
+                var max = ary[3];
+                var propertyDesc = ary[4];
+                result[type] = {
+                    property: property,
+                    min: min,
+                    max: max,
+                    propertyDesc: propertyDesc
+                };
+            });
+            return result;
         },
 
         _convertToArmorItemsData: function (armorTalentRes, mainTokuseiRes, subTokuseiRes) {
@@ -399,10 +417,10 @@
                     });
                 }
                 var weaponItem = weaponItemModel.create({
-                    id: 'weapon' + i,
+                    id: i.toString(),
                     typeList: typeList,
                     selectedType: null,
-                    typeDesc: '',
+                    propertyDesc: '',
                     weaponTalentItems: weaponTalentItems
                     // MEMO:
                     // こちらはtalentListの実体は不要なためセットしない
@@ -716,14 +734,14 @@
                 }));
             }));
             // 各武器の種別特性を加算する
-            $.each(this._weaponItemsMap, this.own(function (itemIdx, weaponItem) {
-                var selectedType = weaponItem.get('selectedType');
-                // 武器種が一度も選択していない、またはプレースホルダー用のoptionを選択している場合は無視する
-                if (selectedType == null || selectedType === 'property') {
-                    return;
-                }
+            var $selectWeapon = this.$find('.selectedWeapon .selectWeapon');
+            var selectWeaponIdx = $selectWeapon.val();
+            var weaponItem = this._weaponItemsMap[selectWeaponIdx];
+            var selectedType = weaponItem.get('selectedType');
+            // 武器種がプレースホルダー用のoption以外を選択しているれば特性を加算する
+            if (selectedType != null && selectedType !== 'property') {
                 result[selectedType.property] += selectedType.val;
-            }));
+            }
             return result;
         },
 
@@ -829,6 +847,9 @@
                     property: property,
                     val: val
                 });
+                var propertyDesc = $option.data('propertyDesc');
+                // var propertyDesc = this._weaponTypeDataMap[type];
+                weaponItem.set('propertyDesc', propertyDesc);
             }
 
             var totalTokuseiMap = this._calcTotalTokusei();// 特性の合計を再計算
@@ -846,6 +867,23 @@
         },
         _clearWarn: function () {
             this.$find('.weaponTalentContainer').find('.warnDispItem').removeClass('warnDispItem');
+        },
+
+        '.selectWeapon change': function (context, $el) {
+            this._toggleSelectedWeapon($el.val());
+
+            var totalTokuseiMap = this._calcTotalTokusei();// 特性の合計を再計算
+            // 選択した特性毎に表示をデータアイテムを更新
+            $.each(totalTokuseiMap, this.own(function (property, val) {
+                this._grandTotalItem.set(property, val);
+            }));
+
+            this._toggleSelectedWeapon($el.val());
+        },
+
+        _toggleSelectedWeapon: function (selectWeaponIdx) {
+            this.$find('.weaponItem.selectedWeapon').removeClass('selectedWeapon');
+            this.$find('.weaponItem').eq(selectWeaponIdx).addClass('selectedWeapon');
         }
 
     };
