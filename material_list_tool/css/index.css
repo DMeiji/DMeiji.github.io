@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+html,body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Meiryo;
+    box-sizing: border-box;
+}
+
+/* 所持コンテナ・素材コンテナの親コンテナ */
+.inputContainer {
+	height: 500px;
+}
+
+/* コンテナタイトル */
+.areaTitle {
+	height: 20px;
+	border-top: solid 1px;
+	border-left: solid 1px;
+	border-right: solid 1px;
+	text-align: center;
+}
+
+/* 所持コンテナ */
+.possessionContainer {
+	display: inline-block;
+	height: 100%;
+	width: 150px;
+	padding-left: 5px;
+	paddin-right: 5px;
+}
+
+/* 所持リスト */
+.possessionList: {
+	height: calc(100% - 20px);
+	width: 100%;
+}
+
+/* 素材コンテナ */
+.materialContainer {
+	display: inline-block;
+	height: 100%;
+	width: calc(100% - 150px);
+	padding-left: 5px;
+	paddin-right: 5px;
+}
+
+/* 素材リスト */
+.materialList {
+	height: calc(100% - 20px);
+	width: 100%;
+}
