@@ -7,6 +7,10 @@
                 MIN: 205,
                 MAX: 1272
             },
+            MOD_STATUS: {
+                MIN: 220,
+                MAX: 263
+            },
             TOKUSEI_LEN_MAP: {
                 body: {
                     mainLen: 2,
@@ -31,7 +35,33 @@
                 holster: {
                     mainLen: 1,
                     subLen: 0
+                }
+            },
+            MOD_LEN_MAP: {
+                body: {
+                    proto: 0,
+                    perf: 0
                 },
+                mask: {
+                    proto: 0,
+                    perf: 0
+                },
+                knee: {
+                    proto: 0,
+                    perf: 0
+                },
+                backpack: {
+                    proto: 0,
+                    perf: 0
+                },
+                glove: {
+                    proto: 0,
+                    perf: 0
+                },
+                holster: {
+                    proto: 0,
+                    perf: 0
+                }
             },
             TOKUSEI_PROPERTY_MAP: {
                 ch: 'クリティカル率',
