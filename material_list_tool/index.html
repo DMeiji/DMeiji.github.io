@@ -34,40 +34,35 @@
             <textarea class="possessionList"></textarea>
         </div>
         <div class="materialContainer">
-            <div class="areaTitle">素材リスト</div>
-            <textarea class="materialList">
-# 適当なセット
-## 装備A
-- 素材a 3
-- 素材b 2
-- 素材c 3
-## 装備B
-- 素材a 4
-- 素材b 2
-- 素材e 1</textarea>
+            <div class="areaTitle">クラフト</div>
+            <textarea class="materialList"></textarea>
         </div>
     </div>
     <div class="btnContainer">
-            <button class="calcBtn">計算</button>
+        <button class="operationBtn calcBtn">計算</button>
+        <button class="operationBtn possessionClearBtn">所持クリア</button>
+        <button class="operationBtn materialClearBtn">素材クリア</button>
+        <button class="operationBtn outputClearBtn">出力クリア</button>
+        <button class="operationBtn descExampleBtn">記述例</button>
     </div>
     <div class="resultContainer">
         <div class="areaTitle">出力</div>
-        <div class="resultArea">
-            <div class="resultSetContainer" data-h5-loop-context="setItems">
+        <div class="resultArea" data-h5-loop-context="setItems">
+            <div class="setItem">
                 <div class="setName" data-h5-bind="setName"></div>
                 <table class="materialTable">
                     <thead>
                         <tr>
                             <td>素材名</td>
                             <td>合計</td>
-                            <!-- <td>残数</td> -->
+                            <td>残数</td>
                         </tr>
                     </thead>
                     <tbody data-h5-loop-context="materials">
-                        <tr>
+                        <tr data-h5-bind="style(background):cellColor;">
                             <td class="materialName" data-h5-bind="name"></td>
                             <td class="materialTotalNum" data-h5-bind="totalNum"></td>
-                            <!-- <td class="materialRemainNum" data-h5-bind="remainNum"></td> -->
+                            <td class="materialRemainNum" data-h5-bind="remainNum"></td>
                         </tr>
                     </tbody>
                 </table>

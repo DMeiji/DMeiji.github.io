@@ -9,14 +9,12 @@ html,body {
     box-sizing: border-box;
 }
 
-/* �����R���e�i�E�f�ރR���e�i�̐e�R���e�i */
 .inputContainer {
 	height: 300px;
 	width: 100%;
 	display: flex;
 }
 
-/* �R���e�i�^�C�g�� */
 .areaTitle {
 	height: 20px;
 	border-top: solid 1px;
@@ -26,7 +24,6 @@ html,body {
 	background: #b9e0f7;
 }
 
-/* �����R���e�i */
 .possessionContainer {
 	height: 100%;
 	width: 350px;
@@ -35,13 +32,11 @@ html,body {
 	padding-right: 5px;
 }
 
-/* �������X�g */
 .possessionList {
 	height: calc(100% - 20px);
 	width: 100%;
 }
 
-/* �f�ރR���e�i */
 .materialContainer {
 	height: 100%;
 	width: calc(100% - 350px);
@@ -50,7 +45,6 @@ html,body {
 	padding-right: 5px;
 }
 
-/* �f�ރ��X�g */
 .materialList {
 	height: calc(100% - 20px);
 	width: 100%;
@@ -60,11 +54,17 @@ html,body {
 	height: 40px;
 	width: 100%;
 	padding: 5px;
+	display: flex;
 }
 
-.calcBtn {
-	height: 100%;
-	width: 120px;
+.operationBtn {
+	width: 100px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.descExampleBtn {
+	margin-left: auto;
 }
 
 .resultContainer {
@@ -84,9 +84,10 @@ html,body {
 
 .resultArea {
 	display: flex;
+	overflow: auto;
 }
 
-.resultSetContainer {
+.setItem {
 	height: 100%;
 	width: 220px;
 	padding-top: 5px;
