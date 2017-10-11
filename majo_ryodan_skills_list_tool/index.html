@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ルフランの地下迷宮</title>
+
+    <!-- jquery -->
+    <script src="./../lib/jquery/jquery-3.2.1.js"></script>
+
+    <!-- hifive -->
+    <script src="./../lib/hifive/ejs-h5mod.js"></script>
+    <script src="./../lib/hifive/h5.dev.js"></script>
+    <link href="./../lib/hifive/h5.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <script src="./../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- js -->
+    <script src="./js/const.js"></script>
+    <script src="./js/PageLogic.js"></script>
+    <script src="./js/PageController.js"></script>
+
+    <!-- css -->
+    <link href="./css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="rootContainer">
+        <div class="btnContainer">
+            <div class="skillsListBtnContainer">
+                <button class="allOpenBtn btn btn-default btn-xs">
+                    <i class="glyphicon glyphicon-resize-full"></i>
+                </button>
+                <button class="allCloseBtn btn btn-default btn-xs">
+                    <i class="glyphicon glyphicon-resize-small"></i>
+                </button>
+                <button class="allUnselectBtn btn btn-default btn-xs">reset</button>
+            </div>
+            <div class="selectedSkillsListBtnContainer">
+                選択スキル数: <span class="selectedSkillsLen" data-h5-bind="text:skillsLen"></span>
+            </div>
+        </div>
+        <div class="skillsContainer">
+            <div class="facetSkillsContainer" data-h5-loop-context="facetSkills">
+                <div class="toggleFacetSkills">
+                    <div class="toggleIcon">
+                        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                        <span class="hide glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                    </div>
+                    <div class="facetName" data-h5-bind="text:facetName"></div>
+                </div>
+
+                <div class="hide facetSkillsListContainer" data-h5-loop-context="skills">
+                    <div class="facetSkillInfo">
+                        <div class="skillName" data-h5-bind="text:skillName;"></div>
+                        <div class="skillDesc" data-h5-bind="text:skillDesc;"></div>
+                        <div class="selectSkill">
+                            <label class="selectSkillCbWrapper">
+                                <input type="checkbox" class="selectSkillCb" data-h5-bind="attr(data-skill-id): skillId;attr(data-facet-name):facetName;">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resultContainer" data-h5-loop-context="facetSkills">
+                <div class="selectedSkillsListContainer" data-h5-loop-context="skills">
+                    <div class="selectedFacetSkillInfo">
+                        <div class="unselectBtnWrapper">
+                            <button type="button" class="unselectSkillBtn btn btn-default btn-xs" data-h5-bind="attr(data-facet-name):facetName;attr(data-skill-id):skillId;">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </div>
+                        <div class="selectedFacetName">
+                            <span data-h5-bind="text:facetKanaName;"></span>
+                        </div>
+                        <div class="selectedSkillName" data-h5-bind="text:skillName;"></div>
+                        <div class="selectedSkillDesc" data-h5-bind="text:skillDesc;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

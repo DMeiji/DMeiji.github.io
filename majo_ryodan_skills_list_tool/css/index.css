@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+html,body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+	font-family: Meiryo;
+	font-size: 13px;
+    box-sizing: border-box;
+}
+
+.hide {
+	display: none;
+}
+
+.rootContainer {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+/*==================
+操作ボタン
+==================*/
+.btnContainer {
+	flex: 0 0 auto;
+	display: flex;
+	padding: 0 10px;
+	background: #e4e4e4;
+}
+
+.skillsListBtnContainer {
+	flex: 1 1 auto;
+}
+
+.selectedSkillsListBtnContainer {
+	flex: 1 1 auto;
+}
+
+.skillsContainer {
+	flex: 1 1 auto;
+	display: flex;
+	width:	100%;
+	height: 100%;
+	padding: 10px 10px 0 10px;
+}
+
+/*==================
+スキルリスト
+==================*/
+.facetSkillsContainer {
+	flex-grow: 1;
+	flex-basis: 100px;
+	overflow-y: scroll;
+}
+
+.toggleFacetSkills {
+	display: flex;
+	height: 25px;
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	border-right: solid 1px;
+	background: #c7d9e6;
+}
+
+.toggleFacetSkills:nth-child(1) {
+    border-top: solid 1px;
+}
+
+.toggleIcon {
+	width: 30px;
+	text-align: center;	
+	flex-grow: 0;
+	margin-top: auto;
+    margin-bottom: auto;
+}
+
+.facetName {
+	flex-grow: 1;
+	margin-top: auto;
+	margin-bottom: auto;
+	user-select: none;
+}
+
+.facetSkillInfo {
+	display: flex;
+}
+
+.skillName {
+	flex: 0 0 140px;
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	padding-left: 5px;
+}
+
+.skillDesc {
+	flex: 1 1 auto;
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	padding: 0 5px;
+}
+
+.selectSkill {
+	flex: 0 0 30px;
+	text-align: center;
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	border-right: solid 1px;
+}
+
+.selectSkillCbWrapper {
+	height: 100%;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+input.selectSkillCb {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+/*==================
+選択スキルリスト
+==================*/
+.resultContainer {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 100px;
+	overflow-y: scroll;
+}
+
+.selectedFacetSkillInfo {
+	display: flex;
+}
+
+.selectedFacetName {
+	flex: 0 0 100px;
+	border-left: solid 1px;
+	border-top: solid 1px;
+}
+
+/* .selectedFacetName > span {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+} */
+
+.selectedSkillName {
+	flex: 0 0 140px;
+	border-left: solid 1px;
+	border-top: solid 1px;
+}
+
+.selectedSkillDesc {
+	flex: 1 1 auto;
+	border-left: solid 1px;
+	border-top: solid 1px;
+	border-right: solid 1px;
+}
+
+.unselectBtnWrapper {
+	flex: 0 0 30px;
+	border-left: solid 1px;
+	border-top: solid 1px;
+	text-align: center;
+}
+
+.unselectSkillBtn {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.selectedSkillsListContainer:nth-last-child(1) {
+	border-bottom: solid 1px;
+}
