@@ -37,7 +37,14 @@
                 <button class="allCloseBtn btn btn-default btn-xs">
                     <i class="glyphicon glyphicon-resize-small"></i>
                 </button>
-                <button class="allUnselectBtn btn btn-default btn-xs">reset</button>
+                <button class="resetBtn btn btn-default btn-xs">reset</button>
+                
+                <label class="importLabel" for="import">
+                    import
+                    <input type="file" id="import">    
+                </label>
+                
+                <a class="exportLink" href="#" download="skills_list.txt">export</a>
             </div>
             <div class="selectedSkillsListBtnContainer">
                 選択スキル数: <span class="selectedSkillsLen" data-h5-bind="text:skillsLen"></span>

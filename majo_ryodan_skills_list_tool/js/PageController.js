@@ -44,7 +44,12 @@
         },
 
         _updateSelectedSkillsLen: function (val) {
-            this._$selectedSkillsLen.text(val);
+            var v = val != null ? val : this._getSelectedSkills().length;
+            this._$selectedSkillsLen.text(v);
+        },
+
+        _getSelectedSkills: function () {
+            return this._selectedSkillsListDataItem.get('facetSkills');
         },
 
         __ready: function () {
@@ -119,16 +124,11 @@
             var facetName = $el.data('facetName');
             var isChecked = $el.prop('checked');
             this._updateSelectedSkillList(isChecked, skillId, facetName);
-            this._updateSelectedSkillsLen(this._getSelectedSkillsLen());
+            this._updateSelectedSkillsLen();
         },
 
         _updateSelectedSkillList: function (isChecked, sId, fName) {
             isChecked ? this._addSelectedSkill(sId, fName) : this._removeSelectedSkill(sId, fName);
-
-        },
-
-        _getSelectedSkillsLen: function () {
-            return this._getSelectedSkills().length;
         },
 
         _addSelectedSkill: function (sId, fName) {
@@ -159,13 +159,18 @@
             var fName = $el.data('facetName');
             this._removeSelectedSkill(sId, fName);
             this._removeSelectedSkillCheck(sId, fName);
-            this._updateSelectedSkillsLen(this._getSelectedSkillsLen());
+            this._updateSelectedSkillsLen();
         },
 
         _removeSelectedSkillCheck: function (sId, fName) {
+            var $selectSkillCb = this._findSelectSkillCb(sId, fName);
+            $selectSkillCb.prop('checked', false);
+        },
+
+        _findSelectSkillCb: function (sId, fName) {
             var selector = '.selectSkillCb[data-skill-id="' + sId + '"]';
             selector += '[data-facet-name="' + fName + '"]';
-            this.$find(selector).prop('checked', false);
+            return this.$find(selector);
         },
 
         '.allOpenBtn click': function () {
@@ -176,15 +181,66 @@
             this.$find('.facetSkillsListContainer').addClass('hide');
         },
 
-        '.allUnselectBtn click': function () {
-            var obsAry = this._getSelectedSkills();
-            obsAry.splice(0, obsAry.length);
-            this.$find('.selectSkillCb').prop('checked', false);
-            this._updateSelectedSkillsLen(this._getSelectedSkillsLen());
+        '.resetBtn click': function () {
+            this._removeAllSelectedSkill();// 選択スキルをすべて解除
+            this._removeAllSelectedSkillCheck();// スキル選択Cbのチェックをすべて外す
+            this._updateSelectedSkillsLen();
         },
 
-        _getSelectedSkills: function () {
-            return this._selectedSkillsListDataItem.get('facetSkills');
+        _removeAllSelectedSkill: function () {
+            var selectedSkills = this._getSelectedSkills();
+            selectedSkills.splice(0, selectedSkills.length);
+        },
+
+        _removeAllSelectedSkillCheck: function () {
+            this.$find('.selectSkillCb').prop('checked', false);
+        },
+
+        '#import change': function (context, $el) {
+            var files = $el[0].files;
+            if (files.length === 0) {
+                return;
+            }
+            var file = files[0];
+            var reader = new FileReader();
+
+            reader.onload = this.own(function (ev) {
+                var data = ev.target.result;
+                var dataAry = JSON.parse(data);
+
+                this._removeAllSelectedSkill();// 選択スキルをすべて解除
+                this._removeAllSelectedSkillCheck();// スキル選択Cbのチェックをすべて外す
+                this._loadSelectedSkillsData(dataAry);
+                this._updateSelectedSkillsLen();
+                $el.val(null);
+            });
+
+            reader.readAsText(file);
+        },
+
+        _loadSelectedSkillsData: function (dataAry) {
+            var selectedSkills = this._getSelectedSkills();
+            dataAry.forEach(this.own(function (data) {
+                selectedSkills.push(data);// 選択スキル用データアイテムを更新
+
+                // スキル選択Cbを更新
+                var $selectSkillCb = this._findSelectSkillCb(data.skillId, data.facetName);
+                $selectSkillCb.prop('checked', true);
+            }));
+        },
+
+        '.exportLink click': function (context, $el) {
+            var selectedSkillsAry = this._getSelectedSkills().toArray();
+            var json = JSON.stringify(selectedSkillsAry);
+            var blob = new Blob([json], {
+                type: 'application/json'
+            });
+            window.URL = window.URL || window.webkitURL;
+            if (window.navigator.msSaveBlob) { 
+                window.navigator.msSaveBlob(blob, "skills_list.txt"); 
+                return;
+            }
+            $el.attr('href', window.URL.createObjectURL(blob));
         }
     };
 

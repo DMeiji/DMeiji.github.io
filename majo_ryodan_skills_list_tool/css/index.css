@@ -31,11 +31,11 @@ html,body {
 }
 
 .skillsListBtnContainer {
-	flex: 1 1 auto;
+	flex: 1 1 10px;
 }
 
 .selectedSkillsListBtnContainer {
-	flex: 1 1 auto;
+	flex: 1 1 10px;
 }
 
 .skillsContainer {
@@ -46,12 +46,27 @@ html,body {
 	padding: 10px 10px 0 10px;
 }
 
+.importLabel {
+    color: #337ab7;
+    font-weight: normal;
+	cursor: pointer;
+	margin: 0;
+}
+
+.importLabel:hover {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+#import {
+	display: none;
+}
+
 /*==================
 スキルリスト
 ==================*/
 .facetSkillsContainer {
-	flex-grow: 1;
-	flex-basis: 100px;
+	flex: 1 1 10px;
 	overflow-y: scroll;
 }
 
@@ -88,7 +103,7 @@ html,body {
 }
 
 .skillName {
-	flex: 0 0 140px;
+	flex: 0 0 130px;
 	border-left: solid 1px;
 	border-bottom: solid 1px;
 	padding-left: 5px;
@@ -115,20 +130,11 @@ html,body {
 	margin-bottom: 0;
 }
 
-input.selectSkillCb {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-}
-
 /*==================
 選択スキルリスト
 ==================*/
 .resultContainer {
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: 100px;
+	flex: 1 1 10px;
 	overflow-y: scroll;
 }
 
@@ -142,14 +148,8 @@ input.selectSkillCb {
 	border-top: solid 1px;
 }
 
-/* .selectedFacetName > span {
-	position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-} */
-
 .selectedSkillName {
-	flex: 0 0 140px;
+	flex: 0 0 130px;
 	border-left: solid 1px;
 	border-top: solid 1px;
 }
@@ -166,12 +166,6 @@ input.selectSkillCb {
 	border-left: solid 1px;
 	border-top: solid 1px;
 	text-align: center;
-}
-
-.unselectSkillBtn {
-	position: relative;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .selectedSkillsListContainer:nth-last-child(1) {
