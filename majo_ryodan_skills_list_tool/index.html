@@ -31,26 +31,33 @@
     <div class="rootContainer">
         <div class="btnContainer">
             <div class="skillsListBtnContainer">
+                <!-- すべて開く -->
                 <button class="allOpenBtn btn btn-default btn-xs">
                     <i class="glyphicon glyphicon-resize-full"></i>
                 </button>
+                <!-- すべて閉じる -->
                 <button class="allCloseBtn btn btn-default btn-xs">
                     <i class="glyphicon glyphicon-resize-small"></i>
                 </button>
+                <!-- リセット -->
                 <button class="resetBtn btn btn-default btn-xs">reset</button>
-                
-                <label class="importLabel" for="import">
-                    import
+                <!-- インポート -->
+                <label class="importLabel btn btn-default btn-xs" for="import">
+                    import(json)
                     <input type="file" id="import">    
                 </label>
-                
-                <a class="exportLink" href="#" download="skills_list.txt">export</a>
+                <!-- エクスポート(json) -->
+                <a class="exportLink btn btn-default btn-xs" href="#" download="skills_list.json">export(json)</a>
+                <!-- エクスポート(MarkDown) -->
+                <a class="exportToMDLink btn btn-default btn-xs" href="#" download="skills_list.md">export(md)</a>
             </div>
             <div class="selectedSkillsListBtnContainer">
                 選択スキル数: <span class="selectedSkillsLen" data-h5-bind="text:skillsLen"></span>
+                <button class="skillSortBtn btn btn-default btn-xs" title="選択したスキルを左記のリストと同じ順にソート">sort</button>
             </div>
         </div>
         <div class="skillsContainer">
+            <!-- スキル一覧 -->
             <div class="facetSkillsContainer" data-h5-loop-context="facetSkills">
                 <div class="toggleFacetSkills">
                     <div class="toggleIcon">
@@ -72,7 +79,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- 選択したスキル一覧 -->
             <div class="resultContainer" data-h5-loop-context="facetSkills">
                 <div class="selectedSkillsListContainer" data-h5-loop-context="skills">
                     <div class="selectedFacetSkillInfo">

@@ -43,19 +43,11 @@ html,body {
 	display: flex;
 	width:	100%;
 	height: 100%;
-	padding: 10px 10px 0 10px;
 }
 
 .importLabel {
-    color: #337ab7;
     font-weight: normal;
-	cursor: pointer;
 	margin: 0;
-}
-
-.importLabel:hover {
-    color: #23527c;
-    text-decoration: underline;
 }
 
 #import {
@@ -125,9 +117,16 @@ html,body {
 }
 
 .selectSkillCbWrapper {
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	height: 100%;
 	width: 100%;
 	margin-bottom: 0;
+}
+
+input.selectSkillCb {
+	margin: 0;
 }
 
 /*==================
@@ -146,6 +145,8 @@ html,body {
 	flex: 0 0 100px;
 	border-left: solid 1px;
 	border-top: solid 1px;
+	font-size: 10px;
+	padding-left: 2px;
 }
 
 .selectedSkillName {
@@ -162,7 +163,10 @@ html,body {
 }
 
 .unselectBtnWrapper {
-	flex: 0 0 30px;
+	flex: 0 0 27px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 	border-left: solid 1px;
 	border-top: solid 1px;
 	text-align: center;

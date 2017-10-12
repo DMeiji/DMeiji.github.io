@@ -73,6 +73,7 @@
         _convertCsvToSkillsDataAry: function (csvData) {
             var facetSkillsObsAry = this._skillsListDataItem.get('facetSkills');
 
+            var skillSortId = 0;
             var facetSkillsAry = csvData.split('@@');
             facetSkillsAry.shift();// 先頭要素は空文字なので除去
             facetSkillsAry.forEach(this.own(function (facetSkillsStr) {
@@ -97,8 +98,10 @@
                     // スキル情報をキャッシュ
                     this._facetSkillsDataMap[facetName][skillId] = {
                         skillName: skillName,
-                        skillDesc: skillDesc
+                        skillDesc: skillDesc,
+                        sortId: skillSortId
                     };
+                    skillSortId++;
                 }));
                 facetSkillsObsAry.push({
                     facetName: facetNameMap[facetName],
@@ -139,7 +142,8 @@
                 facetKanaName: facetNameMap[fName],
                 skillId: sId,
                 skillName: sInfo.skillName,
-                skillDesc: sInfo.skillDesc
+                skillDesc: sInfo.skillDesc,
+                sortId: sInfo.sortId
             });
         },
 
@@ -231,16 +235,45 @@
 
         '.exportLink click': function (context, $el) {
             var selectedSkillsAry = this._getSelectedSkills().toArray();
-            var json = JSON.stringify(selectedSkillsAry);
-            var blob = new Blob([json], {
-                type: 'application/json'
+            var content = JSON.stringify(selectedSkillsAry, null, 1);
+            var type = 'application/json';
+            this._export(content, type, $el);
+        },
+
+        _export: function (content, type, $link) {
+            var blob = new Blob([content], {
+                type: type
             });
             window.URL = window.URL || window.webkitURL;
-            if (window.navigator.msSaveBlob) { 
-                window.navigator.msSaveBlob(blob, "skills_list.txt"); 
+            if (window.navigator.msSaveBlob) {
+            var fileName = $link.attr('download');
+                window.navigator.msSaveBlob(blob, fileName);
                 return;
             }
-            $el.attr('href', window.URL.createObjectURL(blob));
+            $link.attr('href', window.URL.createObjectURL(blob));
+        },
+
+        '.skillSortBtn click': function () {
+            this._getSelectedSkills().sort(function (a, b) {
+                return a.sortId - b.sortId;
+            });
+        },
+
+        '.exportToMDLink click': function (context, $el) {
+            var mdData = this._convertSelectedSkillsToMD();
+            this._export(mdData, 'text/plain', $el);
+        },
+
+        _convertSelectedSkillsToMD: function (selectedSkills) {
+            var selectedSkillsAry = this._getSelectedSkills().toArray();
+            var result = 'ファセット|スキル|説明\n---------|----------|---------\n';
+            selectedSkillsAry.forEach(function (sInfo) {
+                var fKanaName = sInfo.facetKanaName;
+                var sName = sInfo.skillName;
+                var sDesc = sInfo.skillDesc;
+                result += fKanaName + '|' + sName + '|' + sDesc + '\n';
+            });
+            return result;
         }
     };
 
