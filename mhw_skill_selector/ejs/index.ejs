@@ -1,0 +1,87 @@
+<!-- ルートコンテナ -->
+<script type="text/ejs" id="SelectedArmorInfo">
+    <table class="selectedArmorInfoTable">
+        <!-- 防具名 -->
+        <tr>
+            <td colspan=2 class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</td>
+        </tr>
+        
+        [% if (firstSkillName !== '-') { %]
+            <!-- 第1スキル -->
+            <tr>
+                <td>[%= firstSkillName %]</td>
+                <td style="padding-left:6px;">Lv[%= firstSkillVal %]</td>
+            </tr>
+        [% } %]
+        [% if (secondSkillName !== '-') { %]
+            <!-- 第2スキル -->
+            <tr>
+                <td>[%= secondSkillName %]</td>
+                <td style="padding-left:6px;">Lv[%= secondSkillVal %]</td>
+            </tr>
+        [% } %]
+
+        [% if (lv1Slot !== 0) { %]
+            [% for (var i = 0; i < lv1Slot; i++) { %]
+                <tr>
+                    <td>Lv1スロット</td>
+                </tr>
+            [% } %]
+        [% } %]
+        [% if (lv2Slot !== 0) { %]
+            [% for (var i = 0; i < lv2Slot; i++) { %]
+                <tr>
+                    <td>Lv2スロット</td>
+                </tr>
+            [% } %]
+        [% } %]
+        [% if (lv3Slot !== 0) { %]
+            [% for (var i = 0; i < lv3Slot; i++) { %]
+                <tr>
+                    <td>Lv3スロット</td>
+                </tr>
+            [% } %]
+        [% } %]
+    </table>
+</script>
+
+<script type="text/ejs" id="SkillFilterTable">
+    <table class="skillFilterTable">
+        
+    </table>
+</script>
+
+<script type="text/ejs" id="SkillFilterTable">
+    <table class="skillFilterTable">
+        [% $.each(filterSkillMap, function(key, filterInfoByRow) { %]
+            <tr>
+                <th class="guideRow" colspan="4">[%= filterInfoByRow.guideStr %]</th>
+            </tr>
+            [% var skills = filterInfoByRow.skills; %]
+
+            [% for (var idx = 0, len = skills.length; idx < len; idx++) { %]
+                [% var skillInfo = skills[idx]; %]
+
+                [% if (idx % 4 === 0) {  %]
+                    <tr>
+                [% } %]
+
+                <td width="25%">
+                    <label>
+                        <span style="font-weight: normal;">[%= skillInfo.dispSkillName %]</span>
+                        <input type="checkbox" class="skillFilterCheckbox" value="[%= skillInfo.skillName %]">
+                    </label>
+                </td>
+
+                [% if (idx === len - 1) { %]
+                    </tr>
+                    [% break; %]
+                [% } %]
+
+                [% if (idx % 4 === 3) {  %]
+                    </tr>
+                [% } %]
+            [% } %]
+        [% }); %]
+    </table>
+</script>

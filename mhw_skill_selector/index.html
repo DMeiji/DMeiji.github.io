@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MHW Skill Selector</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jquery -->
+    <script src="./../lib/jquery/jquery-3.2.1.js"></script>
+
+    <!-- hifive -->
+    <script src="./../lib/hifive/ejs-h5mod.js"></script>
+    <script src="./../lib/hifive/h5.dev.js"></script>
+    <link href="./../lib/hifive/h5.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <script src="./../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- source -->
+    <script src="js/PageLogic.js"></script>
+    <script src="js/ArmorContainerController.js"></script>
+    <script src="js/ResultContainerController.js"></script>
+    <script src="js/FilterContainerController.js"></script>
+    <script src="js/PageController.js"></script>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="rootContainer">
+        <div style="flex-basis: auto;">
+            <div class="armorAndResultContainerWrapper">
+
+                <!-- 防具選択コンテナ -->
+                <div class="armorRootContainer">
+                    <div class="containerHeader">
+                        <span class="containerTitle">防具</span>
+                    </div>
+                    <div class="armorContainerContent">
+                        <!-- 頭 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">頭</span>
+                                <select class="armorSelect" data-h5-loop-context="headArmorList" data-armor-part=0>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
+
+                        <!-- 胴 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">胴</span>
+                                <select class="armorSelect" data-h5-loop-context="bodyArmorList" data-armor-part=1>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
+
+                        <!-- 手 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">手</span>
+                                <select class="armorSelect" data-h5-loop-context="handArmorList" data-armor-part=2>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
+
+                        <!-- 腰 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">腰</span>
+                                <select class="armorSelect" data-h5-loop-context="waistArmorList" data-armor-part=3>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
+
+                        <!-- 足 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">足</span>
+                                <select class="armorSelect" data-h5-loop-context="legArmorList" data-armor-part=4>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 結果コンテナ -->
+                <div class="resultRootContainer">
+                    <div class="containerHeader">
+                        <span class="containerTitle">発動スキル</span>
+                    </div>
+                    <div class="resultContainerContent">
+                        <table class="activeSkillTable">
+                            <tbody class="activeSkillList" data-h5-loop-context="activeSkillList">
+                                <tr>
+                                    <td class="activeSkillName" data-h5-bind="skillName"></td>
+                                    <td class="activeSkillVal">
+                                        Lv
+                                        <span data-h5-bind="skillVal"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フィルタコンテナ -->
+        <div class="filterRootContainer">
+            <div class="containerHeader filterContainerHeader">
+                <span class="containerTitle">フィルタ ※未実装</span>
+                <div class="btn btn-xs btn-default filterClearBtn">クリア</div>
+            </div>
+            <div class="filterContainerContent"></div>
+        </div>
+    </div>
+</body>
+
+</html>

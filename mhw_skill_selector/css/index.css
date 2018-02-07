@@ -1,0 +1,140 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+}
+
+.rootContainer {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHeader {
+    background: #d6ebf3;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.containerTitle {
+    font-size: 22px;
+}
+
+/* 防具選択コンテナと結果コンテナのラッパー */
+.armorAndResultContainerWrapper {
+    flex-basis: auto;
+    display: flex;
+}
+
+/* ==================================================== */
+/* 防具選択コンテナ */
+/* ==================================================== */
+
+.armorRootContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    padding-top: 39px;
+}
+
+/* 装備選択コンテナのラッパー */
+.armorContainerContent {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 装備選択コンテナ */
+.armorContainer {
+    margin: 0 0 8px 4px;
+}
+
+/* 装備選択リストの装備部位ラベル */
+.armorContainerName {
+    padding: 0 5px;
+}
+
+/* 装備選択リスト */
+.armorSelect {
+    height: 22px;
+    width: 460px;
+}
+
+/* 選択した装備の情報 */
+.selectedArmorInfoContainer {
+    padding-left: 32px;
+}
+
+/* ==================================================== */
+/* 結果コンテナ */
+/* ==================================================== */
+.resultRootContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    position: relative;
+    padding-top: 39px;
+}
+
+.activeSkillTable {
+    padding-left: 9px;
+}
+
+.activeSkillVal {
+    padding-left: 8px;
+}
+
+/* ==================================================== */
+/* フィルタコンテナ */
+/* ==================================================== */
+
+.filterRootContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.filterContainerHeader.containerHeader {
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 39px;
+}
+
+.filterClearBtn {
+    margin-left: 8px;
+}
+
+.filterContainerContent {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    overflow-y: scroll;
+}
+
+.skillFilterTable {
+    width: 100%;
+}
+
+.guideRow {
+    text-align: center;
+    background: #d9e4e9;
+    font-size: 16px;
+}
