@@ -51,13 +51,21 @@
         },
 
         __ready: function () {
-            this._armorContainerController.initArmorList(this._skillNameMap, this._armorData);
+            this._armorContainerController.setupArmorList(this._skillNameMap, this._armorData);
             this._resultContainerController.initActiveSkillList(this._skillNameMap);
             this._filterContainerController.initFilterContainer(this._filterSkillMap);
         },
 
         '{rootElement} updateResult': function (context) {
             this._resultContainerController.updateResult(context.evArg.selectedArmorInfo);
+        },
+
+        '{rootElement} changeSkillFilter': function (context) {
+            this._armorContainerController.rebuildArmorList(context.evArg.filterSkills);
+        },
+
+        '{rootElement} clearSkillFilter': function() {
+            this._armorContainerController.initArmorList();
         }
     };
 

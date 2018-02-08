@@ -16,6 +16,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 .containerHeader {
@@ -37,6 +38,7 @@ body {
 .armorAndResultContainerWrapper {
     flex-basis: auto;
     display: flex;
+    flex-wrap: wrap;
 }
 
 /* ==================================================== */
@@ -58,7 +60,11 @@ body {
 
 /* 装備選択コンテナ */
 .armorContainer {
-    margin: 0 0 8px 4px;
+    margin: 0 0 4px 4px;
+}
+
+.showSelectedArmorDialogButton {
+    margin-left: 20px;
 }
 
 /* 装備選択リストの装備部位ラベル */
@@ -72,9 +78,22 @@ body {
     width: 460px;
 }
 
+.amuletList {
+    width: 445px;
+}
+
 /* 選択した装備の情報 */
 .selectedArmorInfoContainer {
+    padding-top: 4px;
     padding-left: 32px;
+}
+
+.selectedArmorTable {
+    margin: 0 0 4px 4px;
+}
+
+.partNameCell {
+    padding: 0 5px;
 }
 
 /* ==================================================== */
@@ -118,8 +137,8 @@ body {
     flex-basis: 39px;
 }
 
-.filterClearBtn {
-    margin-left: 8px;
+.filterClearButton {
+    margin-left: 20px;
 }
 
 .filterContainerContent {

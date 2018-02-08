@@ -20,6 +20,7 @@
     <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
 
     <!-- source -->
+    <script src="js/util.js"></script>
     <script src="js/PageLogic.js"></script>
     <script src="js/ArmorContainerController.js"></script>
     <script src="js/ResultContainerController.js"></script>
@@ -30,13 +31,14 @@
 
 <body>
     <div class="rootContainer">
-        <div style="flex-basis: auto;">
+        <div style="flex-basis: auto; max-height: 66%; overflow-y: scroll;">
             <div class="armorAndResultContainerWrapper">
 
                 <!-- 防具選択コンテナ -->
                 <div class="armorRootContainer">
                     <div class="containerHeader">
                         <span class="containerTitle">防具</span>
+                        <div class="btn btn-sm btn-default showSelectedArmorDialogButton">選択装備表示</div>
                     </div>
                     <div class="armorContainerContent">
                         <!-- 頭 -->
@@ -93,6 +95,17 @@
                             </div>
                             <div class="selectedArmorInfoContainer"></div>
                         </div>
+
+                        <!-- 護石 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">護石</span>
+                                <select class="armorSelect amuletList" data-h5-loop-context="amuletList" data-armor-part=5>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                            <div class="selectedArmorInfoContainer"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -113,6 +126,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="totalSlotInfo" data-h5-loop-context="totalSlotInfo">
+                            <div data-h5-bind="slotStr"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,8 +137,8 @@
         <!-- フィルタコンテナ -->
         <div class="filterRootContainer">
             <div class="containerHeader filterContainerHeader">
-                <span class="containerTitle">フィルタ ※未実装</span>
-                <div class="btn btn-xs btn-default filterClearBtn">クリア</div>
+                <span class="containerTitle">フィルタ</span>
+                <div class="btn btn-sm btn-default filterClearButton">クリア</div>
             </div>
             <div class="filterContainerContent"></div>
         </div>

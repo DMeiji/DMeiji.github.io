@@ -1,54 +1,40 @@
-<!-- ルートコンテナ -->
 <script type="text/ejs" id="SelectedArmorInfo">
-    <table class="selectedArmorInfoTable">
-        <!-- 防具名 -->
-        <tr>
-            <td colspan=2 class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</td>
-        </tr>
-        
+    <div class="selectedArmorInfo">
+        <span class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</span>
         [% if (firstSkillName !== '-') { %]
-            <!-- 第1スキル -->
-            <tr>
-                <td>[%= firstSkillName %]</td>
-                <td style="padding-left:6px;">Lv[%= firstSkillVal %]</td>
-            </tr>
+            <div style="display: inline-block;background: #ffe2e8;">
+                <span style="padding-left:6px;">[%= firstSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= firstSkillVal %]</span>
+            </div>
         [% } %]
         [% if (secondSkillName !== '-') { %]
-            <!-- 第2スキル -->
-            <tr>
-                <td>[%= secondSkillName %]</td>
-                <td style="padding-left:6px;">Lv[%= secondSkillVal %]</td>
-            </tr>
+            <div style="display: inline-block;background: #daffde;">
+                <span style="padding-left:6px;">[%= secondSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= secondSkillVal %]</span>
+            </div>
         [% } %]
-
-        [% if (lv1Slot !== 0) { %]
-            [% for (var i = 0; i < lv1Slot; i++) { %]
-                <tr>
-                    <td>Lv1スロット</td>
-                </tr>
-            [% } %]
-        [% } %]
-        [% if (lv2Slot !== 0) { %]
-            [% for (var i = 0; i < lv2Slot; i++) { %]
-                <tr>
-                    <td>Lv2スロット</td>
-                </tr>
-            [% } %]
-        [% } %]
-        [% if (lv3Slot !== 0) { %]
-            [% for (var i = 0; i < lv3Slot; i++) { %]
-                <tr>
-                    <td>Lv3スロット</td>
-                </tr>
-            [% } %]
-        [% } %]
-    </table>
+        <div style="display: inline-block;background: #dae9ff;">
+            <span>[%= lv1Slot %][%= lv2Slot %][%= lv3Slot %]</span>
+        </div>
+    </div>
 </script>
 
-<script type="text/ejs" id="SkillFilterTable">
-    <table class="skillFilterTable">
-        
-    </table>
+<script type="text/ejs" id="SelectedAmuletInfo">
+    <div class="selectedAmuletInfo">
+        <span class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</span>
+        [% if (firstSkillName !== '-') { %]
+            <div style="display: inline-block;background: #ffe2e8;">
+                <span style="padding-left:6px;">[%= firstSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= firstSkillVal %]</span>
+            </div>
+        [% } %]
+        [% if (secondSkillName !== '-') { %]
+            <div style="display: inline-block;background: #daffde;">
+                <span style="padding-left:6px;">[%= secondSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= secondSkillVal %]</span>
+            </div>
+        [% } %]
+    </div>
 </script>
 
 <script type="text/ejs" id="SkillFilterTable">

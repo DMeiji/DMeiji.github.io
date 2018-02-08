@@ -4,19 +4,19 @@
         "skills": [
             {
                 "skillName": "aitemukyouka",
-                "dispSkillName": " アイテム使用強化"
+                "dispSkillName": "アイテム使用強化"
             },
             {
                 "skillName": "ikaku",
-                "dispSkillName": " 威嚇"
+                "dispSkillName": "威嚇"
             },
             {
                 "skillName": "unpan",
-                "dispSkillName": " 運搬の達人"
+                "dispSkillName": "運搬の達人"
             },
             {
                 "skillName": "otomosaihai",
-                "dispSkillName": " オトモへの采配"
+                "dispSkillName": "オトモへの采配"
             }
         ]
     },
@@ -24,96 +24,100 @@
         "guideStr": "か行",
         "skills": [
             {
+                "skillName": "ga-dokyouka",
+                "dispSkillName": "ガード強化"
+            },
+            {
                 "skillName": "ga-doseinou",
-                "dispSkillName": " ガード性能"
+                "dispSkillName": "ガード性能"
             },
             {
                 "skillName": "kaihikyori",
-                "dispSkillName": " 回避距離UP"
+                "dispSkillName": "回避距離UP"
             },
             {
                 "skillName": "kaihiseinou",
-                "dispSkillName": " 回避性能"
+                "dispSkillName": "回避性能"
             },
             {
                 "skillName": "kaihukusokudo",
-                "dispSkillName": " 回復速度"
+                "dispSkillName": "回復速度"
             },
             {
                 "skillName": "kajiba",
-                "dispSkillName": " 火事場力"
+                "dispSkillName": "火事場力"
             },
             {
                 "skillName": "kassou",
-                "dispSkillName": " 滑走強化"
+                "dispSkillName": "滑走強化"
             },
             {
                 "skillName": "kaminarikyouka",
-                "dispSkillName": " 雷属性攻撃強化"
+                "dispSkillName": "雷属性攻撃強化"
             },
             {
                 "skillName": "kaminaritaisei",
-                "dispSkillName": " 雷耐性"
+                "dispSkillName": "雷耐性"
             },
             {
                 "skillName": "kanti",
-                "dispSkillName": " 感知"
+                "dispSkillName": "感知"
             },
             {
                 "skillName": "kantuukyouka",
-                "dispSkillName": " 貫通弾・竜の一矢強化"
+                "dispSkillName": "貫通弾・竜の一矢強化"
             },
             {
                 "skillName": "kizetutaisei",
-                "dispSkillName": " 気絶耐性"
+                "dispSkillName": "気絶耐性"
             },
             {
                 "skillName": "kinoko",
-                "dispSkillName": " キノコ大好き"
+                "dispSkillName": "キノコ大好き"
             },
             {
                 "skillName": "kyoukajizoku",
-                "dispSkillName": " 強化持続"
+                "dispSkillName": "強化持続"
             },
             {
                 "skillName": "kuraima-",
-                "dispSkillName": " クライマー"
+                "dispSkillName": "クライマー"
             },
             {
                 "skillName": "ko",
-                "dispSkillName": " KO術"
+                "dispSkillName": "KO術"
             },
             {
                 "skillName": "kenkyusya",
-                "dispSkillName": " 研究者"
+                "dispSkillName": "研究者"
             },
             {
                 "skillName": "kouikika",
-                "dispSkillName": " 広域化"
+                "dispSkillName": "広域化"
             },
             {
                 "skillName": "kougeki",
-                "dispSkillName": " 攻撃"
+                "dispSkillName": "攻撃"
             },
             {
                 "skillName": "koorikyouka",
-                "dispSkillName": " 氷属性攻撃強化"
+                "dispSkillName": "氷属性攻撃強化"
             },
             {
                 "skillName": "kooritaisei",
-                "dispSkillName": " 氷耐性"
+                "dispSkillName": "氷耐性"
             },
             {
                 "skillName": "koyasi",
-                "dispSkillName": " こやし名人"
+                "dispSkillName": "こやし名人"
             },
             {
                 "skillName": "konsin",
-                "dispSkillName": " 渾身"
+                "dispSkillName": "渾身"
             },
             {
                 "skillName": "kontyuu",
-                "dispSkillName": " 昆虫標本の達人"
+                "dispSkillName": "昆虫標本の達人"
             }
         ]
     },
@@ -122,95 +126,99 @@
         "skills": [
             {
                 "skillName": "saisyu",
-                "dispSkillName": " 採集の達人"
+                "dispSkillName": "採集の達人"
             },
             {
                 "skillName": "sakaurami",
-                "dispSkillName": " 逆恨み"
+                "dispSkillName": "逆恨み"
             },
             {
                 "skillName": "sandankyouka",
-                "dispSkillName": " 散弾・剛射強化"
+                "dispSkillName": "散弾・剛射強化"
             },
             {
                 "skillName": "sityuunikatu",
-                "dispSkillName": " 死中に活"
+                "dispSkillName": "死中に活"
             },
             {
                 "skillName": "syafami",
-                "dispSkillName": " しゃがみ移動速度UP"
+                "dispSkillName": "しゃがみ移動速度UP"
             },
             {
                 "skillName": "jakuten",
-                "dispSkillName": " 弱点特効"
+                "dispSkillName": "弱点特効"
             },
             {
                 "skillName": "janputetujin",
-                "dispSkillName": " ジャンプ鉄人"
+                "dispSkillName": "ジャンプ鉄人"
             },
             {
                 "skillName": "syuutyuu",
-                "dispSkillName": " 集中"
+                "dispSkillName": "集中"
             },
             {
                 "skillName": "syoukikannkyoutekiou",
-                "dispSkillName": " 瘴気環境適応"
+                "dispSkillName": "瘴気環境適応"
             },
             {
                 "skillName": "syoukitaisei",
-                "dispSkillName": " 瘴気耐性"
+                "dispSkillName": "瘴気耐性"
             },
             {
                 "skillName": "syokuseigaku",
-                "dispSkillName": " 植生学"
+                "dispSkillName": "植生学"
             },
             {
                 "skillName": "sirubemusi",
-                "dispSkillName": " 導蟲反応距離UP"
+                "dispSkillName": "導蟲反応距離UP"
             },
             {
                 "skillName": "suiminkyouka",
-                "dispSkillName": " 睡眠属性強化"
+                "dispSkillName": "睡眠属性強化"
             },
             {
                 "skillName": "suimintaisei",
-                "dispSkillName": " 睡眠耐性"
+                "dispSkillName": "睡眠耐性"
+            },
+            {
+                "skillName": "suiminbin",
+                "dispSkillName": "睡眠ビン追加"
             },
             {
                 "skillName": "sutaminakaihuku",
-                "dispSkillName": " スタミナ急速回復"
+                "dispSkillName": "スタミナ急速回復"
             },
             {
                 "skillName": "sutaminadassyu",
-                "dispSkillName": " スタミナ奪取"
+                "dispSkillName": "スタミナ奪取"
             },
             {
                 "skillName": "suringa-souten",
-                "dispSkillName": " スリンガー装填数"
+                "dispSkillName": "スリンガー装填数"
             },
             {
                 "skillName": "seibi",
-                "dispSkillName": " 整備"
+                "dispSkillName": "整備"
             },
             {
                 "skillName": "seirei",
-                "dispSkillName": " 精霊の加護"
+                "dispSkillName": "精霊の加護"
             },
             {
                 "skillName": "senkou",
-                "dispSkillName": " 閃光強化"
+                "dispSkillName": "閃光強化"
             },
             {
                 "skillName": "senpuku",
-                "dispSkillName": " 潜伏"
+                "dispSkillName": "潜伏"
             },
             {
                 "skillName": "zokuseikaihou",
-                "dispSkillName": " 属性解放/装填拡張"
+                "dispSkillName": "属性解放/装填拡張"
             },
             {
                 "skillName": "zokuseitaisei",
-                "dispSkillName": " 属性やられ耐性"
+                "dispSkillName": "属性やられ耐性"
             }
         ]
     },
@@ -219,79 +227,83 @@
         "skills": [
             {
                 "skillName": "taijutu",
-                "dispSkillName": " 体術"
+                "dispSkillName": "体術"
             },
             {
                 "skillName": "taisin",
-                "dispSkillName": " 耐震"
+                "dispSkillName": "耐震"
             },
             {
                 "skillName": "tairyokukaihuku",
-                "dispSkillName": " 体力回復量UP"
+                "dispSkillName": "体力回復量UP"
             },
             {
                 "skillName": "tairyokuzoukyou",
-                "dispSkillName": " 体力増強"
+                "dispSkillName": "体力増強"
             },
             {
                 "skillName": "takumi",
-                "dispSkillName": " 匠"
+                "dispSkillName": "匠"
             },
             {
                 "skillName": "tansakusya",
-                "dispSkillName": " 探索者の幸運"
+                "dispSkillName": "探索者の幸運"
             },
             {
                 "skillName": "tikaranokaihou",
-                "dispSkillName": " 力の解放"
+                "dispSkillName": "力の解放"
             },
             {
                 "skillName": "tisitugaku",
-                "dispSkillName": " 地質学"
+                "dispSkillName": "地質学"
             },
             {
                 "skillName": "tyoukaisin",
-                "dispSkillName": " 超会心"
+                "dispSkillName": "超会心"
             },
             {
                 "skillName": "tyousensya",
-                "dispSkillName": " 挑戦者"
+                "dispSkillName": "挑戦者"
             },
             {
                 "skillName": "tuiseki",
-                "dispSkillName": " 追跡の達人"
+                "dispSkillName": "追跡の達人"
             },
             {
                 "skillName": "tuujoudankyouka",
-                "dispSkillName": " 通常弾・通常矢強化"
+                "dispSkillName": "通常弾・通常矢強化"
             },
             {
                 "skillName": "turi",
-                "dispSkillName": " 釣り名人"
+                "dispSkillName": "釣り名人"
             },
             {
                 "skillName": "toisi",
-                "dispSkillName": " 砥石使用高速化"
+                "dispSkillName": "砥石使用高速化"
             },
             {
                 "skillName": "tokusyusyageki",
-                "dispSkillName": " 特殊射撃強化"
+                "dispSkillName": "特殊射撃強化"
             },
             {
                 "skillName": "dokukyouka",
-                "dispSkillName": " 毒属性強化"
+                "dispSkillName": "毒属性強化"
             },
             {
                 "skillName": "dokutaisei",
-                "dispSkillName": " 毒耐性"
+                "dispSkillName": "毒耐性"
+            },
+            {
+                "skillName": "dokubin",
+                "dispSkillName": "毒ビン追加"
             },
             {
                 "skillName": "tobikomi",
-                "dispSkillName": " 飛び込み"
+                "dispSkillName": "飛び込み"
             },
             {
                 "skillName": "dorotaisei",
-                "dispSkillName": " 泥耐性"
+                "dispSkillName": "泥耐性"
             }
         ]
     },
@@ -300,39 +312,43 @@
         "skills": [
             {
                 "skillName": "nikuyaki",
-                "dispSkillName": " 肉焼き名人"
+                "dispSkillName": "肉焼き名人"
             },
             {
                 "skillName": "netudame-jimukou",
-                "dispSkillName": " 熱ダメージ無効"
+                "dispSkillName": "熱ダメージ無効"
             },
             {
                 "skillName": "noutou",
-                "dispSkillName": " 納刀術"
+                "dispSkillName": "納刀術"
             },
             {
                 "skillName": "norimeijin",
-                "dispSkillName": " 乗り名人"
+                "dispSkillName": "乗り名人"
             },
             {
                 "skillName": "hakaihou",
-                "dispSkillName": " 破壊王"
+                "dispSkillName": "破壊王"
             },
             {
                 "skillName": "hagitoritetujin",
-                "dispSkillName": " 剥ぎ取り鉄人"
+                "dispSkillName": "剥ぎ取り鉄人"
             },
             {
                 "skillName": "bakuhakyouka",
-                "dispSkillName": " 爆破属性強化"
+                "dispSkillName": "爆破属性強化"
+            },
+            {
+                "skillName": "bakuhabin",
+                "dispSkillName": "爆破ビン追加"
             },
             {
                 "skillName": "bakuhataisei",
-                "dispSkillName": " 爆破やられ耐性"
+                "dispSkillName": "爆破やられ耐性"
             },
             {
                 "skillName": "battouwaza",
-                "dispSkillName": " 抜刀術【技】"
+                "dispSkillName": "抜刀術【技】"
             }
         ]
     },
@@ -341,71 +357,71 @@
         "skills": [
             {
                 "skillName": "hani-",
-                "dispSkillName": " ハニーハンター"
+                "dispSkillName": "ハニーハンター"
             },
             {
                 "skillName": "hayagui",
-                "dispSkillName": " 早食い"
+                "dispSkillName": "早食い"
             },
             {
                 "skillName": "haraheri",
-                "dispSkillName": " 腹減り耐性"
+                "dispSkillName": "腹減り耐性"
             },
             {
                 "skillName": "hien",
-                "dispSkillName": " 飛燕"
+                "dispSkillName": "飛燕"
             },
             {
                 "skillName": "hikyouka",
-                "dispSkillName": " 火属性攻撃強化"
+                "dispSkillName": "火属性攻撃強化"
             },
             {
                 "skillName": "hitaisei",
-                "dispSkillName": " 火耐性"
+                "dispSkillName": "火耐性"
             },
             {
                 "skillName": "hirumikeigen",
-                "dispSkillName": " ひるみ軽減"
+                "dispSkillName": "ひるみ軽減"
             },
             {
                 "skillName": "huuatu",
-                "dispSkillName": " 風圧耐性"
+                "dispSkillName": "風圧耐性"
             },
             {
                 "skillName": "hue",
-                "dispSkillName": " 笛吹き名人"
+                "dispSkillName": "笛吹き名人"
             },
             {
                 "skillName": "hukutu",
-                "dispSkillName": " 不屈"
+                "dispSkillName": "不屈"
             },
             {
                 "skillName": "hurutya-ji",
-                "dispSkillName": " フルチャージ"
+                "dispSkillName": "フルチャージ"
             },
             {
                 "skillName": "bougyo",
-                "dispSkillName": " 防御"
+                "dispSkillName": "防御"
             },
             {
                 "skillName": "bougyodown",
-                "dispSkillName": " 防御力DOWN耐性"
+                "dispSkillName": "防御力DOWN耐性"
             },
             {
                 "skillName": "hougekisyu",
-                "dispSkillName": " 砲撃手"
+                "dispSkillName": "砲撃手"
             },
             {
                 "skillName": "houjutu",
-                "dispSkillName": " 砲術"
+                "dispSkillName": "砲術"
             },
             {
                 "skillName": "houdansoutensuu",
-                "dispSkillName": " 砲弾装填数UP"
+                "dispSkillName": "砲弾装填数UP"
             },
             {
                 "skillName": "boma-",
-                "dispSkillName": " ボマー"
+                "dispSkillName": "ボマー"
             }
         ]
     },
@@ -414,35 +430,39 @@
         "skills": [
             {
                 "skillName": "mahikyouka",
-                "dispSkillName": " 麻痺属性強化"
+                "dispSkillName": "麻痺属性強化"
             },
             {
                 "skillName": "mahitaisei",
-                "dispSkillName": " 麻痺耐性"
+                "dispSkillName": "麻痺耐性"
+            },
+            {
+                "skillName": "mahibin",
+                "dispSkillName": "麻痺ビン追加"
             },
             {
                 "skillName": "manzokukan",
-                "dispSkillName": " 満足感"
+                "dispSkillName": "満足感"
             },
             {
                 "skillName": "mikiri",
-                "dispSkillName": " 見切り"
+                "dispSkillName": "見切り"
             },
             {
                 "skillName": "mizukyouka",
-                "dispSkillName": " 水属性攻撃強化"
+                "dispSkillName": "水属性攻撃強化"
             },
             {
                 "skillName": "mizutaisei",
-                "dispSkillName": " 水耐性"
+                "dispSkillName": "水耐性"
             },
             {
                 "skillName": "mizubatekiou",
-                "dispSkillName": " 水場適応"
+                "dispSkillName": "水場適応"
             },
             {
                 "skillName": "mimisen",
-                "dispSkillName": " 耳栓"
+                "dispSkillName": "耳栓"
             }
         ]
     },
@@ -451,19 +471,23 @@
         "skills": [
             {
                 "skillName": "ranna-",
-                "dispSkillName": " ランナー"
+                "dispSkillName": "ランナー"
             },
             {
                 "skillName": "ryuukyouka",
-                "dispSkillName": " 龍属性攻撃強化"
+                "dispSkillName": "龍属性攻撃強化"
             },
             {
                 "skillName": "ryuutaisei",
-                "dispSkillName": " 龍耐性"
+                "dispSkillName": "龍耐性"
+            },
+            {
+                "skillName": "ryuuhuukyouka",
+                "dispSkillName": "龍封力強化"
             },
             {
                 "skillName": "ressyoutaisei",
-                "dispSkillName": " 裂傷耐性"
+                "dispSkillName": "裂傷耐性"
             }
         ]
     },
@@ -472,7 +496,7 @@
         "skills": [
             {
                 "skillName": "watahousi",
-                "dispSkillName": " 綿胞子草の知識"
+                "dispSkillName": "綿胞子草の知識"
             }
         ]
     }

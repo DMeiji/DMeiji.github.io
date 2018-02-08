@@ -26,7 +26,8 @@
                 '1': [],// 胴
                 '2': [],// 手
                 '3': [],// 腰
-                '4': []// 足
+                '4': [],// 足
+                '5': [],// 護石
             };
             var csvStrAry = csvStr.split('\n');
             csvStrAry.shift();// 1行目はコメントなので除外
@@ -51,6 +52,21 @@
                 if (secondSkillName != '') {
                     dispArmorName += ' | ' + skillNameMap[secondSkillName] + '+' + secondSkillVal;
                 }
+
+                if (part === '5') {
+                    // 護石の場合
+                    result[part].push({
+                        armorName: armorAry[0],// 護石名
+                        part: part,// 装備部位
+                        firstSkillName: firstSkillName,// 第1スキル名
+                        firstSkillVal: firstSkillVal,// 第1スキル値
+                        secondSkillName: secondSkillName,// 第2スキル名
+                        secondSkillVal: secondSkillVal,// 第2スキル値
+                        dispArmorName: dispArmorName// 防具選択リストの表示用
+                    });
+                    return;
+                }
+
                 var idx;
                 var slotStr = '';
                 for (idx = 0; idx < lv1Slot; idx++) {
