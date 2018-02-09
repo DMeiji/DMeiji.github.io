@@ -42,6 +42,7 @@ body {
 
 .armorAndResultRootContainer.spreadContainer {
     max-height: calc(100% - 39px);
+    flex-basis: calc(100% - 39px);
 }
 
 /* 防具選択コンテナと結果コンテナのラッパー */
