@@ -31,7 +31,7 @@
 
 <body>
     <div class="rootContainer">
-        <div style="flex-basis: auto; max-height: 66%; overflow-y: scroll;">
+        <div class="armorAndResultRootContainer">
             <div class="armorAndResultContainerWrapper">
 
                 <!-- 防具選択コンテナ -->
@@ -49,7 +49,6 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
 
                         <!-- 胴 -->
@@ -60,7 +59,6 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
 
                         <!-- 手 -->
@@ -71,7 +69,6 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
 
                         <!-- 腰 -->
@@ -82,7 +79,6 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
 
                         <!-- 足 -->
@@ -93,7 +89,6 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
 
                         <!-- 護石 -->
@@ -104,8 +99,35 @@
                                     <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
                                 </select>
                             </div>
-                            <div class="selectedArmorInfoContainer"></div>
                         </div>
+
+                        <!-- 選択した装備 -->
+                        <table class="selectedArmorTable">
+                            <tr>
+                                <td class="partNameCell">頭</td>
+                                <td data-armor-part=0></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">胴</td>
+                                <td data-armor-part=1></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">手</td>
+                                <td data-armor-part=2></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">腰</td>
+                                <td data-armor-part=3></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">足</td>
+                                <td data-armor-part=4></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">護石</td>
+                                <td data-armor-part=5></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -138,7 +160,12 @@
         <div class="filterRootContainer">
             <div class="containerHeader filterContainerHeader">
                 <span class="containerTitle">フィルタ</span>
-                <div class="btn btn-sm btn-default filterClearButton">クリア</div>
+                <div class="btn btn-xs btn-default filterClearButton">クリア</div>
+                <div class="resizefilterContainerButtonWrapper">
+                    <div class="btn btn-xs btn-default spreadFilterContainerButton">ひろげる</div>
+                    <div class="btn btn-xs btn-default restoreFilterContainerButton">元のサイズ</div>
+                    <div class="btn btn-xs btn-default narrowFilterContainerButton">せばめる</div>
+                </div>
             </div>
             <div class="filterContainerContent"></div>
         </div>

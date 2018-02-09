@@ -26,7 +26,8 @@
             '1': null,// 胴
             '2': null,// 手
             '3': null,// 腰
-            '4': null// 足
+            '4': null,// 足
+            '5': null,// 護石
         },
 
         setupArmorList: function (skillNameMap, armorData) {
@@ -83,14 +84,15 @@
         },
 
         _updateSelectedArmorView: function ($armorContainer, selectedArmorInfo, part) {
-            var $selectedArmorInfoContainer = $armorContainer.find('.selectedArmorInfoContainer');
-            $selectedArmorInfoContainer.empty();
+            var $selectedArmorInfoCell = $('.selectedArmorTable [data-armor-part="' + part + '"]');
+            $selectedArmorInfoCell.empty();
+
             if (selectedArmorInfo.armorName === '') {
                 // ダミー（各部位の先頭の選択肢）を選択した場合は選択中の装備欄を空にするだけ
                 return;
             }
             if (part !== 5) {
-                this.view.append($selectedArmorInfoContainer, 'SelectedArmorInfo', {
+                this.view.append($selectedArmorInfoCell, 'SelectedArmorInfo', {
                     armorName: selectedArmorInfo.armorName,
                     firstSkillName: this._skillNameMap[selectedArmorInfo.firstSkillName],
                     firstSkillVal: selectedArmorInfo.firstSkillVal,
@@ -102,7 +104,7 @@
                 });
                 return;
             }
-            this.view.append($selectedArmorInfoContainer, 'SelectedAmuletInfo', {
+            this.view.append($selectedArmorInfoCell, 'SelectedAmuletInfo', {
                 armorName: selectedArmorInfo.armorName,
                 firstSkillName: this._skillNameMap[selectedArmorInfo.firstSkillName],
                 firstSkillVal: selectedArmorInfo.firstSkillVal,
