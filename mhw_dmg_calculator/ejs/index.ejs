@@ -1,0 +1,11 @@
+<script type="text/ejs" id="CustomEnhanceItems">
+    [% for (var i = 0; i < slotNum; i++) { %]
+        <div class="customEnhanceSelectWrapper">
+            <select data-custom-enhance-item-index="[%= i %]" class="customEnhanceSelect">
+                <option value="-">-</option>
+                <option value="kisokougeki">攻撃力</option>
+                <option value="chRate">会心</option>
+            </select>
+        </div>
+    [% } %]
+</script>

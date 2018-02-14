@@ -1,0 +1,50 @@
+{
+    "taiken": {
+        "bukikeisu":4.8,
+        "motionVal":0.48
+    },
+    "tati": {
+        "bukikeisu":3.3,
+        "motionVal":0.23
+    },
+    "katate": {
+        "bukikeisu":1.4,
+        "motionVal":0.15
+    },
+    "souken": {
+        "bukikeisu":1.4,
+        "motionVal":0.19
+    },
+    "hanma": {
+        "bukikeisu":5.2,
+        "motionVal":0.37
+    },
+    "hue": {
+        "bukikeisu":4.2,
+        "motionVal":0.22
+    },
+    "ransu": {
+        "bukikeisu":2.3,
+        "motionVal":0.21
+    },
+    "gansu": {
+        "bukikeisu":2.3,
+        "motionVal":0.24
+    },
+    "suraaku": {
+        "bukikeisu":3.5,
+        "motionVal":0.25
+    },
+    "tyakku": {
+        "bukikeisu":3.6,
+        "motionVal":0.12
+    },
+    "kon": {
+        "bukikeisu":3.1,
+        "motionVal":0.29
+    },
+    "yumi": {
+        "bukikeisu":1.2,
+        "motionVal":0.33
+    }
+}

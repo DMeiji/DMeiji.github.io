@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MHW dmg calculator</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jquery -->
+    <script src="./../lib/jquery/jquery-3.2.1.js"></script>
+
+    <!-- hifive -->
+    <script src="./../lib/hifive/ejs-h5mod.js"></script>
+    <script src="./../lib/hifive/h5.dev.js"></script>
+    <link href="./../lib/hifive/h5.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <script src="./../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- source -->
+    <script src="js/PageLogic.js"></script>
+    <script src="js/DmgInfoContainerController.js"></script>
+    <script src="js/OptionContainerController.js"></script>
+    <script src="js/PageController.js"></script>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="rootContainer">
+        <div class="selectWeaponContainer">
+            <span>武器種</span>
+            <select class="weaponTypeList" data-h5-loop-context="weaponTypeList">
+                <option class="weaponType" data-h5-bind="text:weaponTypeName; attr(value):weaponTypeId"></option>
+            </select>
+            <span>／</span>
+            <span>武器</span>
+            <select class="weaponList" data-h5-loop-context="weaponList">
+                <option class="weapon" data-h5-bind="weaponName;"></option>
+            </select>
+        </div>
+
+        <div class="dmgInfoRootContainer">
+            <div class="physicalDmgInfoContainer">
+                <div class="containerHeader">
+                    <span class="containerTitle">物理dmg ※肉質0.8固定（トレーニングエリアの柱）</span>
+                </div>
+                <div class="containerContent">
+                    <table class="physicalDmgTable" border=1>
+                        <thead>
+                            <tr>
+                                <td class="labelCell">表示攻撃力</td>
+                                <td class="labelCell">切れ味補正</td>
+                                <td class="labelCell">会心補正</td>
+                                <td class="labelCell">会心率[％]</td>
+                                <td class="labelCell">単発dmg</td>
+                                <td class="labelCell">単発会心dmg</td>
+                                <td class="labelCell">10回合計dmg</td>
+                            </tr>
+                        </thead>
+                        <tbody class="physicalDmgTableBody">
+                            <tr>
+                                <td class="labelCell" data-h5-bind="power"></td>
+                                <td class="selectCell">
+                                    <select class="selectSharpness">
+                                        <option value=1.25>青:1.25</option>
+                                        <option value=1.05>緑:1.05</option>
+                                    </select>
+                                </td>
+                                <td class="labelCell" data-h5-bind="chCorrection"></td>
+                                <td class="labelCell" data-h5-bind="chRate"></td>
+                                <td class="labelCell" data-h5-bind="oneHitDmg"></td>
+                                <td class="labelCell" data-h5-bind="oneChHitDmg"></td>
+                                <td class="labelCell" data-h5-bind="tenHitTotalDmg"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="attrDmgInfoContainer">
+                <div class="containerHeader">
+                    <span class="containerTitle">属性dmg ※未実装</span>
+                </div>
+                <div class="containerContent">
+                    <table class="attrDmgTable" border=1>
+                        <thead>
+                            <tr>
+                                <td class="labelCell">属性値</td>
+                                <td class="labelCell">単発dmg</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="labelCell" data-h5-bind="attrVal"></td>
+                                <td class="labelCell" data-h5-bind="oneHitAttrDmg"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="optionContainer">
+            <div class="containerHeader">
+                <span class="containerTitle">オプション</span>
+                <!-- <div class="btn btn-xs btn-default resetButton">リセット</div> -->
+            </div>
+            <div class="optionContainerContent">
+                <div class="customEnhanceContainer">
+                    <div>カスタム強化</div>
+                    <div class="customEnhanceItems"></div>
+                </div>
+        
+                <div class="skillEnhanceContainer">
+                    <div class="skillEnhanceContainerContent">
+                        <div class="skillRow">
+                            <div class="skillName">攻撃：</div>
+                            <select class="skillSelect kougekiSkillSelect" data-skill-name="kougeki">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                                <option value="4">Lv4</option>
+                                <option value="5">Lv5</option>
+                                <option value="6">Lv6</option>
+                                <option value="7">Lv7</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">見切り：</div>
+                            <select class="skillSelect mikiriSkillSelect" data-skill-name="mikiri">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                                <option value="4">Lv4</option>
+                                <option value="5">Lv5</option>
+                                <option value="6">Lv6</option>
+                                <option value="7">Lv7</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">痛撃：</div>
+                            <select class="skillSelect tuugekiSkillSelect" data-skill-name="tuugeki">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">渾身：</div>
+                            <select class="skillSelect konsinSkillSelect" data-skill-name="konsin">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">挑戦者：</div>
+                            <select class="skillSelect tyousenSkillSelect" data-skill-name="tyousen">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                                <option value="4">Lv4</option>
+                                <option value="5">Lv5</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">超会心：</div>
+                            <select class="skillSelect tyoukaisinSkillSelect" data-skill-name="tyoukai">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">無属性強化：</div>
+                            <select class="skillSelect muzokuseiSkillSelect" data-skill-name="muzokusei">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

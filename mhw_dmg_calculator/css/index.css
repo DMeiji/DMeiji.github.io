@@ -1,0 +1,99 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+}
+
+.rootContainer {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.containerHeader {
+    background: #d6ebf3;
+    width: 100%;
+}
+
+.containerTitle {
+    font-size: 18px;
+}
+
+.selectWeaponContainer {
+    margin-bottom: 4px;
+}
+
+/* ========================== */
+/* dmg情報コンテナ */
+/* ========================== */
+
+.physicalDmgInfoContainer {
+    margin-bottom: 4px;
+}
+
+.attrDmgInfoContainer {
+    margin-bottom: 4px;
+}
+
+.physicalDmgTable thead {
+    background: #dbeeff;
+}
+
+.labelCell {
+    text-align: center;
+    padding: 2px 4px;
+}
+
+.selectCell select {
+    width: 100%;
+}
+
+.attrDmgTable thead {
+    background: #dbeeff;
+}
+
+/* ========================== */
+/* オプションコンテナ */
+/* ========================== */
+
+.optionContainerContent {
+    display: flex;
+}
+
+.customEnhanceContainer {
+    margin-right: 9px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.customEnhanceSelectWrapper {
+    margin-bottom: 4px;
+}
+
+.skillEnhanceContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.skillEnhanceContainerContent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skillRow {
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+.skillName {
+    display: inline-block;
+    width: 85px;
+    text-align: right;
+}
