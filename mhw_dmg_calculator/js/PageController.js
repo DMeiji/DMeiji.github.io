@@ -73,7 +73,7 @@
                 var weaponDataByTypeAry = this._weaponData[weaponTypeId];
                 return $.map(weaponDataByTypeAry, function (data, idx) {
                     var weaponNameStr = data.weaponName + ' | ' + data.power + ' | ';
-                    weaponNameStr += (data.attr === 0 ? '無属性' : data.attr) + ' | ' + (data.chRate === '' ? '0' : data.chRate) + '%';
+                    weaponNameStr += (data.attr === 0 ? '-' : data.attr) + ' | ' + (data.chRate === '' ? '0' : data.chRate) + '%';
                     return {
                         weaponName: weaponNameStr
                     };
@@ -99,6 +99,7 @@
             var weaponData = this._selectedWeaponData = this._getWeaponData(weaponName);// 選択した武器のデータ
 
             this._optionContainerController.createCustomEnhanceItems(weaponData);// カスタム強化枠を再生成
+            this._optionContainerController.toggleActiveSkill(weaponData);// オプションコンテナのスキル活性・非活性を整理
             var optionData = this._optionContainerController.getOptionData();// オプションコンテナからオプション情報を取得
             this._dmgInfoContainerController.updateDmgInfo(weaponData, this._selectedWeaponTypeId, optionData);
 
@@ -134,6 +135,28 @@
             }
             var optionData = context.evArg.optionData;
             this._dmgInfoContainerController.updateDmgInfo(this._selectedWeaponData, this._selectedWeaponTypeId, optionData);
+        },
+
+        '.outputButton click': function () {
+            if (!this._isSelectedWeapon) {
+                // 武器が選択されていない場合は何もしない
+                return;
+            }
+            var item = this._dmgInfoContainerController.getDmgInfoDataItem();
+            var $tr = $('<tr></tr>');
+            $tr.append('<td class="labelCell" width=180>' + this._selectedWeaponData.weaponName + '</td>');
+            $tr.append('<td class="labelCell" width=120>' + item.get('oneHitPhysicalAndAttrDmg') + '</td>');
+            $tr.append('<td class="labelCell" width=150>' + item.get('oneChHitPhysicalAndAttrDmg') + '</td>');
+            $tr.append('<td class="labelCell" width=152>' + item.get('tenHitTotalPhysicalAndAttrDmg') + '</td>');
+            this.$find('.memoBody').prepend($tr);
+        },
+
+        '.clearButton click': function() {
+            this.$find('.memoBody').empty();
+        },
+
+        '.funButton click': function() {
+            alert('昔はお前みたいなハンターだった。膝に矢を受けてしまってな…');
         }
     };
 

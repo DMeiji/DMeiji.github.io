@@ -30,13 +30,15 @@
                 }
                 var power = weaponInfo[2];
                 var attr = weaponInfo[3];
-                var chRate = weaponInfo[5].trim();
+                var chRate = weaponInfo[5];
+                var isMuzokusei = weaponInfo[6].trim();
                 result[weaponType].push({
                     weaponName: weaponInfo[1],// 武器名
                     power: isNaN(parseInt(power)) ? power : parseInt(power),// 表示攻撃力
                     attr: attr === '' ? 0 : isNaN(parseInt(attr)) ? attr : parseInt(attr),// 属性値
                     rare: weaponInfo[4],// レア度
-                    chRate: chRate === '' ? 0 : isNaN(parseInt(chRate)) ? chRate : parseInt(chRate)// 武器の会心率。csvの各行の末尾には改行文字が含まれるのでtrimで除外
+                    chRate: chRate === '' ? 0 : isNaN(parseInt(chRate)) ? chRate : parseInt(chRate),// 武器の会心率
+                    isMuzokusei: isMuzokusei === '1'// csvの各行の末尾には改行文字が含まれるのでtrimで除外
                 });
             });
             return result;

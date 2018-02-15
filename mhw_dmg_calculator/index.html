@@ -44,13 +44,14 @@
         <div class="dmgInfoRootContainer">
             <div class="physicalDmgInfoContainer">
                 <div class="containerHeader">
-                    <span class="containerTitle">物理dmg ※肉質0.8固定（トレーニングエリアの柱）</span>
+                    <span class="containerTitle">物理dmg</span>
+                    <span style="font-size:12px;">※肉質0.8、爪・護符含む</span>
                 </div>
                 <div class="containerContent">
                     <table class="physicalDmgTable" border=1>
                         <thead>
                             <tr>
-                                <td class="labelCell">表示攻撃力</td>
+                                <td class="labelCell">素材攻撃力</td>
                                 <td class="labelCell">切れ味補正</td>
                                 <td class="labelCell">会心補正</td>
                                 <td class="labelCell">会心率[％]</td>
@@ -80,7 +81,8 @@
             </div>
             <div class="attrDmgInfoContainer">
                 <div class="containerHeader">
-                    <span class="containerTitle">属性dmg ※未実装</span>
+                    <span class="containerTitle">属性dmg</span>
+                    <span style="font-size:12px;">※対属性0.3</span>
                 </div>
                 <div class="containerContent">
                     <table class="attrDmgTable" border=1>
@@ -88,12 +90,22 @@
                             <tr>
                                 <td class="labelCell">属性値</td>
                                 <td class="labelCell">単発dmg</td>
+                                <td class="labelCell">10回合計dmg</td>
+                                <td class="phantomCell" width=10></td>
+                                <td class="labelCell">(物+属)dmg</td>
+                                <td class="labelCell">(物+属)会心dmg</td>
+                                <td class="labelCell">(物+属)10回合計dmg</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="labelCell" data-h5-bind="attrVal"></td>
                                 <td class="labelCell" data-h5-bind="oneHitAttrDmg"></td>
+                                <td class="labelCell" data-h5-bind="tenHitTotalAttrDmg"></td>
+                                <td class="phantomCell"></td>
+                                <td class="labelCell" data-h5-bind="oneHitPhysicalAndAttrDmg"></td>
+                                <td class="labelCell" data-h5-bind="oneChHitPhysicalAndAttrDmg"></td>
+                                <td class="labelCell" data-h5-bind="tenHitTotalPhysicalAndAttrDmg"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -189,6 +201,30 @@
                 </div>
             </div>
         </div>
+        <div class="outputContainer">
+            <div class="containerHeader memoContainerHeader">
+                <span class="containerTitle">メモ</span>
+                <div class="btn btn-xs btn-default outputButton">出力</div>
+                <div class="btn btn-xs btn-default clearButton">クリア</div>
+                <span style="font-size:12px;">※出力結果は先頭に追加</span>
+            </div>
+            <div class="outputContainerContent">
+                <table class="memoHeader" border=1>
+                    <thead>
+                        <tr>
+                            <td class="labelCell" width=180>武器名</td>
+                            <td class="labelCell" width=120>(物+属)単発dmg</td>
+                            <td class="labelCell" width=150>(物+属)会心単発dmg</td>
+                            <td class="labelCell" width=152>(物+属)10回合計dmg</td>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="memoWrapper">
+                    <table class="memoBody" border=1></table>
+                </div>
+            </div>
+        </div>
+        <div class="funButton" style="position:absolute;top:0;right:0;">.</div>
     </div>
 </body>
 

@@ -103,6 +103,21 @@
             }
         },
 
+        toggleActiveSkill: function (weaponData) {
+            // 現状では武器による活性・非活性を切り替える対象は無属性強化のみ
+            var $muzokuseiSkillSelect = this.$find('.muzokuseiSkillSelect');
+            if (weaponData.isMuzokusei) {
+                // 武器の無属性フラグがtrueの場合、項目を活性化する
+                $muzokuseiSkillSelect.prop('disabled', false);
+                return;
+            }
+            // 武器の無属性フラグがfalseの場合、項目を非活性にしLvを0にする
+            $muzokuseiSkillSelect.prop('disabled', true);
+            $muzokuseiSkillSelect[0].selectedIndex = 0;
+            this._selectedSkillLvMap['muzokusei'] = '0';// 選択したスキルレベルマップの値を更新
+            return;
+        },
+
         /**
          * カスタム強化スロットのchangeハンドラ。選択したスロットの情報を更新
          * <p>
@@ -135,15 +150,15 @@
 
         _calcOptionData: function () {
             var result = {
-                kisokougeki: 0,
+                kisokougeki: 15,// 力の爪+力の護符分を加算
                 chRate: 0,
                 chCorrection: 1.25,
                 skillCorrection: 1.0
             };
             // 攻撃
             var kougekiEffect = skillEffectMap.kougeki[this._selectedSkillLvMap.kougeki];
-            result.kisokougeki = kougekiEffect.kisokougeki;
-            result.chRate = kougekiEffect.chRate;
+            result.kisokougeki += kougekiEffect.kisokougeki;
+            result.chRate += kougekiEffect.chRate;
             // 見切り
             var mikiriEffect = skillEffectMap.mikiri[this._selectedSkillLvMap.mikiri];
             result.chRate += mikiriEffect.chRate;
