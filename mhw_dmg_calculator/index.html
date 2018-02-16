@@ -30,22 +30,28 @@
 <body>
     <div class="rootContainer">
         <div class="selectWeaponContainer">
-            <span>武器種</span>
-            <select class="weaponTypeList" data-h5-loop-context="weaponTypeList">
-                <option class="weaponType" data-h5-bind="text:weaponTypeName; attr(value):weaponTypeId"></option>
-            </select>
-            <span>／</span>
-            <span>武器</span>
-            <select class="weaponList" data-h5-loop-context="weaponList">
-                <option class="weapon" data-h5-bind="weaponName;"></option>
-            </select>
+            <div>
+                <span>武器種</span>
+                <select class="weaponTypeList" data-h5-loop-context="weaponTypeList">
+                    <option class="weaponType" data-h5-bind="text:weaponTypeName; attr(value):weaponTypeId"></option>
+                </select>
+                <span>／</span>
+                <span>武器</span>
+                <select class="weaponList" data-h5-loop-context="weaponList">
+                    <option class="weapon" data-h5-bind="weaponName;"></option>
+                </select>
+            </div>
+            <div>
+                <span>モーション値：</span>
+                <span class="motionVal"></span>
+            </div>
         </div>
 
         <div class="dmgInfoRootContainer">
             <div class="physicalDmgInfoContainer">
                 <div class="containerHeader">
                     <span class="containerTitle">物理dmg</span>
-                    <span style="font-size:12px;">※肉質0.8、爪・護符含む</span>
+                    <span style="font-size:12px;">※爪・護符含む</span>
                 </div>
                 <div class="containerContent">
                     <table class="physicalDmgTable" border=1>
@@ -54,7 +60,8 @@
                                 <td class="labelCell">素材攻撃力</td>
                                 <td class="labelCell">切れ味補正</td>
                                 <td class="labelCell">会心補正</td>
-                                <td class="labelCell">会心率[％]</td>
+                                <td class="labelCell">会心率[%]</td>
+                                <td class="labelCell">肉質</td>
                                 <td class="labelCell">単発dmg</td>
                                 <td class="labelCell">単発会心dmg</td>
                                 <td class="labelCell">10回合計dmg</td>
@@ -65,12 +72,21 @@
                                 <td class="labelCell" data-h5-bind="power"></td>
                                 <td class="selectCell">
                                     <select class="selectSharpness">
-                                        <option value=1.25>青:1.25</option>
+                                        <option value=1.20>青:1.20</option>
                                         <option value=1.05>緑:1.05</option>
                                     </select>
                                 </td>
                                 <td class="labelCell" data-h5-bind="chCorrection"></td>
                                 <td class="labelCell" data-h5-bind="chRate"></td>
+                                <td class="selectCell">
+                                    <select class="selectNikusitu">
+                                        <option value=0.80>80</option>
+                                        <option value=0.50>50</option>
+                                        <option value=0.44>44</option>
+                                        <option value=0.35>35</option>
+                                        <option value=0.20>20</option>
+                                    </select>
+                                </td>
                                 <td class="labelCell" data-h5-bind="oneHitDmg"></td>
                                 <td class="labelCell" data-h5-bind="oneChHitDmg"></td>
                                 <td class="labelCell" data-h5-bind="tenHitTotalDmg"></td>
@@ -82,7 +98,7 @@
             <div class="attrDmgInfoContainer">
                 <div class="containerHeader">
                     <span class="containerTitle">属性dmg</span>
-                    <span style="font-size:12px;">※対属性0.3</span>
+                    <span style="font-size:12px;">※対属性0.275</span>
                 </div>
                 <div class="containerContent">
                     <table class="attrDmgTable" border=1>
@@ -118,7 +134,7 @@
                 <span class="containerTitle">オプション</span>
                 <!-- <div class="btn btn-xs btn-default resetButton">リセット</div> -->
             </div>
-            <div class="optionContainerContent">
+            <div class="containerContent optionContainerContent">
                 <div class="customEnhanceContainer">
                     <div>カスタム強化</div>
                     <div class="customEnhanceItems"></div>
@@ -212,16 +228,14 @@
                 <table class="memoHeader" border=1>
                     <thead>
                         <tr>
-                            <td class="labelCell" width=180>武器名</td>
+                            <td class="labelCell" width=170>武器名</td>
                             <td class="labelCell" width=120>(物+属)単発dmg</td>
                             <td class="labelCell" width=150>(物+属)会心単発dmg</td>
                             <td class="labelCell" width=152>(物+属)10回合計dmg</td>
                         </tr>
                     </thead>
+                    <tbody class="memoBody"></tbody>
                 </table>
-                <div class="memoWrapper">
-                    <table class="memoBody" border=1></table>
-                </div>
             </div>
         </div>
         <div class="funButton" style="position:absolute;top:0;right:0;">.</div>

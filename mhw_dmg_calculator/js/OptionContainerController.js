@@ -103,19 +103,33 @@
             }
         },
 
-        toggleActiveSkill: function (weaponData) {
-            // 現状では武器による活性・非活性を切り替える対象は無属性強化のみ
-            var $muzokuseiSkillSelect = this.$find('.muzokuseiSkillSelect');
-            if (weaponData.isMuzokusei) {
-                // 武器の無属性フラグがtrueの場合、項目を活性化する
-                $muzokuseiSkillSelect.prop('disabled', false);
-                return;
+        toggleActiveSkill: function (param) {
+            // 選択した武器の無属性フラグから無属性強化スキルの活性/非活性を判定
+            var $muzokusei = this.$find('.muzokuseiSkillSelect');
+            var isMuzokusei = param.isMuzokusei;
+            if (isMuzokusei != null) {
+                if (param.isMuzokusei) {
+                    // 武器の無属性フラグがtrueの場合、項目を活性化する
+                    $muzokusei.prop('disabled', false);
+                } else {
+                    // 武器の無属性フラグがfalseの場合、項目を非活性にしLvを0にする
+                    $muzokusei.prop('disabled', true);
+                    $muzokusei[0].selectedIndex = 0;
+                    this._selectedSkillLvMap['muzokusei'] = '0';// 選択したスキルレベルマップの値を更新
+                }
             }
-            // 武器の無属性フラグがfalseの場合、項目を非活性にしLvを0にする
-            $muzokuseiSkillSelect.prop('disabled', true);
-            $muzokuseiSkillSelect[0].selectedIndex = 0;
-            this._selectedSkillLvMap['muzokusei'] = '0';// 選択したスキルレベルマップの値を更新
-            return;
+
+            // 選択した肉質に応じて痛撃スキルの活性/非活性を判定
+            var $tuugeki = this.$find('.tuugekiSkillSelect')
+            if (0.45 <= param.nikusitu) {
+                // 肉質が0.45以上ならば活性
+                $tuugeki.prop('disabled', false);
+            } else {
+                // 肉質が0.44以下ならば非活性
+                $tuugeki.prop('disabled', true);
+                $tuugeki[0].selectedIndex = 0;
+                this._selectedSkillLvMap['tuugeki'] = '0';// 選択したスキルレベルマップの値を更新
+            }
         },
 
         /**
@@ -180,14 +194,32 @@
             result.skillCorrection = muzokuseiEffect.skillCorrection;
 
             // カスタム強化スロット
+            var cntOfSelectedKisokougeki = 0;
             $.each(this._selectedCustomEnhanceItems, function (itemIdx, enhanceName) {
                 if (enhanceName == null || enhanceName === '-') {
                     // カスタム強化セレクトボックスの先頭（'-'）を選択している、または、生成してから変更していない場合は無視する
                     return;
                 }
                 var effectVal;
-                effectVal = enhanceName === 'kisokougeki' ? 5 : 10;
-                result[enhanceName] += effectVal;
+                if (enhanceName === 'chRate') {
+                    // 会心を指定した場合は、既に選択した会心の数によって強化値が軽減される
+                    switch (cntOfSelectedKisokougeki) {
+                        case 0:
+                            effectVal = 10;
+                            break;
+                        case 1:
+                            effectVal = 5;
+                            break;
+                        default:
+                            // TODO 3つとも会心を強化した場合の3スロット目の強化値は未確認
+                            effectVal = 5;
+                            break;
+                    }
+                    result[enhanceName] += effectVal;
+                    cntOfSelectedKisokougeki++;
+                    return;
+                }
+                result[enhanceName] += 5;
             });
 
             return result;

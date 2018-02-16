@@ -63,6 +63,8 @@
          */
         '.weaponTypeList change': function (context, $el) {
             var weaponTypeId = this._selectedWeaponTypeId = $el.val();
+            var motionVal = (this._weaponTypeCalcInfo[weaponTypeId].motionVal * 100).toFixed();
+            this.$find('.motionVal').text(motionVal);
             var selectedWeaponTypeDataList = this._getWeaponTypeDataList(weaponTypeId);
             this._weaponDataList.copyFrom(selectedWeaponTypeDataList);
             this._isSelectedWeapon = false;// 武器種を選択したら武器選択状態は解除される
@@ -99,10 +101,13 @@
             var weaponData = this._selectedWeaponData = this._getWeaponData(weaponName);// 選択した武器のデータ
 
             this._optionContainerController.createCustomEnhanceItems(weaponData);// カスタム強化枠を再生成
-            this._optionContainerController.toggleActiveSkill(weaponData);// オプションコンテナのスキル活性・非活性を整理
+            // オプションコンテナのスキル活性・非活性を整理
+            this._optionContainerController.toggleActiveSkill({
+                isMuzokusei: weaponData.isMuzokusei,
+                nikusitu: this._dmgInfoContainerController.getNikusitu()
+            });
             var optionData = this._optionContainerController.getOptionData();// オプションコンテナからオプション情報を取得
             this._dmgInfoContainerController.updateDmgInfo(weaponData, this._selectedWeaponTypeId, optionData);
-
 
             this._isSelectedWeapon = true;
         },
@@ -119,7 +124,21 @@
             return result;
         },
 
-        '{rootElement} changeSharpness': function (context) {
+        '{rootElement} changeSharpness': function () {
+            if (!this._isSelectedWeapon) {
+                // 武器が選択されていなければ何もしない
+                return;
+            }
+            var optionData = this._optionContainerController.getOptionData();// オプションコンテナからオプション情報を取得
+            this._dmgInfoContainerController.updateDmgInfo(this._selectedWeaponData, this._selectedWeaponTypeId, optionData);
+        },
+
+        '{rootElement} changeNikusitu': function (context) {
+            // オプションコンテナのスキル活性・非活性を整理
+            this._optionContainerController.toggleActiveSkill({
+                nikusitu: context.evArg.nikusitu
+            });
+
             if (!this._isSelectedWeapon) {
                 // 武器が選択されていなければ何もしない
                 return;
@@ -144,18 +163,18 @@
             }
             var item = this._dmgInfoContainerController.getDmgInfoDataItem();
             var $tr = $('<tr></tr>');
-            $tr.append('<td class="labelCell" width=180>' + this._selectedWeaponData.weaponName + '</td>');
-            $tr.append('<td class="labelCell" width=120>' + item.get('oneHitPhysicalAndAttrDmg') + '</td>');
-            $tr.append('<td class="labelCell" width=150>' + item.get('oneChHitPhysicalAndAttrDmg') + '</td>');
-            $tr.append('<td class="labelCell" width=152>' + item.get('tenHitTotalPhysicalAndAttrDmg') + '</td>');
+            $tr.append('<td class="labelCell">' + this._selectedWeaponData.weaponName + '</td>');
+            $tr.append('<td class="labelCell">' + item.get('oneHitPhysicalAndAttrDmg') + '</td>');
+            $tr.append('<td class="labelCell">' + item.get('oneChHitPhysicalAndAttrDmg') + '</td>');
+            $tr.append('<td class="labelCell">' + item.get('tenHitTotalPhysicalAndAttrDmg') + '</td>');
             this.$find('.memoBody').prepend($tr);
         },
 
-        '.clearButton click': function() {
+        '.clearButton click': function () {
             this.$find('.memoBody').empty();
         },
 
-        '.funButton click': function() {
+        '.funButton click': function () {
             alert('昔はお前みたいなハンターだった。膝に矢を受けてしまってな…');
         }
     };
