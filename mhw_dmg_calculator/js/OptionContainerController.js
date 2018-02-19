@@ -50,6 +50,12 @@
             '4': { kisokougeki: 16, chRate: 12 },
             '5': { kisokougeki: 20, chRate: 15 }
         },
+        hurutya: {
+            '0': { kisokougeki: 0 },
+            '1': { kisokougeki: 5 },
+            '2': { kisokougeki: 10 },
+            '3': { kisokougeki: 20 }
+        },
         tyoukai: {
             '0': { chCorrection: 1.25 },
             '1': { chCorrection: 1.30 },
@@ -83,6 +89,7 @@
             tuugeki: '0',
             konsin: '0',
             tyousen: '0',
+            hurutya: '0',
             tyoukai: '0',
             muzokusei: '0'
         },
@@ -186,6 +193,9 @@
             var tyousenEffect = skillEffectMap.tyousen[this._selectedSkillLvMap.tyousen];
             result.kisokougeki += tyousenEffect.kisokougeki;
             result.chRate += tyousenEffect.chRate;
+            // フルチャージ
+            var hurutyaEffect = skillEffectMap.hurutya[this._selectedSkillLvMap.hurutya];
+            result.kisokougeki += hurutyaEffect.kisokougeki;
             // 超会心
             var tyoukaiEffect = skillEffectMap.tyoukai[this._selectedSkillLvMap.tyoukai];
             result.chCorrection = tyoukaiEffect.chCorrection;

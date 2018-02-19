@@ -1,50 +1,62 @@
 {
     "taiken": {
-        "bukikeisu":4.8,
-        "motionVal":0.48
+        "bukikeisu": 4.8,
+        "motionVal": 0.48,
+        "motionName": "縦斬り"
     },
     "tati": {
-        "bukikeisu":3.3,
-        "motionVal":0.23
+        "bukikeisu": 3.3,
+        "motionVal": 0.23,
+        "motionName": "縦斬り"
     },
     "katate": {
-        "bukikeisu":1.4,
-        "motionVal":0.15
+        "bukikeisu": 1.4,
+        "motionVal": 0.15,
+        "motionName": "斬り下ろし"
     },
     "souken": {
-        "bukikeisu":1.4,
-        "motionVal":0.19
+        "bukikeisu": 1.4,
+        "motionVal": 0.19,
+        "motionName": "二段斬り"
     },
     "hanma": {
-        "bukikeisu":5.2,
-        "motionVal":0.37
+        "bukikeisu": 5.2,
+        "motionVal": 0.37,
+        "motionName": "縦振りⅠ"
     },
     "hue": {
-        "bukikeisu":4.2,
-        "motionVal":0.22
+        "bukikeisu": 4.2,
+        "motionVal": 0.22,
+        "motionName": "左ぶん回し"
     },
     "ransu": {
-        "bukikeisu":2.3,
-        "motionVal":0.21
+        "bukikeisu": 2.3,
+        "motionVal": 0.21,
+        "motionName": "中段突きⅠ"
     },
     "gansu": {
-        "bukikeisu":2.3,
-        "motionVal":0.24
+        "bukikeisu": 2.3,
+        "motionVal": 0.24,
+        "motionName": "水平突きⅠ"
     },
     "suraaku": {
-        "bukikeisu":3.5,
-        "motionVal":0.25
+        "bukikeisu": 3.5,
+        "motionVal": 0.25,
+        "motionName": "横斬り"
     },
     "tyakku": {
-        "bukikeisu":3.6,
-        "motionVal":0.12
+        "bukikeisu": 3.6,
+        "motionVal": 0.12,
+        "motionName": "牽制斬り"
     },
     "kon": {
-        "bukikeisu":3.1,
-        "motionVal":0.29
+        "bukikeisu": 3.1,
+        "motionVal": 0.29,
+        "motionName": "連続斬り上げ"
     },
     "yumi": {
-        "bukikeisu":1.2,
-        "motionVal":0.33
+        "bukikeisu": 1.2,
+        "motionVal": 0.33,
+        "motionName": "溜めⅢ(三本矢)"
     }
 }

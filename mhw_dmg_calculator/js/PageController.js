@@ -65,6 +65,8 @@
             var weaponTypeId = this._selectedWeaponTypeId = $el.val();
             var motionVal = (this._weaponTypeCalcInfo[weaponTypeId].motionVal * 100).toFixed();
             this.$find('.motionVal').text(motionVal);
+            var motionName = this._weaponTypeCalcInfo[weaponTypeId].motionName;
+            this.$find('.motionName').text(motionName);
             var selectedWeaponTypeDataList = this._getWeaponTypeDataList(weaponTypeId);
             this._weaponDataList.copyFrom(selectedWeaponTypeDataList);
             this._isSelectedWeapon = false;// 武器種を選択したら武器選択状態は解除される
