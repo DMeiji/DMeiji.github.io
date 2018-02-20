@@ -63,13 +63,39 @@
             '3': { chCorrection: 1.40 }
         },
         muzokusei: {
-            '0': {
-                skillCorrection: 1.0
-            },
-            '1': {
-                skillCorrection: 1.1
-            }
+            '0': { skillCorrection: 1.0 },
+            '1': { skillCorrection: 1.1 }
+        },
+        zokuseikyouka: {
+            '0': { zokuseikyouka: 0 },
+            '1': { zokuseikyouka: 1 },
+            '2': { zokuseikyouka: 2 },
+            '3': { zokuseikyouka: 3 },
+            '4': { zokuseikyouka: 4 },
+            '5': { zokuseikyouka: 5 }
+        },
+        zokuseikaisin: {
+            '0': { attrChCorrection: 1.0 },
+            '1': { attrChCorrection: 1.25 }
         }
+    };
+
+    var skillNameMap = {
+        kougeki: '攻撃',
+        mikiri: '見切り',
+        tuugeki: '痛撃',
+        konsin: '渾身',
+        tyousen: '挑戦',
+        hurutya: 'ﾌﾙﾁｬｰｼﾞ',
+        tyoukai: '超会心',
+        muzokusei: '無属性強化',
+        zokuseikyouka: '〇属性強化',
+        zokuseikaisin: '属性会心'
+    };
+
+    var enhanceNameMap = {
+        kisokougeki: '+攻撃',
+        chRate: '+会心'
     };
 
     /**
@@ -91,7 +117,9 @@
             tyousen: '0',
             hurutya: '0',
             tyoukai: '0',
-            muzokusei: '0'
+            muzokusei: '0',
+            zokuseikyouka: '0',
+            zokuseikaisin: '0'
         },
 
         /**
@@ -113,16 +141,30 @@
         toggleActiveSkill: function (param) {
             // 選択した武器の無属性フラグから無属性強化スキルの活性/非活性を判定
             var $muzokusei = this.$find('.muzokuseiSkillSelect');
+            var $zokuseikyouka = this.$find('.zokuseikyoukaSkillSelect');
+            var $zokuseikaisin = this.$find('.zokuseikaisinSkillSelect');
             var isMuzokusei = param.isMuzokusei;
             if (isMuzokusei != null) {
                 if (param.isMuzokusei) {
                     // 武器の無属性フラグがtrueの場合、項目を活性化する
                     $muzokusei.prop('disabled', false);
+                    // 〇属性強化項目を非活性にする
+                    $zokuseikyouka.prop('disabled', true);
+                    $zokuseikyouka[0].selectedIndex = 0;
+                    this._selectedSkillLvMap['zokuseikyouka'] = '0';// 選択したスキルレベルマップの値を更新
+                    // 〇属性強化、属性会心の項目を非活性にする
+                    $zokuseikaisin.prop('disabled', true);
+                    $zokuseikaisin[0].selectedIndex = 0;
+                    this._selectedSkillLvMap['zokuseikaisin'] = '0';// 選択したスキルレベルマップの値を更新
                 } else {
                     // 武器の無属性フラグがfalseの場合、項目を非活性にしLvを0にする
                     $muzokusei.prop('disabled', true);
                     $muzokusei[0].selectedIndex = 0;
                     this._selectedSkillLvMap['muzokusei'] = '0';// 選択したスキルレベルマップの値を更新
+                    // 〇属性強化項目を活性化する
+                    $zokuseikyouka.prop('disabled', false);
+                    // 属性会心項目を活性化する
+                    $zokuseikaisin.prop('disabled', false);
                 }
             }
 
@@ -202,6 +244,12 @@
             // 無属性強化
             var muzokuseiEffect = skillEffectMap.muzokusei[this._selectedSkillLvMap.muzokusei];
             result.skillCorrection = muzokuseiEffect.skillCorrection;
+            // 〇属性強化
+            var zokuseikyoukaEffect = skillEffectMap.zokuseikyouka[this._selectedSkillLvMap.zokuseikyouka];
+            result.zokuseikyouka = zokuseikyoukaEffect.zokuseikyouka;
+            //　属性会心
+            var zokuseikaisinEffect = skillEffectMap.zokuseikaisin[this._selectedSkillLvMap.zokuseikaisin];
+            result.attrChCorrection = zokuseikaisinEffect.attrChCorrection;
 
             // カスタム強化スロット
             var cntOfSelectedKisokougeki = 0;
@@ -237,6 +285,21 @@
 
         getOptionData: function () {
             return this._calcOptionData();
+        },
+
+        getSelectedSkillsInfo: function () {
+            return $.map(this._selectedSkillLvMap, function (lv, skillName) {
+                return {
+                    skillName: skillNameMap[skillName],
+                    lv: lv
+                };
+            });
+        },
+
+        getSelectedCustomEnhance: function () {
+            return $.map(this._selectedCustomEnhanceItems, function (enhanceName, idx) {
+                return enhanceNameMap[enhanceName];
+            });
         }
     };
     h5.core.expose(optionContainerController);

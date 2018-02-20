@@ -34,6 +34,14 @@ select {
     margin-bottom: 4px;
 }
 
+.labelCell {
+    padding: 0 2px;
+}
+
+.textCenterCell {
+    text-align: center;
+}
+
 /* ========================== */
 /* dmg情報コンテナ */
 /* ========================== */
@@ -50,11 +58,6 @@ select {
     background: #dbeeff;
 }
 
-.labelCell {
-    text-align: center;
-    padding: 0 4px;
-}
-
 .selectCell select {
     width: 100%;
 }
@@ -63,9 +66,13 @@ select {
     background: #dbeeff;
 }
 
+.overLimitVal {
+    color: red;
+}
+
 .phantomCell {
     border: none;
-    background: white;
+    background: #a8a8a9;
 }
 
 /* ========================== */

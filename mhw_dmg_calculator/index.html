@@ -58,27 +58,27 @@
                     <table class="physicalDmgTable" border=1>
                         <thead>
                             <tr>
-                                <td class="labelCell">素材攻撃力</td>
-                                <td class="labelCell">切れ味補正</td>
-                                <td class="labelCell">会心補正</td>
-                                <td class="labelCell">会心率[%]</td>
-                                <td class="labelCell">肉質</td>
-                                <td class="labelCell">単発dmg</td>
-                                <td class="labelCell">単発会心dmg</td>
-                                <td class="labelCell">10回合計dmg</td>
+                                <td class="labelCell textCenterCell">素材攻撃力</td>
+                                <td class="labelCell textCenterCell">切れ味補正</td>
+                                <td class="labelCell textCenterCell">会心補正</td>
+                                <td class="labelCell textCenterCell">会心率</td>
+                                <td class="labelCell textCenterCell">肉質</td>
+                                <td class="labelCell textCenterCell">単発dmg</td>
+                                <td class="labelCell textCenterCell">会心dmg</td>
+                                <td class="labelCell textCenterCell">10回合計dmg</td>
                             </tr>
                         </thead>
                         <tbody class="physicalDmgTableBody">
                             <tr>
-                                <td class="labelCell" data-h5-bind="power"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="power"></td>
                                 <td class="selectCell">
                                     <select class="selectSharpness">
                                         <option value=1.20>青:1.20</option>
                                         <option value=1.05>緑:1.05</option>
                                     </select>
                                 </td>
-                                <td class="labelCell" data-h5-bind="chCorrection"></td>
-                                <td class="labelCell" data-h5-bind="chRate"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="chCorrection"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="chRate"></td>
                                 <td class="selectCell">
                                     <select class="selectNikusitu">
                                         <option value=0.80>80</option>
@@ -88,9 +88,9 @@
                                         <option value=0.20>20</option>
                                     </select>
                                 </td>
-                                <td class="labelCell" data-h5-bind="oneHitDmg"></td>
-                                <td class="labelCell" data-h5-bind="oneChHitDmg"></td>
-                                <td class="labelCell" data-h5-bind="tenHitTotalDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="oneHitDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="oneChHitDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="tenHitTotalDmg"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,24 +105,26 @@
                     <table class="attrDmgTable" border=1>
                         <thead>
                             <tr>
-                                <td class="labelCell">属性値</td>
-                                <td class="labelCell">単発dmg</td>
-                                <td class="labelCell">10回合計dmg</td>
-                                <td class="phantomCell" width=10></td>
-                                <td class="labelCell">(物+属)dmg</td>
-                                <td class="labelCell">(物+属)会心dmg</td>
-                                <td class="labelCell">(物+属)10回合計dmg</td>
+                                <td class="labelCell textCenterCell">属性値</td>
+                                <td class="labelCell textCenterCell">単発dmg</td>
+                                <td class="labelCell textCenterCell">会心dmg</td>
+                                <td class="labelCell textCenterCell">10回合計dmg</td>
+                                <td class="phantomCell" width=4></td>
+                                <td class="labelCell textCenterCell">(物+属)単発dmg</td>
+                                <td class="labelCell textCenterCell">(物+属)会心dmg</td>
+                                <td class="labelCell textCenterCell">(物+属)10回合計dmg</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="labelCell" data-h5-bind="attrVal"></td>
-                                <td class="labelCell" data-h5-bind="oneHitAttrDmg"></td>
-                                <td class="labelCell" data-h5-bind="tenHitTotalAttrDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="attrVal"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="oneHitAttrDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="oneChHitAttrDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="tenHitTotalAttrDmg"></td>
                                 <td class="phantomCell"></td>
-                                <td class="labelCell" data-h5-bind="oneHitPhysicalAndAttrDmg"></td>
-                                <td class="labelCell" data-h5-bind="oneChHitPhysicalAndAttrDmg"></td>
-                                <td class="labelCell" data-h5-bind="tenHitTotalPhysicalAndAttrDmg"></td>
+                                <td class="labelCell textCenterCell textCenterCell" data-h5-bind="oneHitPhysicalAndAttrDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="oneChHitPhysicalAndAttrDmg"></td>
+                                <td class="labelCell textCenterCell" data-h5-bind="tenHitTotalPhysicalAndAttrDmg"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -223,6 +225,24 @@
                                 <option value="1">Lv1</option>
                             </select>
                         </div>
+                        <div class="skillRow">
+                            <div class="skillName">〇属性強化：</div>
+                            <select class="skillSelect zokuseikyoukaSkillSelect" data-skill-name="zokuseikyouka">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                                <option value="2">Lv2</option>
+                                <option value="3">Lv3</option>
+                                <option value="4">Lv4</option>
+                                <option value="5">Lv5</option>
+                            </select>
+                        </div>
+                        <div class="skillRow">
+                            <div class="skillName">属性会心：</div>
+                            <select class="skillSelect zokuseikaisinSkillSelect" data-skill-name="zokuseikaisin">
+                                <option value="0">Lv0</option>
+                                <option value="1">Lv1</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -238,10 +258,11 @@
                 <table class="memoHeader" border=1>
                     <thead>
                         <tr>
-                            <td class="labelCell" width=170>武器名</td>
-                            <td class="labelCell" width=120>(物+属)単発dmg</td>
-                            <td class="labelCell" width=150>(物+属)会心単発dmg</td>
-                            <td class="labelCell" width=152>(物+属)10回合計dmg</td>
+                            <td class="labelCell textCenterCell">武器名</td>
+                            <td class="labelCell textCenterCell">スキル</td>
+                            <td class="labelCell textCenterCell">(物+属)単発dmg</td>
+                            <td class="labelCell textCenterCell">(物+属)会心dmg</td>
+                            <td class="labelCell textCenterCell">(物+属)10回合計dmg</td>
                         </tr>
                     </thead>
                     <tbody class="memoBody"></tbody>

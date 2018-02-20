@@ -164,11 +164,33 @@
                 return;
             }
             var item = this._dmgInfoContainerController.getDmgInfoDataItem();
+            var skillsInfo = this._optionContainerController.getSelectedSkillsInfo();
+            var customEnhance = this._optionContainerController.getSelectedCustomEnhance();
             var $tr = $('<tr></tr>');
-            $tr.append('<td class="labelCell">' + this._selectedWeaponData.weaponName + '</td>');
-            $tr.append('<td class="labelCell">' + item.get('oneHitPhysicalAndAttrDmg') + '</td>');
-            $tr.append('<td class="labelCell">' + item.get('oneChHitPhysicalAndAttrDmg') + '</td>');
-            $tr.append('<td class="labelCell">' + item.get('tenHitTotalPhysicalAndAttrDmg') + '</td>');
+
+            // 名前列
+            var nameColStr = '<div>' + this._selectedWeaponData.weaponName + '</div>';
+            $.each(customEnhance, function (key, enhanceName) {
+                nameColStr += '<div>' + enhanceName + '</div>';
+            });
+            $tr.append('<td class="labelCell">' + nameColStr + '</td>');
+
+            // スキル列
+            var skillColStr = '';
+            for (var i = 0, len = skillsInfo.length; i < len; i++) {
+                var skillInfo = skillsInfo[i];
+                if (skillInfo.lv === '0') {
+                    continue;// 対象スキルLvが0ならば表示しない
+                }
+                skillColStr += '<div style="white-space:nowrap;position:relative;padding-right:22px;">';
+                skillColStr += '<div style="display:inline-block;">' + skillInfo.skillName + '</div>';
+                skillColStr += '<div style="position:absolute;top:0;right:0;">Lv' + skillInfo.lv + '</div></div>';
+            }
+            $tr.append('<td class="labelCell">' + skillColStr + '</td>');
+
+            $tr.append('<td class="labelCell textCenterCell">' + item.get('oneHitPhysicalAndAttrDmg') + '</td>');// 単発dmg列
+            $tr.append('<td class="labelCell textCenterCell">' + item.get('oneChHitPhysicalAndAttrDmg') + '</td>');// 会心dmg列
+            $tr.append('<td class="labelCell textCenterCell">' + item.get('tenHitTotalPhysicalAndAttrDmg') + '</td>');//　10回合計dmg列
             this.$find('.memoBody').prepend($tr);
         },
 
