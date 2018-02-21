@@ -1,0 +1,100 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+}
+
+.rootContainer {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    user-select: none;
+}
+
+/* ======================= */
+/* スキルコンテナ */
+/* ======================= */
+.skillChart {
+    height: 400px;
+    width: 400px;
+}
+
+.skillRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skillName {
+    flex-basis: 55px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.skillCbContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.skillCbWrapper {
+    display: inline-block;
+}
+
+.skillCbWrapper > label {
+    font-weight: normal;
+}
+
+/* ======================= */
+/* チャートコンテナ */
+/* ======================= */
+
+/* ======================= */
+/* 期待値テーブルコンテナ */
+/* ======================= */
+.tableWrapper {
+    margin: 4px 0;
+}
+
+.tableName {
+    background: #d3e9ff;
+}
+
+.headerCell {
+    background: #e0e0e0;
+}
+
+.labelCell {
+    padding: 0 2px;
+}
+
+.textCenterCell {
+    text-align: center;
+}
+
+.textRightCell {
+    text-align: right;
+}
+
+.bgOrangeCell {
+    background: #e69f75;
+}
+
+.bgGreenCell {
+    background: #66c36d;
+}
+
+.bgBlueCell {
+    background: #94d8ff;
+}
+
+.bgWhiteCell {
+    background: #f7f6f6;
+}
+
+.bgPurpleCell {
+    background: #ebbff3;
+}
