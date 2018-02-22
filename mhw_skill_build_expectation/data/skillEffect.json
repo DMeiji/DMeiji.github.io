@@ -1,0 +1,126 @@
+{
+    "konsin": {
+        "1": {
+            "chRate": 10
+        },
+        "2": {
+            "chRate": 20
+        },
+        "3": {
+            "chRate": 30
+        }
+    },
+    "tuugeki": {
+        "1": {
+            "chRate": 15
+        },
+        "2": {
+            "chRate": 30
+        },
+        "3": {
+            "chRate": 50
+        }
+    },
+    "tyoukai": {
+        "1": {
+            "chCorrection": 1.30
+        },
+        "2": {
+            "chCorrection": 1.35
+        },
+        "3": {
+            "chCorrection": 1.40
+        }
+    },
+    "kougeki": {
+        "1": {
+            "kisokougeki": 3,
+            "chRate": 0
+        },
+        "2": {
+            "kisokougeki": 6,
+            "chRate": 0
+        },
+        "3": {
+            "kisokougeki": 9,
+            "chRate": 0
+        },
+        "4": {
+            "kisokougeki": 12,
+            "chRate": 5
+        },
+        "5": {
+            "kisokougeki": 15,
+            "chRate": 5
+        },
+        "6": {
+            "kisokougeki": 18,
+            "chRate": 5
+        },
+        "7": {
+            "kisokougeki": 21,
+            "chRate": 5
+        }
+    },
+    "mikiri": {
+        "1": {
+            "chRate": 3
+        },
+        "2": {
+            "chRate": 6
+        },
+        "3": {
+            "chRate": 10
+        },
+        "4": {
+            "chRate": 15
+        },
+        "5": {
+            "chRate": 20
+        },
+        "6": {
+            "chRate": 25
+        },
+        "7": {
+            "chRate": 30
+        }
+    },
+    "hurutya": {
+        "1": {
+            "kisokougeki": 5
+        },
+        "2": {
+            "kisokougeki": 10
+        },
+        "3": {
+            "kisokougeki": 20
+        }
+    },
+    "tyousen": {
+        "1": {
+            "kisokougeki": 4,
+            "chRate": 3
+        },
+        "2": {
+            "kisokougeki": 8,
+            "chRate": 6
+        },
+        "3": {
+            "kisokougeki": 12,
+            "chRate": 9
+        },
+        "4": {
+            "kisokougeki": 16,
+            "chRate": 12
+        },
+        "5": {
+            "kisokougeki": 20,
+            "chRate": 15
+        }
+    },
+    "muzokusei": {
+        "1": {
+            "skillCorrection": 1.1
+        }
+    }
+}

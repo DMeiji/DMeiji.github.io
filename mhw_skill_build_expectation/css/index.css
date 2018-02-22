@@ -1,0 +1,91 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+}
+
+.rootContainer {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    user-select: none;
+}
+
+/* ======================= */
+/* スキルコンテナ */
+/* ======================= */
+.skillChart {
+    height: 400px;
+    width: 400px;
+}
+
+.skillRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skillName {
+    flex-basis: 55px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.skillRbContainer {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.skillRbWrapper {
+    display: inline-block;
+}
+
+.skillRbWrapper > label {
+    font-weight: normal;
+    margin-bottom: 2px;
+    padding: 0 2px;
+}
+
+.skillHighlight {
+    background: #eadba5b8;
+}
+
+/* ======================= */
+/* オペレーションコンテナ */
+/* ======================= */
+.opeBtnWrapper {
+    margin-bottom: 2px;
+}
+
+.chartLineInfoTable {
+    font-size: 12px;
+}
+
+.headerCell {
+    background: #c2e4f5;
+}
+
+.labelCell {
+    padding: 0 2px;
+}
+
+.textCenterCell {
+    text-align: center;
+}
+
+.textRightCell {
+    text-align: right;
+}
+
+.removeChartLineButton {
+    margin: 2px 0;
+    font-size: 10px;
+}
+
+/* ======================= */
+/* チャートコンテナ */
+/* ======================= */

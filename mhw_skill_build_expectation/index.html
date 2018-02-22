@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MHW skill build expectation</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jquery -->
+    <script src="./../lib/jquery/jquery-3.2.1.js"></script>
+
+    <!-- hifive -->
+    <script src="./../lib/hifive/ejs-h5mod.js"></script>
+    <script src="./../lib/hifive/h5.dev.js"></script>
+    <link href="./../lib/hifive/h5.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <script src="./../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+
+    <!-- source -->
+    <script src="js/consts.js"></script>
+    <script src="js/PageLogic.js"></script>
+    <script src="js/SkillContainerController.js"></script>
+    <script src="js/ChartContainerController.js"></script>
+    <script src="js/OperationContainerController.js"></script>
+    <script src="js/PageController.js"></script>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="rootContainer">
+        <div class="skillContainer"></div>
+        <div class="operationContainer">
+            <div class="opeBtnWrapper">
+                <div class="btn btn-xs btn-default skillResetButton">スキルリセット</div>
+                <div class="btn btn-xs btn-default addChartLineButton">グラフに追加</div>
+            </div>
+            <div>
+                <table class="chartLineInfoTable" border=1>
+                    <thead>
+                        <tr>
+                            <td class="labelCell textCenterCell headerCell">ビルド</td>
+                            <td class="labelCell textCenterCell headerCell">スキル構成</td>
+                            <td class="labelCell textCenterCell headerCell">削除</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="chartContainer">
+            <canvas id="skillChart"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>

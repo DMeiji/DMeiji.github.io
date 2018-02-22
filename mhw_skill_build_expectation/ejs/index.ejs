@@ -1,0 +1,37 @@
+<script type="text/ejs" id="SkillContainer">
+[% $.each(skillData, function(skillName, skillsInfo) { %]
+    <div class="skillRow">
+        <div class="skillName">[%= skillNameMap[skillName] %]</div>
+        <div class="skillRbContainer">
+            <div class="skillRbWrapper">
+                <label>
+                    <span>0</span>
+                    <input class="skillLvRb" type="radio" name="[%= skillName %]" value="0" data-skill-name="[%= skillName %]">
+                </label>
+            </div>
+            [% $.each(skillsInfo, function(lv) { %]
+                <div class="skillRbWrapper">
+                    <label>
+                        <span>[%= lv %]</span>
+                        <input class="skillLvRb" type="radio" name="[%= skillName %]" value="[%= lv %]" data-skill-name="[%= skillName %]">
+                    </label>
+                </div>
+            [% }); %]
+        </div>
+    </div>
+[% }); %]
+</script>
+
+<script type="text/ejs" id="LineInfoRow">
+<tr class="lineInfoRow">
+    <td class="labelCell textCenterCell">[%= buildName %]</td>
+    <td class="labelCell">[%= skillsStr %]</td>
+    <td class="labelCell textCenterCell">
+        [% if (!isInit) { %]
+            <div class="btn btn-xs btn-danger removeChartLineButton">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+        [% } %]
+    </td>
+</tr>
+</script>
