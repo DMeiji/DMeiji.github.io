@@ -69,7 +69,8 @@
         },
 
         '{rootElement} changeSkillFilter': function (context) {
-            this._armorContainerController.rebuildArmorList(context.evArg.filterSkills);
+            var evArg = context.evArg;
+            this._armorContainerController.rebuildArmorList(evArg.filterSlot, evArg.filterSkills);
         },
 
         '{rootElement} clearSkillFilter': function () {

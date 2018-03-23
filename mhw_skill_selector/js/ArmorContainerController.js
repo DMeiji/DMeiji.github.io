@@ -119,22 +119,29 @@
             });
         },
 
-        rebuildArmorList: function (filterSkills) {
-            if (filterSkills.length === 0) {
-                // フィルタチェックONの項目数が0の場合はリストを初期化
+        rebuildArmorList: function (filterSlot, filterSkills) {
+            var isSelectedFilterSlot = false;
+            $.each(filterSlot, function (key, isChecked) {
+                if (isChecked) {
+                    isSelectedFilterSlot = true;
+                    return false;
+                }
+            });
+            if (!isSelectedFilterSlot && filterSkills.length === 0) {
+                // スロットLvフィルタが未選択、かつ、スキルフィルタがONの項目数が0の場合はリストを初期化
                 this.initArmorList();
                 return;
             }
-            this._headArmorList.copyFrom(this._extractArmorData(this._armorData[0], filterSkills));
-            this._bodyArmorList.copyFrom(this._extractArmorData(this._armorData[1], filterSkills));
-            this._handArmorList.copyFrom(this._extractArmorData(this._armorData[2], filterSkills));
-            this._waistArmorList.copyFrom(this._extractArmorData(this._armorData[3], filterSkills));
-            this._legArmorList.copyFrom(this._extractArmorData(this._armorData[4], filterSkills));
-            this._amuletList.copyFrom(this._extractArmorData(this._armorData[5], filterSkills));
+            this._headArmorList.copyFrom(this._extractArmorData(this._armorData[0], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._bodyArmorList.copyFrom(this._extractArmorData(this._armorData[1], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._handArmorList.copyFrom(this._extractArmorData(this._armorData[2], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._waistArmorList.copyFrom(this._extractArmorData(this._armorData[3], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._legArmorList.copyFrom(this._extractArmorData(this._armorData[4], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._amuletList.copyFrom(this._extractArmorData(this._armorData[5], filterSlot, isSelectedFilterSlot, filterSkills));
         },
 
-        _extractArmorData: function (armorDataArray, filterSkills) {
-            return $.map(armorDataArray, function (armorInfo, idx) {
+        _extractArmorData: function (armorDataArray, filterSlot, isSelectedFilterSlot, filterSkills) {
+            return $.map(armorDataArray, this.own(function (armorInfo, idx) {
                 if (idx === 0) {
                     // 表示対象防具が1件の場合、セレクトボックスで選択できない（changeが発火しない）ため
                     // 先頭のダミーデータは必ずリストに表示する
@@ -144,6 +151,16 @@
                 if (firstSkillName === '') {
                     // 第1スキルが空文字の場合はフィルタではじく
                     return;
+                }
+                var isAmulet = armorInfo.part === '5';
+
+                if (!isAmulet && isSelectedFilterSlot) {
+                    // 護石以外の装備、かつ、スロットフィルタが1つでも設定されている場合
+                    var hasSelectedSlot = this._hasSelectedSlot(armorInfo, filterSlot);
+                    if (!hasSelectedSlot) {
+                        // 防具が指定されたLvのスロットを持たないのではじく
+                        return;
+                    }
                 }
                 if (filterSkills.indexOf(firstSkillName) !== -1) {
                     // 第1スキルがフィルタチェックONのスキルと一致する場合。リストに表示する対象
@@ -158,7 +175,28 @@
                     // 第2スキルがフィルタチェックONのスキルと一致する場合。リストに表示する対象
                     return armorInfo;
                 }
+            }));
+        },
+
+        /**
+         * 対象防具がスロットフィルタONのスロットLvを持つかどうかOR判定する
+         * <p>
+         * 例：Lv1,Lv2をONにした場合にtrueを返す防具は、[①を持つ防具,②を持つ防具,①②を持つ防具]である
+         */
+        _hasSelectedSlot: function (armorInfo, filterSlot) {
+            var hasSelectedSlot = false;
+            $.each(filterSlot, function (key, isChecked) {
+                if (!isChecked) {
+                    // スロットフィルタがOFFの項目は無視する
+                    return;
+                }
+                if (0 < armorInfo[key]) {
+                    // 対象防具が該当Lvスロット数を持つ場合
+                    hasSelectedSlot = true;
+                    return false;
+                }
             });
+            return hasSelectedSlot;
         },
 
         '.showSelectedArmorDialogButton click': function () {

@@ -39,6 +39,29 @@
 
 <script type="text/ejs" id="SkillFilterTable">
     <table class="skillFilterTable">
+        <tr>
+            <th class="guideRow" colspan="4">スロット</th>
+        </tr>
+        <tr>
+            <td width="25%" style="font-size: 12px;">
+                <label>
+                    <span style="font-weight: normal;">スロット①を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv1Slot">
+                </label>
+            </td>
+            <td width="25%" style="font-size: 12px;">
+                <label>
+                    <span style="font-weight: normal;">スロット②を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv2Slot">
+                </label>
+            </td>
+            <td width="25%" style="font-size: 12px;">
+                <label>
+                    <span style="font-weight: normal;">スロット③を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv3Slot">
+                </label>
+            </td>
+        </tr>
         [% $.each(filterSkillMap, function(key, filterInfoByRow) { %]
             <tr>
                 <th class="guideRow" colspan="4">[%= filterInfoByRow.guideStr %]</th>
