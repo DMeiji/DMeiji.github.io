@@ -103,6 +103,21 @@
         _restoreFilterContainer: function () {
             this._$armorAndResultContainerWrapper.removeClass('hidden');
             this._$armorAndResultRootContainer.removeClass('spreadContainer');
+        },
+
+        '{rootElement} copySelectedArmorInfo': function (context) {
+            var infoStr = context.evArg.infoStr;
+            infoStr += '\n' + this._resultContainerController.getActiveInfoStr();
+
+            // コピー用のtextareaを作成してDOM追加
+            var textarea = '<textarea style="position:absolute;left:-1px;height:1px;width:1px;overflow:hidden;"></textarea>';
+            var $textarea = $(textarea);
+            $(this.rootElement).append($textarea);
+
+            $textarea.text(infoStr);// コピー用textareaにコピー文字列を入れる
+            $textarea[0].select();// textarea内の文字列を選択
+            document.execCommand('copy');// 選択範囲をクリップボードにコピー
+            $textarea.remove();// textareaを除去
         }
     };
 

@@ -30,6 +30,15 @@
             '5': null,// 護石
         },
 
+        _partNameMap: {
+            '0': '頭',
+            '1': '胴',
+            '2': '手',
+            '3': '腰',
+            '4': '足',
+            '5': '護石'
+        },
+
         setupArmorList: function (skillNameMap, armorData) {
             this._skillNameMap = skillNameMap;
             this._armorData = armorData;
@@ -206,33 +215,20 @@
             return hasSelectedSlot;
         },
 
-        '.showSelectedArmorDialogButton click': function () {
-            var dialogStr = '';
-            var lv1SlotNum = 0;
-            var lv2SlotNum = 0;
-            var lv3SlotNum = 0;
-            $.each(this._selectedArmorInfo, function (part, armorInfo) {
+        '.copySelectedArmorInfoButton click': function () {
+            var str = '';
+            $.each(this._selectedArmorInfo, this.own(function (part, armorInfo) {
+                str += this._partNameMap[part];
                 if (armorInfo == null) {
-                    // 装備が選択されていない部位は無視
+                    str += '\n';
                     return;
                 }
-                dialogStr += armorInfo.armorName + '\n';
-                if (part === '5') {
-                    return;
-                }
-                lv1SlotNum += armorInfo.lv1Slot;
-                lv2SlotNum += armorInfo.lv2Slot;
-                lv3SlotNum += armorInfo.lv3Slot;
+                var armorName = armorInfo.armorName;
+                str += ' ' + armorName + '\n';
+            }));
+            this.trigger('copySelectedArmorInfo', {
+                infoStr: str
             });
-            if (dialogStr.length === 0) {
-                alert('装備が何も選択されていません');
-                return;
-            }
-            var lv1SlotStr = util.convertSlotNumToSlotStr(lv1SlotNum, '①');
-            var lv2SlotStr = util.convertSlotNumToSlotStr(lv2SlotNum, '②');
-            var lv3SlotStr = util.convertSlotNumToSlotStr(lv3SlotNum, '③');
-            dialogStr += lv1SlotStr + '\n' + lv2SlotStr + '\n' + lv3SlotStr;
-            alert('選択中の装備と空きスロット\n=======================\n' + dialogStr);
         }
     };
     h5.core.expose(armorContainerController);

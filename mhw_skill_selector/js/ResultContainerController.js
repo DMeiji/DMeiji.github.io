@@ -83,6 +83,20 @@
                 });
             }));
             return result;
+        },
+
+        getActiveInfoStr: function () {
+            var infoStr = '';
+            $.each(this._activeSkillList.toArray(), function (idx, skillInfo) {
+                infoStr += skillInfo.skillName + ' ' + skillInfo.skillVal + '\n';
+            });
+            $.each(this._totalSlotInfo.toArray(), function (idx, slotInfo) {
+                var slotStr = slotInfo.slotStr;
+                if (slotStr !== '') {
+                    infoStr += slotStr + '\n';
+                }
+            });
+            return infoStr;
         }
     };
     h5.core.expose(resultContainerController);
