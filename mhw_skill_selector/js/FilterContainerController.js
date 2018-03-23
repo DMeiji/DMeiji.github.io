@@ -1,6 +1,42 @@
 (function ($) {
     'use strict';
 
+    // 剣士汎用スキル
+    var universalSwordsmanSkills = [
+        'kougeki',// 攻撃
+        'mikiri',// 見切
+        'jakuten',// 弱点特効
+        'konsin',// 渾身
+        'tyousensya',// 挑戦者
+        'hurutya-ji',// ﾌﾙﾁｬｰｼﾞ
+        'tyoukaisin',// 超会心
+        'takumi',// 匠
+        'mimisen'// 耳栓
+    ];
+
+    // 弓汎用スキル
+    var universalBowmanSkills = [
+        'kougeki',// 攻撃
+        'mikiri',// 見切
+        'jakuten',// 弱点特効
+        'tyousensya',// 挑戦者
+        'hurutya-ji',// ﾌﾙﾁｬｰｼﾞ
+        'tyoukaisin',// 超会心
+        'mimisen',// 耳栓
+        'taijutu',// 体術
+        'sutaminakaihuku',// スタミナ急速回復
+        'tuujoudankyouka',// 通常弾強化
+        'kantuukyouka',// 貫通弾強化
+        'sandankyouka',// 散弾強化
+        'tokusyusyageki',// 特殊射撃強化
+    ];
+
+    // 盾斧汎用スキル
+    var universalChargeAxSkills = [
+        'houjutu',// 砲術
+        'houdansoutensuu'// 砲弾装填数UP
+    ];
+
     /**
 	 * フィルタコンテナコントローラ
 	 */
@@ -73,6 +109,53 @@
 
         '.narrowFilterContainerButton click': function () {
             this.trigger('narrowFilterContainer');
+        },
+
+        /**
+         * 剣士汎用スキルONボタン
+         */
+        '.universalSwordsmanSkillButton click': function () {
+            this._checkOnSkills(universalSwordsmanSkills);
+        },
+
+        /**
+         * 弓汎用スキルONボタン
+         */
+        '.universalBowmanSkillButton click': function () {
+            this._checkOnSkills(universalBowmanSkills);
+        },
+
+        /**
+         * 盾斧汎用スキルONボタン
+         */
+        '.universalChargeAxSkillButton click': function () {
+            this._checkOnSkills(universalChargeAxSkills);
+        },
+
+        _checkOnSkills: function (skills) {
+            $.each(skills, this.own(function (idx, skillName) {
+                if (this._checkedSkillsArray.indexOf(skillName) === -1) {
+                    // 対象スキルが未選択状態ならば選択状態に変える
+                    this._checkOnSkillFilterCb(skillName);
+                }
+            }));
+            this._triggerChangeSkillFilter();
+        },
+
+        _checkOnSkillFilterCb: function (skillName) {
+            this._checkedSkillsArray.push(skillName);
+            var $e = this._getSkillFilterCbElem(skillName);
+            $e.prop('checked', true);
+            this._toggleHighlight($e, true);
+        },
+
+        _getSkillFilterCbElem: function (skillName) {
+            return this.$find('.skillFilterCheckbox[value="' + skillName + '"]');
+        },
+
+        '.singleSkillCheckOnButton click': function (context, $el) {
+            var skillName = $el.data('skillName');
+            this._checkOnSkills([skillName]);
         }
     };
     h5.core.expose(filterContainerController);
