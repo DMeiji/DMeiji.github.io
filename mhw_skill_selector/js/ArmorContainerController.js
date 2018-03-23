@@ -128,7 +128,7 @@
                 }
             });
             if (!isSelectedFilterSlot && filterSkills.length === 0) {
-                // スロットLvフィルタが未選択、かつ、スキルフィルタがONの項目数が0の場合はリストを初期化
+                // スロットLvフィルタが未選択、かつ、スキルフィルタが未選択の場合はリストを初期化
                 this.initArmorList();
                 return;
             }
@@ -152,8 +152,11 @@
                     // 第1スキルが空文字の場合はフィルタではじく
                     return;
                 }
-                var isAmulet = armorInfo.part === '5';
-
+                var isAmulet = armorInfo.part === '5';// 対象装備が護石であればtrue
+                if (isAmulet && filterSkills.length === 0) {
+                    // 護石かつスキルフィルタが未選択の場合、護石は全てリストに表示する対象とみなす
+                    return armorInfo;
+                }
                 if (!isAmulet && isSelectedFilterSlot) {
                     // 護石以外の装備、かつ、スロットフィルタが1つでも設定されている場合
                     var hasSelectedSlot = this._hasSelectedSlot(armorInfo, filterSlot);
