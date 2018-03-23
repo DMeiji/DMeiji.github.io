@@ -325,7 +325,12 @@
             {
                 "skillName": "norimeijin",
                 "dispSkillName": "乗り名人"
-            },
+            }
+        ]
+    },
+    "5": {
+        "guideStr": "は行",
+        "skills": [
             {
                 "skillName": "hakaihou",
                 "dispSkillName": "破壊王"
@@ -349,12 +354,7 @@
             {
                 "skillName": "battouwaza",
                 "dispSkillName": "抜刀術【技】"
-            }
-        ]
-    },
-    "5": {
-        "guideStr": "は行",
-        "skills": [
+            },
             {
                 "skillName": "hani-",
                 "dispSkillName": "ハニーハンター"
