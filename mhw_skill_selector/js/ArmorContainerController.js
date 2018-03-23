@@ -161,6 +161,10 @@
                         // 防具が指定されたLvのスロットを持たないのではじく
                         return;
                     }
+                    if (filterSkills.length === 0) {
+                        // スキルフィルタが未選択の場合は、スロットLvを満たしていればリストに表示する対象とみなす
+                        return armorInfo;
+                    }
                 }
                 if (filterSkills.indexOf(firstSkillName) !== -1) {
                     // 第1スキルがフィルタチェックONのスキルと一致する場合。リストに表示する対象
