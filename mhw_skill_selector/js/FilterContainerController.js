@@ -37,6 +37,12 @@
         'houdansoutensuu'// 砲弾装填数UP
     ];
 
+    // 回性・回距
+    var kaiseiKaikyoSkills = [
+        'kaihiseinou',
+        'kaihikyori'
+    ];
+
     /**
 	 * フィルタコンテナコントローラ
 	 */
@@ -130,6 +136,13 @@
          */
         '.universalChargeAxSkillButton click': function () {
             this._checkOnSkills(universalChargeAxSkills);
+        },
+
+        /**
+         * 回性・回距スキルONボタン
+         */
+        '.kaiseiKaikyoSkillButton click': function () {
+            this._checkOnSkills(kaiseiKaikyoSkills);
         },
 
         _checkOnSkills: function (skills) {
