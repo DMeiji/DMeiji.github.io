@@ -100,6 +100,9 @@
 
         _clearFilter: function () {
             this._checkedSkillsArray = [];
+            this._checkedSlotFilterMap.lv1Slot = false;
+            this._checkedSlotFilterMap.lv2Slot = false;
+            this._checkedSlotFilterMap.lv3Slot = false;
             this.$find('.skillFilterCheckbox:checked').prop('checked', false);
             this.$find('.skillFilterHighlight').removeClass('skillFilterHighlight');
             this.trigger('clearSkillFilter');
