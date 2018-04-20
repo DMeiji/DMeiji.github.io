@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MHW Skill Selector2</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jquery -->
+    <script src="./../lib/jquery/jquery-3.2.1.js"></script>
+
+    <!-- hifive -->
+    <script src="./../lib/hifive/ejs-h5mod.js"></script>
+    <script src="./../lib/hifive/h5.dev.js"></script>
+    <link href="./../lib/hifive/h5.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <script src="./../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="./../lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Onsen UI -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+    <!-- source -->
+    <script src="js/util.js"></script>
+    <script src="js/PageLogic.js"></script>
+    <script src="js/ArmorContainerController.js"></script>
+    <script src="js/ResultContainerController.js"></script>
+    <script src="js/FilterContainerController.js"></script>
+    <script src="js/PageController.js"></script>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <ons-page>
+        <ons-tabbar swipeable position="top" animation="none">
+            <ons-tab page="armorAndResultRootContainer" label="BUILD" icon="ion-ios-list"></ons-tab>
+            <ons-tab page="filterRootContainer" label="FILTER" icon="fa-filter"></ons-tab>
+        </ons-tabbar>
+    </ons-page>
+      
+    <template id="armorAndResultRootContainer">
+        <ons-page>
+            <div class="armorAndResultRootContainer">
+                
+                <!-- 防具選択コンテナ -->
+                <div class="armorRootContainer">
+                    <div class="containerHeader">
+                        <span class="containerTitle">装備</span>
+                        <div class="btn btn-xs btn-default copySelectedArmorInfoButton">copy</div>
+                    </div>
+                    <div class="armorContainerContent">
+                        <!-- 頭 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">頭</span>
+                                <select class="armorSelect" data-h5-loop-context="headArmorList" data-armor-part=0>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 胴 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">胴</span>
+                                <select class="armorSelect" data-h5-loop-context="bodyArmorList" data-armor-part=1>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 手 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">手</span>
+                                <select class="armorSelect" data-h5-loop-context="handArmorList" data-armor-part=2>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 腰 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">腰</span>
+                                <select class="armorSelect" data-h5-loop-context="waistArmorList" data-armor-part=3>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 足 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">足</span>
+                                <select class="armorSelect" data-h5-loop-context="legArmorList" data-armor-part=4>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 護石 -->
+                        <div class="armorContainer">
+                            <div>
+                                <span class="armorContainerName">護石</span>
+                                <select class="armorSelect amuletList" data-h5-loop-context="amuletList" data-armor-part=5>
+                                    <option data-h5-bind="dispArmorName; attr(value): armorName;"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 選択した装備 -->
+                        <table class="selectedArmorTable">
+                            <tr>
+                                <td width=75 class="partNameCell">頭</td>
+                                <td width=425 data-armor-part=0></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">胴</td>
+                                <td data-armor-part=1></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">手</td>
+                                <td data-armor-part=2></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">腰</td>
+                                <td data-armor-part=3></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">足</td>
+                                <td data-armor-part=4></td>
+                            </tr>
+                            <tr>
+                                <td class="partNameCell">護石</td>
+                                <td data-armor-part=5></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 結果コンテナ -->
+                <div class="resultRootContainer">
+                    <div class="containerHeader">
+                        <span class="containerTitle">発動スキル</span>
+                    </div>
+                    <div class="resultContainerContent">
+                        <table class="activeSkillTable">
+                            <tbody class="activeSkillList" data-h5-loop-context="activeSkillList">
+                                <tr>
+                                    <td class="activeSkillName" data-h5-bind="skillName"></td>
+                                    <td class="activeSkillVal">
+                                        Lv
+                                        <span data-h5-bind="skillVal"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="totalSlotInfo" data-h5-loop-context="totalSlotInfo">
+                            <div data-h5-bind="slotStr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ons-page>
+    </template>
+      
+    <template id="filterRootContainer">
+        <ons-page>
+            <div class="filterRootContainer">
+                <div class="containerHeader filterContainerHeader">
+                    <span class="containerTitle">フィルタ</span>
+                    <div class="btn btn-xs btn-default filterOpeButton filterClearButton">クリア</div>
+                </div>
+                <div class="filterContainerContent"></div>
+            </div>
+        </ons-page>
+    </template>
+</body>
+</html>
