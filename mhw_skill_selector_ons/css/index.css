@@ -139,6 +139,11 @@ body {
     font-size: 16px;
 }
 
+.filterContainerContent td {
+    font-size: 12px;
+    text-align: center;
+}
+
 .filterPresetSkillButton {
     margin-top: 4px;
 }

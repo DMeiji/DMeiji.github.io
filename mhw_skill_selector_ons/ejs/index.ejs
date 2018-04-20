@@ -43,7 +43,7 @@
             <th class="guideRow" colspan="4">プリセット</th>
         </tr>
         <tr>
-            <td colspan="4">
+            <td colspan="4" style="text-align: inherit; padding-left: 4px; padding-right: 4px;">
                 <div>
                     <div class="btn btn-xs btn-default filterPresetSkillButton universalSwordsmanSkillButton">剣士汎用</div>
                     <div class="btn btn-xs btn-default filterPresetSkillButton universalBowmanSkillButton">弓汎用</div>
@@ -58,19 +58,19 @@
             <th class="guideRow" colspan="4">スロット</th>
         </tr>
         <tr>
-            <td width="25%" style="font-size: 11px; text-align: center;">
+            <td width="25%">
                 <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
                     <span style="font-weight: normal;">①を含む</span>
                     <input type="checkbox" class="skillFilterCheckbox" value="lv1Slot">
                 </label>
             </td>
-            <td width="25%" style="font-size: 11px; text-align: center;">
+            <td width="25%">
                 <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
                     <span style="font-weight: normal;">②を含む</span>
                     <input type="checkbox" class="skillFilterCheckbox" value="lv2Slot">
                 </label>
             </td>
-            <td width="25%" style="font-size: 11px; text-align: center;">
+            <td width="25%">
                 <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
                     <span style="font-weight: normal;">③を含む</span>
                     <input type="checkbox" class="skillFilterCheckbox" value="lv3Slot">
@@ -91,7 +91,7 @@
                     <tr>
                 [% } %]
 
-                <td width="25%" style="font-size: 11px; text-align: center;">
+                <td width="25%">
                     <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
                         <span style="font-weight: normal;">[%= skillInfo.dispSkillName %]</span>
                         <input type="checkbox" class="skillFilterCheckbox" value="[%= skillInfo.skillName %]">
