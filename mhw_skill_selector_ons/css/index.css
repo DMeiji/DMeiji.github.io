@@ -1,0 +1,157 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+}
+
+.containerHeader {
+    background: #d6ebf3;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 4px;
+}
+
+.containerTitle {
+    font-size: 22px;
+}
+
+.armorAndResultRootContainer {
+    width: 504px;
+}
+
+/* ==================================================== */
+/* 防具選択コンテナ */
+/* ==================================================== */
+.armorRootContainer {
+    position: relative;
+    padding-top: 35px;
+}
+
+/* 装備選択コンテナのラッパー */
+.armorContainerContent {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 装備選択コンテナ */
+.armorContainer {
+    width: 500px;
+    margin: 0 0 4px 4px;
+}
+
+.copySelectedArmorInfoButton {
+    margin-left: 20px;
+}
+
+/* 装備選択リストの装備部位ラベル */
+.armorContainerName {
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+/* 装備選択リスト */
+.armorSelect {
+    height: 22px;
+    width: 460px;
+}
+
+.amuletList {
+    width: 445px;
+}
+
+.selectedArmorTable {
+    margin: 0 0 4px 4px;
+    width: 500px;
+}
+
+.partNameCell {
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+/* ==================================================== */
+/* 結果コンテナ */
+/* ==================================================== */
+.resultRootContainer {
+    position: relative;
+    padding-top: 35px;
+}
+
+.resultContainerContent {
+    padding-left: 9px;
+}
+
+.activeSkillTable {
+    padding-left: 9px;
+}
+
+.activeSkillVal {
+    padding-left: 8px;
+}
+
+/* ==================================================== */
+/* フィルタコンテナ */
+/* ==================================================== */
+
+.filterRootContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.filterContainerHeader.containerHeader {
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 31px;
+    margin-bottom: 0px;
+}
+
+.filterOpeButton {
+    margin-left: 20px;
+}
+
+.filterContainerContent {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-y: scroll;
+}
+
+.skillFilterTable {
+    width: 100%;
+}
+
+.guideRow {
+    text-align: center;
+    background: #d9e4e9;
+    font-size: 16px;
+}
+
+.filterContainerContent td {
+    font-size: 12px;
+    text-align: center;
+}
+
+.filterPresetSkillButton {
+    margin-top: 4px;
+}
+
+.skillFilterHighlight {
+    background: #fdd479;
+}
+
+.skillFilterCheckbox {
+    display: none;
+}

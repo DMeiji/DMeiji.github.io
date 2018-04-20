@@ -1,0 +1,112 @@
+<script type="text/ejs" id="SelectedArmorInfo">
+    <div class="selectedArmorInfo">
+        <span class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</span>
+        [% if (firstSkillName !== '-') { %]
+            <div style="display: inline-block;background: #ffe2e8;">
+                <span style="padding-left:6px;">[%= firstSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= firstSkillVal %]</span>
+            </div>
+        [% } %]
+        [% if (secondSkillName !== '-') { %]
+            <div style="display: inline-block;background: #daffde;">
+                <span style="padding-left:6px;">[%= secondSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= secondSkillVal %]</span>
+            </div>
+        [% } %]
+        <div style="display: inline-block;background: #dae9ff;">
+            <span>[%= lv1Slot %][%= lv2Slot %][%= lv3Slot %]</span>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="SelectedAmuletInfo">
+    <div class="selectedAmuletInfo">
+        <span class="armorName" style="font-weight: bold;color: #4a4ade;">[%= armorName %]</span>
+        [% if (firstSkillName !== '-') { %]
+            <div style="display: inline-block;background: #ffe2e8;">
+                <span style="padding-left:6px;">[%= firstSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= firstSkillVal %]</span>
+            </div>
+        [% } %]
+        [% if (secondSkillName !== '-') { %]
+            <div style="display: inline-block;background: #daffde;">
+                <span style="padding-left:6px;">[%= secondSkillName %]</span>
+                <span style="padding-left:6px;">Lv[%= secondSkillVal %]</span>
+            </div>
+        [% } %]
+    </div>
+</script>
+
+<script type="text/ejs" id="SkillFilterTable">
+    <table border=1 class="skillFilterTable">
+        <tr>
+            <th class="guideRow" colspan="4">プリセット</th>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: inherit; padding-left: 4px; padding-right: 4px;">
+                <div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton universalSwordsmanSkillButton">剣士汎用</div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton universalBowmanSkillButton">弓汎用</div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton universalChargeAxSkillButton">砲術・増弾</div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton kaiseiKaikyoSkillButton">回性・回距</div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton singleSkillCheckOnButton" data-skill-name="syuutyuu">集中</div>
+                    <div class="btn btn-xs btn-default filterPresetSkillButton singleSkillCheckOnButton" data-skill-name="ga-doseinou">ガード性能</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="guideRow" colspan="4">スロット</th>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
+                    <span style="font-weight: normal;">①を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv1Slot">
+                </label>
+            </td>
+            <td width="25%">
+                <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
+                    <span style="font-weight: normal;">②を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv2Slot">
+                </label>
+            </td>
+            <td width="25%">
+                <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
+                    <span style="font-weight: normal;">③を含む</span>
+                    <input type="checkbox" class="skillFilterCheckbox" value="lv3Slot">
+                </label>
+            </td>
+            <td></td>
+        </tr>
+        [% $.each(filterSkillMap, function(key, filterInfoByRow) { %]
+            <tr>
+                <th class="guideRow" colspan="4">[%= filterInfoByRow.guideStr %]</th>
+            </tr>
+            [% var skills = filterInfoByRow.skills; %]
+
+            [% for (var idx = 0, len = skills.length; idx < len; idx++) { %]
+                [% var skillInfo = skills[idx]; %]
+
+                [% if (idx % 4 === 0) {  %]
+                    <tr>
+                [% } %]
+
+                <td width="25%">
+                    <label style="width: 100%; margin-top: 2px; margin-bottom: 2px;">
+                        <span style="font-weight: normal;">[%= skillInfo.dispSkillName %]</span>
+                        <input type="checkbox" class="skillFilterCheckbox" value="[%= skillInfo.skillName %]">
+                    </label>
+                </td>
+
+                [% if (idx === len - 1) { %]
+                    </tr>
+                    [% break; %]
+                [% } %]
+
+                [% if (idx % 4 === 3) {  %]
+                    </tr>
+                [% } %]
+            [% } %]
+        [% }); %]
+    </table>
+</script>
