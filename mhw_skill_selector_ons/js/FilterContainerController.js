@@ -28,7 +28,27 @@
         'tuujoudankyouka',// 通常弾強化
         'kantuukyouka',// 貫通弾強化
         'sandankyouka',// 散弾強化
+        'tokusyusyageki'// 特殊射撃強化
+    ];
+
+    // 弩汎用スキル
+    var universalShooterSkills = [
+        'kougeki',// 攻撃
+        'mikiri',// 見切
+        'jakuten',// 弱点特効
+        'tyousensya',// 挑戦者
+        'hurutya-ji',// ﾌﾙﾁｬｰｼﾞ
+        'tyoukaisin',// 超会心
+        'mimisen',// 耳栓
+        'tuujoudankyouka',// 通常弾強化
+        'kantuukyouka',// 貫通弾強化
+        'sandankyouka',// 散弾強化
         'tokusyusyageki',// 特殊射撃強化
+        'zokuseikaihou',// 覚醒
+        'ko',// KO術
+        'houjutu',// 砲術
+        'syuutyuu',// 集中
+        'boma-'// ボマー
     ];
 
     // 盾斧汎用スキル
@@ -120,6 +140,13 @@
          */
         '.universalBowmanSkillButton click': function () {
             this._checkOnSkills(universalBowmanSkills);
+        },
+
+        /**
+         * 弩汎用スキルONボタン
+         */
+        '.universalShooterSkillButton click': function () {
+            this._checkOnSkills(universalShooterSkills);
         },
 
         /**
