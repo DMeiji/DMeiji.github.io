@@ -69,6 +69,7 @@
             this._waistArmorList.copyFrom(this._armorData[3]);
             this._legArmorList.copyFrom(this._armorData[4]);
             this._amuletList.copyFrom(this._armorData[5]);
+            this._reSelectArmor();
         },
 
         '.armorSelect change': function (context, $el) {
@@ -147,6 +148,7 @@
             this._waistArmorList.copyFrom(this._extractArmorData(this._armorData[3], filterSlot, isSelectedFilterSlot, filterSkills));
             this._legArmorList.copyFrom(this._extractArmorData(this._armorData[4], filterSlot, isSelectedFilterSlot, filterSkills));
             this._amuletList.copyFrom(this._extractArmorData(this._armorData[5], filterSlot, isSelectedFilterSlot, filterSkills));
+            this._reSelectArmor();
         },
 
         _extractArmorData: function (armorDataArray, filterSlot, isSelectedFilterSlot, filterSkills) {
@@ -192,6 +194,105 @@
                     return armorInfo;
                 }
             }));
+        },
+
+        _reSelectArmor: function () {
+            var selectedArmorIdx = null;
+
+            // head
+            var bodyArmorList = this._headArmorList.toArray();
+            $.each(bodyArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[0];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="headArmorList"]')[0].selectedIndex = selectedArmorIdx;
+
+            // body
+            selectedArmorIdx = null;
+            var bodyArmorList = this._bodyArmorList.toArray();
+            $.each(bodyArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[1];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="bodyArmorList"]')[0].selectedIndex = selectedArmorIdx;
+
+            // hand
+            selectedArmorIdx = null;
+            var handArmorList = this._handArmorList.toArray();
+            $.each(handArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[2];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="handArmorList"]')[0].selectedIndex = selectedArmorIdx;
+
+            // waist
+            selectedArmorIdx = null;
+            var waistArmorList = this._waistArmorList.toArray();
+            $.each(waistArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[3];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="waistArmorList"]')[0].selectedIndex = selectedArmorIdx;
+
+            // leg
+            selectedArmorIdx = null;
+            var legArmorList = this._legArmorList.toArray();
+            $.each(legArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[4];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="legArmorList"]')[0].selectedIndex = selectedArmorIdx;
+
+            // amulet
+            selectedArmorIdx = null;
+            var amuletArmorList = this._amuletList.toArray();
+            $.each(amuletArmorList, this.own(function (idx, armorInfo) {
+                var selectedArmorInfo = this._selectedArmorInfo[5];
+                if (selectedArmorInfo == null) {
+                    return false;
+                }
+                var selectedArmorName = selectedArmorInfo.armorName;
+                if (selectedArmorName === armorInfo.armorName) {
+                    selectedArmorIdx = idx;
+                    return false;
+                }
+            }));
+            this.$find('[data-h5-loop-context="amuletList"]')[0].selectedIndex = selectedArmorIdx;
         },
 
         /**
