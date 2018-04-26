@@ -63,6 +63,7 @@ body {
 .armorSelect {
     height: 22px;
     width: 460px;
+    font-size: 12px;
 }
 
 .amuletList {
