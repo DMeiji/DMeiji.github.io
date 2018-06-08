@@ -459,6 +459,11 @@
 キリンアームロングβ,2,kaminarikyouka,2,,,2,0,0,-3,-2,4,-2,2
 キリンフープβ,3,zokuseitaisei,1,,,3,0,0,-3,-2,4,-2,2
 キリンレガースβ,4,zokuseikaihou,2,,,2,0,0,-3,-2,4,-2,2
+キリンホーンγ,0,zokuseitaisei,1,kaminarikyouka,3,0,1,0,-3,-2,4,-2,2
+キリンベストγ,1,zokuseikaihou,2,,,2,0,0,-3,-2,4,-2,2
+キリンアームロングγ,2,zokuseitaisei,1,zokuseikaihou,1,0,2,0,-3,-2,4,-2,2
+キリンフープγ,3,ranna-,2,,,2,0,0,-3,-2,4,-2,2
+キリンレガースγ,4,zokuseitaisei,1,kaminarikyouka,2,0,0,1,-3,-2,4,-2,2
 ゼノラージヘッドα,0,hirumikeigen,1,tokusyusyageki,1,1,0,0,-3,2,2,2,-4
 ゼノラージハイドα,1,kyoukajizoku,2,zokuseitaisei,1,1,0,0,-3,2,2,2,-4
 ゼノラージクロウα,2,hirumikeigen,1,tyoukaisin,1,1,0,0,-3,2,2,2,-4
