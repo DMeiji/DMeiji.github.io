@@ -449,6 +449,11 @@
 ウルズアームβ,2,hurutya-ji,1,,,3,0,0,-4,4,1,-1,-3
 ウルズコイルβ,3,hurutya-ji,1,,,2,0,0,-4,4,1,-1,-3
 ウルズグリーヴβ,4,syoukitaisei,2,,,2,0,0,-4,4,1,-1,-3
+ウルズヘルムγ,0,tairyokukaihuku,2,ryuukyouka,1,0,0,1,-4,4,1,-1,-3
+ウルズメイルγ,1,hurutya-ji,1,tairyokukaihuku,1,0,0,1,-4,4,1,-1,-3
+ウルズアームγ,2,ryuukyouka,3,,,0,0,2,-4,4,1,-1,-3
+ウルズコイルγ,3,kaihukusokudo,2,ryuukyouka,1,2,0,1,-4,4,1,-1,-3
+ウルズグリーヴγ,4,hurutya-ji,1,kaihukusokudo,1,1,0,1,-4,4,1,-1,-3
 キリンホーンα,0,ranna-,2,seirei,1,0,0,0,-3,-2,4,-2,2
 キリンベストα,1,seirei,2,kaminarikyouka,1,0,0,0,-3,-2,4,-2,2
 キリンアームロングα,2,kaminarikyouka,2,ranna-,1,0,0,0,-3,-2,4,-2,2
