@@ -11,7 +11,9 @@
         'hurutya-ji',// ﾌﾙﾁｬｰｼﾞ
         'tyoukaisin',// 超会心
         'takumi',// 匠
-        'mimisen'// 耳栓
+        'mimisen',// 耳栓
+        'seibi',// 整備
+        'tairyokuzoukyou'// 体力増強
     ];
 
     // 弓汎用スキル
@@ -48,7 +50,9 @@
         'ko',// KO術
         'houjutu',// 砲術
         'syuutyuu',// 集中
-        'boma-'// ボマー
+        'boma-',// ボマー
+        'seibi',// 整備
+        'tairyokuzoukyou'// 体力増強
     ];
 
     // 盾斧汎用スキル
