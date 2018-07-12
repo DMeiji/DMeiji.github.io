@@ -21,6 +21,7 @@
             this._appendFontExampleContainer('meiryo', 'メイリオ');
             this._appendFontExampleContainer('corpmarugo_v1', 'コーポレート・ロゴ丸');
             this._appendFontExampleContainer('font_1_ant-maru', 'ほのかアンティーク丸');
+            this._appendFontExampleContainer('NikumaruFont', 'にくまるフォント');
             this._appendFontExampleContainer('OthutomeFont_Ver2', 'おつとめフォント');
             this._appendFontExampleContainer('CHIKARA-YOWAKU_002', '851チカラヨワク');
             this._appendFontExampleContainer('mushin', '無心');
