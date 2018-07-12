@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding-top: 26px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.message-container { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 100%;
+    padding: 0 6px;
+    border: solid 1px;
+    border-radius: 4px;
+}
+
+.message {
+    color: red;
+}
+
+.root-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.font-example-container {
+    border: solid 1px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    overflow: hidden;
+
+}
+
+.font-name-area {
+    font-size: 24px;
+    border-bottom: solid 1px;
+    background-color: #eaeeff;
+    padding: 4px 6px;
+}
+
+.text-example-area {
+    font-size: 48px;
+    padding: 4px;
+}
+
+.text-example {
+    margin-left: 8px;
+}
+
+.bold-text-example {
+    font-weight: bold;
+}

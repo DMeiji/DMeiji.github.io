@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/* @font-face {
+	font-family: '';
+	src: url(../../lib/fonts/.ttf);
+} */
+
+@font-face {
+	font-family: 'corpmarugo_v1';
+	src: url(../../lib/fonts/corpmarugo_v1.ttf);
+}
+@font-face {
+	font-family: 'font_1_ant-maru';
+	src: url(../../lib/fonts/font_1_ant-maru.ttf);
+}
+@font-face {
+	font-family: 'OthutomeFont_Ver2';
+	src: url(../../lib/fonts/OthutomeFont_Ver2.ttf);
+}
+@font-face {
+	font-family: 'CHIKARA-YOWAKU_002';
+	src: url(../../lib/fonts/851CHIKARA-YOWAKU_002.ttf);
+}
+@font-face {
+	font-family: 'mushin';
+	src: url(../../lib/fonts/mushin.otf);
+}
+@font-face {
+	font-family: 'tihaya_kado';
+	src: url(../../lib/fonts/tihaya_kado.ttf);
+}
+@font-face {
+	font-family: 'SoukouMincho';
+	src: url(../../lib/fonts/SoukouMincho.ttf);
+}
+@font-face {
+	font-family: 'genkai-mincho';
+	src: url(../../lib/fonts/genkai-mincho.ttf);
+}
+@font-face {
+    font-family: 'onryou';
+    src: url(../../lib/fonts/onryou.TTF);
+}
