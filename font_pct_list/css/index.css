@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.root-container {
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    overflow: auto;
+}
+
+.collapsing {
+    transition: height 0s ease;
+}
+
+.collapse-button {
+    margin-bottom: 2px;
+}
+
+.font-example-container {
+    margin-bottom: 6px;
+}
