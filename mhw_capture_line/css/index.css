@@ -8,11 +8,11 @@ html,body {
     height: 100%;
     width: 100%;
     margin: 0;
-    overflow: hidden;
 }
 
 .root-container {
     height: 100%;
+    overflow: hidden;
     width: 100%;
     overflow: auto;
     margin: 6px;
@@ -20,6 +20,11 @@ html,body {
 
 .item-row {
     margin-bottom: 4px;
+    width: 300px;
+}
+
+.required-karyoku-youin-dmg-for-one-row {
+    border-bottom: solid 1px red;
 }
 
 .name-content {
@@ -30,4 +35,25 @@ html,body {
 .val-content {
     display: inline-block;
     margin-left: 4px;
+}
+
+.targets-list {
+    width: 130px;
+}
+
+.rekisen-hosei {
+    width: 130px;
+}
+
+.hi-karyoku-youin-num {
+    width: 130px;
+}
+
+.hi-karyoku-youin-dmg {
+    width: 130px;
+}
+
+.trap-table td {
+    padding: 1px 2px;
+    text-align: center;
 }

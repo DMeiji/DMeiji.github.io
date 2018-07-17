@@ -106,15 +106,36 @@
             return result;
         },
 
+        /**
+         * 歴戦補正のchangeハンドラ<p>
+         * dmgを再計算して表示を更新
+         */
         '.rekisen-hosei change': function (context, $el) {
             this._updateDmg();
         },
 
+        /**
+         * 非火力要員人数のchangeハンドラ<p>
+         * dmgを再計算して表示を更新
+         */
+        '.hi-karyoku-youin-num change': function (context, $el) {
+            this._updateDmg();
+        },
+
+        /**
+         * 非火力要員dmgのchangeハンドラ<p>
+         * dmgを再計算して表示を更新
+         */
+        '.hi-karyoku-youin-dmg change': function (context, $el) {
+            this._updateDmg();
+        },
+
+        /**
+         * ターゲットのchangeハンドラ<p>
+         * dmgを再計算して表示を更新
+         */
         '.targets-list change': function (context, $el) {
-            var val = $el.val();
-            if (val === 'none') {
-                // TODO 
-            }
+            this._updateDmg();
         }
     };
 
