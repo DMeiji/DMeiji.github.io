@@ -44,26 +44,31 @@
         _$hiKaryokuYouinDmg: null,
 
         __init: function () {
-            this._monstersInfo = MhwCaptureLine.MonstersInfo;
+            this._monstersInfo = MhwCaptureLine.MonstersInfo;// モンスターの情報を取得
+            // 画面をejsテンプレートから構築
             this.view.append(this.rootElement, 'CaptureLineContents', {
                 targetInfoList: this._monstersInfo
             });
         },
 
         __ready: function () {
+            // データアイテムを生成してデータバインド
             this._item = model.create({
                 id: 'MonsterInfoItem',
             });
             this.view.bind(this.rootElement, this._item);
 
-            this._$targetsList = this.$find('.targets-list');
-            this._$rekisenHosei = this.$find('.rekisen-hosei');
-            this._$hiKaryokuYouinNum = this.$find('.hi-karyoku-youin-num');
-            this._$hiKaryokuYouinDmg = this.$find('.hi-karyoku-youin-dmg');
+            this._$targetsList = this.$find('.targets-list');// ターゲットのセレクト要素をキャッシュ
+            this._$rekisenHosei = this.$find('.rekisen-hosei');// 歴戦補正の要素をキャッシュ
+            this._$hiKaryokuYouinNum = this.$find('.hi-karyoku-youin-num');// 非火力要員数の要素をキャッシュ
+            this._$hiKaryokuYouinDmg = this.$find('.hi-karyoku-youin-dmg');// 非火力要員dmgの要素をキャッシュ
 
-            this._updateDmg();
+            this._updateDmg();// ダメージを再計算して表示を更新
         },
 
+        /**
+         * ダメージを計算して表示を更新
+         */
         _updateDmg: function () {
             var targetName = this._$targetsList.val();
             var targetInfo = this._getTargetInfo(targetName);
@@ -83,6 +88,11 @@
             });
         },
 
+        /**
+         * キャッシュしているモンスターの情報を取得して返す
+         * 
+         * @param targetName 対象モンスター名(≠表示名)
+         */
         _getTargetInfo: function (targetName) {
             var result = null;
             $.each(this._monstersInfo, function (idx, info) {
@@ -94,15 +104,26 @@
             return result;
         },
 
+        /**
+         * 必要合計dmgを計算して返す
+         * 
+         * @param info 対象モンスターの情報
+         */
         _calcRequiredTotalDmg: function (info) {
             var rekisenHosei = parseFloat(this._$rekisenHosei.val());
             return info.base * MULTI_CORRECTION_VAL * (1 - info.captureLine) * rekisenHosei;
         },
 
+        /**
+         * 火力要員一人あたりの必要dmgを計算して返す
+         * 
+         * @param requiredTotalDmg 必要合計dmg
+         */
         _calcRequiredKaryokuYouinDmgForOne: function (requiredTotalDmg) {
-            var hiKaryokuYouinNum = this._$hiKaryokuYouinNum.val();
-            var hiKaryokuYouinDmg = this._$hiKaryokuYouinDmg.val();
+            var hiKaryokuYouinNum = this._$hiKaryokuYouinNum.val();// 非火力要員数
+            var hiKaryokuYouinDmg = this._$hiKaryokuYouinDmg.val();// 非火力要員のdmg
             var result = (requiredTotalDmg - hiKaryokuYouinDmg) / (4 - hiKaryokuYouinNum);
+            result = Math.ceil(result);// 単数は切り上げとする
             return result;
         },
 
@@ -119,6 +140,7 @@
          * dmgを再計算して表示を更新
          */
         '.hi-karyoku-youin-num change': function (context, $el) {
+            this._parseInt($el);
             this._updateDmg();
         },
 
@@ -127,7 +149,18 @@
          * dmgを再計算して表示を更新
          */
         '.hi-karyoku-youin-dmg change': function (context, $el) {
+            this._parseInt($el);
             this._updateDmg();
+        },
+
+        _parseInt: function ($el) {
+            var valStr = $el.val();
+            var val = parseInt(valStr);
+            if (isNaN(val)) {
+                $el.val(0);
+                return;
+            }
+            $el.val(val);
         },
 
         /**
