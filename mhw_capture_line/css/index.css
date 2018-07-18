@@ -12,29 +12,25 @@ html,body {
 
 .root-container {
     height: 100%;
-    overflow: hidden;
     width: 100%;
-    overflow: auto;
-    margin: 6px;
+    padding: 6px;
 }
 
 .item-row {
     margin-bottom: 4px;
-    width: 300px;
-}
-
-.required-karyoku-youin-dmg-for-one-row {
-    border-bottom: solid 1px red;
+    display: flex;
+    align-items: baseline;
 }
 
 .name-content {
-    display: inline-block;
-    width: 150px;
+    flex-basis: 160px;
 }
 
-.val-content {
-    display: inline-block;
-    margin-left: 4px;
+
+.required-karyoku-youin-dmg-for-one-row .val-content {
+    border: solid 1px red;
+    padding: 1px;
+    font-weight: bold;
 }
 
 .targets-list {
