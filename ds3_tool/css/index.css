@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+html,body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    font-family: Meiryo;
+    overflow: hidden;
+    padding: 0;
+}
+
+.root-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/* タブの高さを上書き */
+.nav > li > a {
+    padding: 2px 6px;
+}
+
+/* タブコンテンツ */
+.root-tab-contents {
+    height: calc(100% - 23px);
+    overflow: auto;
+}
+
+/* アクティブなタブの背景色を上書き */
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus  {
+    background-color: #ffebd3;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* 素性とステータス */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* コンテナのヘッダ */
+.container-header {
+    font-weight: bold;
+}
+
+/* 素性名セル */
+.sujo-name-cell {
+    background-color: #d3ffd3;
+    padding: 1px 2px;
+}
+
+/* 列名セル */
+.col-name-cell {
+    background-color: #e5f2ff;
+    text-align: center;
+}
+
+/* 値セル */
+.status-value-cell {
+    text-align: right;
+    padding-right: 4px;
+}
+
+/* 素性と初期値コンテナ */
+.sujou-and-syokiti-container {
+    padding-top: 4px;
+}
+
+/* 目標値コンテナ */
+.mokuhyoti-table-container {
+    padding-top: 4px;
+}
+
+/* 目標値テーブルの入力セル */
+.mokuhyoti-input-cell {
+    width: 55px
+}
+
+/* 必要値コンテナ */
+.sujo-and-hituyoti-container {
+    padding-top: 4px;
+}

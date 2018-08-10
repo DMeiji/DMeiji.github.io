@@ -1,0 +1,160 @@
+<!-- ルートコンテナ -->
+<script type="text/ejs" id="root-container">
+    <!-- タブ -->
+    <ul class="nav nav-tabs root-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#sujou-and-status">素性とステータス</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#jikyu-and-stamina">持久とスタミナ</a>
+        </li>
+    </ul>
+
+    <!-- タブコンテンツ -->
+    <div class="tab-content root-tab-contents">
+        <!-- 素性とステータス -->
+        <div id="sujou-and-status" class="tab-pane active"></div>
+
+        <!-- 持久とスタミナ -->
+        <div id="jikyu-and-stamina" class="tab-pane"></div>
+    </div>
+</script>
+
+<script type="text/ejs" id="sujou-and-status">
+    <!-- 素性と初期値の表 -->
+    <div class="sujou-and-syokiti-container">
+        <div class="container-header">
+            <span>素性と初期値の表</span>
+        </div>
+        <div class="container-body">
+            <table class="sujo-and-syokiti-table" border=1>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td width="50px" class="col-name-cell">レベル</td>
+                        <td width="50px" class="col-name-cell">生命力</td>
+                        <td width="50px" class="col-name-cell">集中力</td>
+                        <td width="50px" class="col-name-cell">持久力</td>
+                        <td width="50px" class="col-name-cell">体力</td>
+                        <td width="50px" class="col-name-cell">筋力</td>
+                        <td width="50px" class="col-name-cell">技量</td>
+                        <td width="50px" class="col-name-cell">理力</td>
+                        <td width="50px" class="col-name-cell">信仰</td>
+                        <td width="50px" class="col-name-cell">運</td>
+                    </tr>
+                </thead>
+                <tbody data-h5-loop-context="syokitiList">
+                    <tr>
+                        <td class="sujo-name-cell" data-h5-bind="sujo"></td>
+                        <td class="status-value-cell" data-h5-bind="level"></td>
+                        <td class="status-value-cell" data-h5-bind="seimeiryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="syutyuryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="jikyuryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="tairyoku"></td>
+                        <td class="status-value-cell" data-h5-bind="kinryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="giryo"></td>
+                        <td class="status-value-cell" data-h5-bind="riryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="sinkou"></td>
+                        <td class="status-value-cell" data-h5-bind="un"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 目標値の表 -->
+    <div class="mokuhyoti-table-container">
+        <div class="container-header">
+            <span>目標値</span>
+        </div>
+        <div class="container-body">
+            <table class="mokuhyoti-table" border=1>
+                <tr>
+                    <td width="55px" class="col-name-cell">生命力</td>
+                    <td width="55px" class="col-name-cell">集中力</td>
+                    <td width="55px" class="col-name-cell">持久力</td>
+                    <td width="55px" class="col-name-cell">体力</td>
+                    <td width="55px" class="col-name-cell">筋力</td>
+                    <td width="55px" class="col-name-cell">技量</td>
+                    <td width="55px" class="col-name-cell">理力</td>
+                    <td width="55px" class="col-name-cell">信仰</td>
+                    <td width="55px" class="col-name-cell">運</td>
+                </tr>
+                <tr data-h5-context="mokuhyoti">
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="seimeiryoku" name="seimeiryoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="syutyuryoku" name="syutyuryoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="jikyuryoku" name="jikyuryoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="tairyoku" name="tairyoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="kinryoku" name="kinryoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="giryo" name="giryo" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="riryoku" name="riryoku" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="sinkou" name="sinkou" class="mokuhyoti-input-cell">
+                    </td>
+                    <td class="input-mokuhyoti-cell">
+                        <input type="number" data-h5-bind="un" name="un" class="mokuhyoti-input-cell">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="sujo-and-hituyoti-container">
+        <div class="container-header">
+            <span>必要レベルと必要増加値</span>
+        </div>
+        <div class="container-body">
+            <table class="sujo-and-hituyoti-table" border=1>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td width="50px" class="col-name-cell">レベル</td>
+                        <td width="50px" class="col-name-cell">生命力</td>
+                        <td width="50px" class="col-name-cell">集中力</td>
+                        <td width="50px" class="col-name-cell">持久力</td>
+                        <td width="50px" class="col-name-cell">体力</td>
+                        <td width="50px" class="col-name-cell">筋力</td>
+                        <td width="50px" class="col-name-cell">技量</td>
+                        <td width="50px" class="col-name-cell">理力</td>
+                        <td width="50px" class="col-name-cell">信仰</td>
+                        <td width="50px" class="col-name-cell">運</td>
+                    </tr>
+                </thead>
+                <tbody data-h5-loop-context="hituyotiList">
+                    <tr>
+                        <td class="sujo-name-cell" data-h5-bind="sujo"></td>
+                        <td class="status-value-cell" data-h5-bind="level"></td>
+                        <td class="status-value-cell" data-h5-bind="seimeiryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="syutyuryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="jikyuryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="tairyoku"></td>
+                        <td class="status-value-cell" data-h5-bind="kinryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="giryo"></td>
+                        <td class="status-value-cell" data-h5-bind="riryoku"></td>
+                        <td class="status-value-cell" data-h5-bind="sinkou"></td>
+                        <td class="status-value-cell" data-h5-bind="un"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="jikyu-and-stamina">
+    
+</script>
+
