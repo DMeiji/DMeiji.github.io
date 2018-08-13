@@ -9,16 +9,16 @@
             <a data-toggle="tab" href="#seimeiryoku-and-hp">生命力とHP</a>
         </li>
         <li>
-            <a data-toggle="tab" href="#jikyuryoku-and-stamina">持久力とスタミナ</a>
-        </li>
-        <li>
-            <a data-toggle="tab" href="#tairyoku-and-weight">体力と装備重量</a>
-        </li>
-        <li>
             <a data-toggle="tab" href="#syutyuryoku-and-fp">集中力とFP</a>
         </li>
         <li>
             <a data-toggle="tab" href="#syutyuryoku-and-slot">集中力と記憶スロット</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#jikyuryoku-and-stamina">持久力とスタミナ</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#tairyoku-and-weight">体力と装備重量</a>
         </li>
     </ul>
 
@@ -29,18 +29,18 @@
 
         <!-- 生命力とHP -->
         <div id="seimeiryoku-and-hp" class="tab-pane"></div>
+        
+        <!-- 集中力とFP -->
+        <div id="syutyuryoku-and-fp" class="tab-pane"></div>
+
+        <!-- 集中力と記憶スロット -->
+        <div id="syutyuryoku-and-slot" class="tab-pane"></div>
 
         <!-- 持久力とスタミナ -->
         <div id="jikyuryoku-and-stamina" class="tab-pane"></div>
 
         <!-- 体力と装備重量 -->
         <div id="tairyoku-and-weight" class="tab-pane"></div>
-
-        <!-- 集中力とFP -->
-        <div id="syutyuryoku-and-fp" class="tab-pane"></div>
-
-        <!-- 集中力と記憶スロット -->
-        <div id="syutyuryoku-and-slot" class="tab-pane"></div>
     </div>
 </script>
 
@@ -338,7 +338,7 @@
                             <!-- 装備重量 -->
                             <td style="background-color:[%= getBGColor(data.weight) %]" class="status-value-cell">[%= data.weight %]</td>
                             
-                            <!-- ハベル0~3 -->
+                         d   <!-- ハベル0~3 -->
                             <td style="background-color:[%= getBGColor(data.haberu0) %]" class="status-value-cell">[%= data.haberu0 %]</td>
                             <td style="background-color:[%= getBGColor(data.haberu1) %]" class="status-value-cell">[%= data.haberu1 %]</td>
                             <td style="background-color:[%= getBGColor(data.haberu2) %]" class="status-value-cell">[%= data.haberu2 %]</td>
