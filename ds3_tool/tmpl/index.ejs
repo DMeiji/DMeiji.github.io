@@ -6,6 +6,9 @@
             <a data-toggle="tab" href="#sujou-and-status">素性とステータス</a>
         </li>
         <li>
+            <a data-toggle="tab" href="#seimeiryoku-and-hp">生命力とHP</a>
+        </li>
+        <li>
             <a data-toggle="tab" href="#jikyuryoku-and-stamina">持久力とスタミナ</a>
         </li>
         <li>
@@ -23,6 +26,9 @@
     <div class="tab-content root-tab-contents">
         <!-- 素性とステータス -->
         <div id="sujou-and-status" class="tab-pane active"></div>
+
+        <!-- 生命力とHP -->
+        <div id="seimeiryoku-and-hp" class="tab-pane"></div>
 
         <!-- 持久力とスタミナ -->
         <div id="jikyuryoku-and-stamina" class="tab-pane"></div>
@@ -166,6 +172,56 @@
                         <td class="status-value-cell" data-h5-bind="sinkou"></td>
                         <td class="status-value-cell" data-h5-bind="un"></td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="seimeiryoku-and-hp">
+    <div class="seimeiryoku-and-hp-container">
+        <div class="container-header">
+            <span>生命力とHP</span>
+        </div>
+        <div class="container-body">
+            <table border=1 class="seimeiryoku-and-hp-table">
+                <thead>
+                    <tr>
+                        <td width=46 class="col-name-cell">生命力</td>
+                        <td width=56 class="col-name-cell">HP</td>
+                        <td width=56 class="col-name-cell">上昇量</td>
+                        <td width=46 style="border-left: solid 2px;" class="col-name-cell">生命力</td>
+                        <td width=56 class="col-name-cell">HP</td>
+                        <td width=56 class="col-name-cell">上昇量</td>
+                        <td width=46 style="border-left: solid 2px;" class="col-name-cell">生命力</td>
+                        <td width=56 class="col-name-cell">HP</td>
+                        <td width=56 class="col-name-cell">上昇量</td>
+                        <td width=46 style="border-left: solid 2px;" class="col-name-cell">生命力</td>
+                        <td width=56 class="col-name-cell">HP</td>
+                        <td width=56 class="col-name-cell">上昇量</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    [% for (var i = 0,len = seimeiryokuAndHPList.length; i < len; i++) { %]
+                        [% var data = seimeiryokuAndHPList[i]; %]
+                        <tr>
+                            <td class="status-value-cell">[%= data.seimeiryokuC1 %]</td>
+                            <td class="status-value-cell">[%= data.hpC1 %]</td>
+                            <td class="status-value-cell">[%= data.increaseC1 %]</td>
+                            
+                            <td style="border-left: solid 2px;" class="status-value-cell">[%= data.seimeiryokuC2 %]</td>
+                            <td class="status-value-cell">[%= data.hpC2 %]</td>
+                            <td class="status-value-cell">[%= data.increaseC2 %]</td>
+
+                            <td style="border-left: solid 2px;" class="status-value-cell">[%= data.seimeiryokuC3 %]</td>
+                            <td class="status-value-cell">[%= data.hpC3 %]</td>
+                            <td class="status-value-cell">[%= data.increaseC3 %]</td>
+
+                            <td style="border-left: solid 2px;" class="status-value-cell">[%= data.seimeiryokuC4 %]</td>
+                            <td class="status-value-cell">[%= data.hpC4 %]</td>
+                            <td class="status-value-cell">[%= data.increaseC4 %]</td>
+                        </tr>
+                    [% } %]
                 </tbody>
             </table>
         </div>

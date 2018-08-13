@@ -28,6 +28,32 @@
             ['聖職者', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             ['持たざる者', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ],
+        // 生命力とHP
+        seimeiryokuAndHP: [
+            { seimeiryokuC1: "9", hpC1: "381", increaseC1: "最低値", seimeiryokuC2: "32", hpC2: "1092", increaseC2: "18", seimeiryokuC3: "55", hpC3: "1312", increaseC3: "3", seimeiryokuC4: "78", hpC4: "1363", increaseC4: "2" },
+            { seimeiryokuC1: "10", hpC1: "403", increaseC1: "22", seimeiryokuC2: "33", hpC2: "1109", increaseC2: "17", seimeiryokuC3: "56", hpC3: "1314", increaseC3: "2", seimeiryokuC4: "79", hpC4: "1365", increaseC4: "2" },
+            { seimeiryokuC1: "11", hpC1: "427", increaseC1: "24", seimeiryokuC2: "34", hpC2: "1125", increaseC2: "16", seimeiryokuC3: "57", hpC3: "1316", increaseC3: "2", seimeiryokuC4: "80", hpC4: "1367", increaseC4: "2" },
+            { seimeiryokuC1: "12", hpC1: "454", increaseC1: "27", seimeiryokuC2: "35", hpC2: "1141", increaseC2: "16", seimeiryokuC3: "58", hpC3: "1319", increaseC3: "3", seimeiryokuC4: "81", hpC4: "1369", increaseC4: "2" },
+            { seimeiryokuC1: "13", hpC1: "483", increaseC1: "29", seimeiryokuC2: "36", hpC2: "1157", increaseC2: "16", seimeiryokuC3: "59", hpC3: "1321", increaseC3: "2", seimeiryokuC4: "82", hpC4: "1371", increaseC4: "2" },
+            { seimeiryokuC1: "14", hpC1: "515", increaseC1: "32", seimeiryokuC2: "37", hpC2: "1172", increaseC2: "15", seimeiryokuC3: "60", hpC3: "1323", increaseC3: "2", seimeiryokuC4: "83", hpC4: "1374", increaseC4: "2" },
+            { seimeiryokuC1: "15", hpC1: "550", increaseC1: "35", seimeiryokuC2: "38", hpC2: "1186", increaseC2: "14", seimeiryokuC3: "61", hpC3: "1326", increaseC3: "3", seimeiryokuC4: "84", hpC4: "1375", increaseC4: "2" },
+            { seimeiryokuC1: "16", hpC1: "594", increaseC1: "44", seimeiryokuC2: "39", hpC2: "1200", increaseC2: "14", seimeiryokuC3: "62", hpC3: "1328", increaseC3: "2", seimeiryokuC4: "85", hpC4: "1377", increaseC4: "2" },
+            { seimeiryokuC1: "17", hpC1: "638", increaseC1: "44", seimeiryokuC2: "40", hpC2: "1213", increaseC2: "13", seimeiryokuC3: "63", hpC3: "1330", increaseC3: "2", seimeiryokuC4: "86", hpC4: "1379", increaseC4: "2" },
+            { seimeiryokuC1: "18", hpC1: "681", increaseC1: "43", seimeiryokuC2: "41", hpC2: "1226", increaseC2: "13", seimeiryokuC3: "64", hpC3: "1333", increaseC3: "3", seimeiryokuC4: "87", hpC4: "1381", increaseC4: "2" },
+            { seimeiryokuC1: "19", hpC1: "723", increaseC1: "42", seimeiryokuC2: "42", hpC2: "1238", increaseC2: "12", seimeiryokuC3: "65", hpC3: "1335", increaseC3: "2", seimeiryokuC4: "88", hpC4: "1383", increaseC4: "2" },
+            { seimeiryokuC1: "20", hpC1: "764", increaseC1: "41", seimeiryokuC2: "43", hpC2: "1249", increaseC2: "11", seimeiryokuC3: "66", hpC3: "1337", increaseC3: "2", seimeiryokuC4: "89", hpC4: "1385", increaseC4: "2" },
+            { seimeiryokuC1: "21", hpC1: "804", increaseC1: "40", seimeiryokuC2: "44", hpC2: "1260", increaseC2: "11", seimeiryokuC3: "67", hpC3: "1340", increaseC3: "3", seimeiryokuC4: "90", hpC4: "1386", increaseC4: "1" },
+            { seimeiryokuC1: "22", hpC1: "842", increaseC1: "38", seimeiryokuC2: "45", hpC2: "1269", increaseC2: "9", seimeiryokuC3: "68", hpC3: "1342", increaseC3: "2", seimeiryokuC4: "91", hpC4: "1388", increaseC4: "2" },
+            { seimeiryokuC1: "23", hpC1: "879", increaseC1: "37", seimeiryokuC2: "46", hpC2: "1278", increaseC2: "9", seimeiryokuC3: "69", hpC3: "1344", increaseC3: "2", seimeiryokuC4: "92", hpC4: "1390", increaseC4: "2" },
+            { seimeiryokuC1: "24", hpC1: "914", increaseC1: "35", seimeiryokuC2: "47", hpC2: "1285", increaseC2: "7", seimeiryokuC3: "70", hpC3: "1346", increaseC3: "2", seimeiryokuC4: "93", hpC4: "1391", increaseC4: "1" },
+            { seimeiryokuC1: "25", hpC1: "947", increaseC1: "33", seimeiryokuC2: "48", hpC2: "1292", increaseC2: "7", seimeiryokuC3: "71", hpC3: "1348", increaseC3: "2", seimeiryokuC4: "94", hpC4: "1393", increaseC4: "2" },
+            { seimeiryokuC1: "26", hpC1: "977", increaseC1: "30", seimeiryokuC2: "49", hpC2: "1297", increaseC2: "5", seimeiryokuC3: "72", hpC3: "1351", increaseC3: "3", seimeiryokuC4: "95", hpC4: "1395", increaseC4: "2" },
+            { seimeiryokuC1: "27", hpC1: "1000", increaseC1: "23", seimeiryokuC2: "50", hpC2: "1300", increaseC2: "3", seimeiryokuC3: "73", hpC3: "1353", increaseC3: "2", seimeiryokuC4: "96", hpC4: "1396", increaseC4: "1" },
+            { seimeiryokuC1: "28", hpC1: "1019", increaseC1: "19", seimeiryokuC2: "51", hpC2: "1302", increaseC2: "2", seimeiryokuC3: "74", hpC3: "1355", increaseC3: "2", seimeiryokuC4: "97", hpC4: "1397", increaseC4: "1" },
+            { seimeiryokuC1: "29", hpC1: "1038", increaseC1: "19", seimeiryokuC2: "52", hpC2: "1304", increaseC2: "2", seimeiryokuC3: "75", hpC3: "1357", increaseC3: "2", seimeiryokuC4: "98", hpC4: "1399", increaseC4: "2" },
+            { seimeiryokuC1: "30", hpC1: "1056", increaseC1: "18", seimeiryokuC2: "53", hpC2: "1307", increaseC2: "3", seimeiryokuC3: "76", hpC3: "1359", increaseC3: "2", seimeiryokuC4: "99", hpC4: "1400", increaseC4: "1" },
+            { seimeiryokuC1: "31", hpC1: "1074", increaseC1: "18", seimeiryokuC2: "54", hpC2: "1309", increaseC2: "2", seimeiryokuC3: "77", hpC3: "1361", increaseC3: "2", seimeiryokuC4: "-", hpC4: "-", increaseC4: "-" }
+        ],
         // 持久力とスタミナ、寵愛指輪の値
         jikyuryokuAndStamina: [
             { jikyuryoku: 9, stamina: 92, tyouai0: "100.28 ", tyouai1: "101.20 ", tyouai2: "102.12 ", tyouai3: "103.04 " },

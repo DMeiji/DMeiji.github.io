@@ -9,6 +9,7 @@
         __name: 'ds3tool.controller.PageController',
 
         _sujoAndStatusController: ds3tool.controller.SujoAndStatusController,
+        _seimeiryokuAndHPController: ds3tool.controller.SeimeiryokuAndHPController,
         _jikyuryokuAndStaminaController: ds3tool.controller.JikyuryokuAndStaminaController,
         _tairyokuAndWeightController: ds3tool.controller.TairyokuAndWeightController,
         _syutyuryokuAndFPController: ds3tool.controller.SyutyuryokuAndFPController,
@@ -17,6 +18,9 @@
         __meta: {
             _sujoAndStatusController: {
                 rootElement: '#sujou-and-status'
+            },
+            _seimeiryokuAndHPController: {
+                rootElement: '#seimeiryoku-and-hp'
             },
             _jikyuryokuAndStaminaController: {
                 rootElement: '#jikyuryoku-and-stamina'
@@ -41,6 +45,8 @@
         __ready: function () {
             // 「素性と要求値」を初期化
             this._sujoAndStatusController.init();
+            // 「生命力とHP」を初期化
+            this._seimeiryokuAndHPController.init();
             // 「持久とスタミナ」を初期化
             this._jikyuryokuAndStaminaController.init();
             // 「体力と装備重量」を初期化
