@@ -9,10 +9,26 @@
         __name: 'ds3tool.controller.PageController',
 
         _sujoAndStatusController: ds3tool.controller.SujoAndStatusController,
+        _jikyuryokuAndStaminaController: ds3tool.controller.JikyuryokuAndStaminaController,
+        _tairyokuAndWeightController: ds3tool.controller.TairyokuAndWeightController,
+        _syutyuryokuAndFPController: ds3tool.controller.SyutyuryokuAndFPController,
+        _syutyuryokuAndSlotController: ds3tool.controller.SyutyuryokuAndSlotController,
 
         __meta: {
             _sujoAndStatusController: {
                 rootElement: '#sujou-and-status'
+            },
+            _jikyuryokuAndStaminaController: {
+                rootElement: '#jikyuryoku-and-stamina'
+            },
+            _tairyokuAndWeightController: {
+                rootElement: '#tairyoku-and-weight'
+            },
+            _syutyuryokuAndFPController: {
+                rootElement: '#syutyuryoku-and-fp'
+            },
+            _syutyuryokuAndSlotController: {
+                rootElement: '#syutyuryoku-and-slot'
             }
         },
 
@@ -22,18 +38,17 @@
             this.view.append(this.rootElement, 'root-container');// 画面の大枠をejsで生成
         },
 
-        // _manageChildController: function (selector, controllerDef) {
-        //     var controller = h5.core.controller(selector, controllerDef);
-        //     this.manageChild(controller);
-        //     return controller;
-        // },
-
         __ready: function () {
             // 「素性と要求値」を初期化
             this._sujoAndStatusController.init();
-
             // 「持久とスタミナ」を初期化
-            // this._inputCheckJokenController.init();
+            this._jikyuryokuAndStaminaController.init();
+            // 「体力と装備重量」を初期化
+            this._tairyokuAndWeightController.init();
+            // 「集中力とFP」を初期化
+            this._syutyuryokuAndFPController.init();
+            // 「集中力と記憶スロット」を初期化
+            this._syutyuryokuAndSlotController.init();
         }
     };
 

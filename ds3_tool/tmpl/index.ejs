@@ -6,7 +6,16 @@
             <a data-toggle="tab" href="#sujou-and-status">素性とステータス</a>
         </li>
         <li>
-            <a data-toggle="tab" href="#jikyu-and-stamina">持久とスタミナ</a>
+            <a data-toggle="tab" href="#jikyuryoku-and-stamina">持久力とスタミナ</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#tairyoku-and-weight">体力と装備重量</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#syutyuryoku-and-fp">集中力とFP</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#syutyuryoku-and-slot">集中力と記憶スロット</a>
         </li>
     </ul>
 
@@ -15,8 +24,17 @@
         <!-- 素性とステータス -->
         <div id="sujou-and-status" class="tab-pane active"></div>
 
-        <!-- 持久とスタミナ -->
-        <div id="jikyu-and-stamina" class="tab-pane"></div>
+        <!-- 持久力とスタミナ -->
+        <div id="jikyuryoku-and-stamina" class="tab-pane"></div>
+
+        <!-- 体力と装備重量 -->
+        <div id="tairyoku-and-weight" class="tab-pane"></div>
+
+        <!-- 集中力とFP -->
+        <div id="syutyuryoku-and-fp" class="tab-pane"></div>
+
+        <!-- 集中力と記憶スロット -->
+        <div id="syutyuryoku-and-slot" class="tab-pane"></div>
     </div>
 </script>
 
@@ -115,7 +133,7 @@
 
     <div class="sujo-and-hituyoti-container">
         <div class="container-header">
-            <span>必要レベルと必要増加値</span>
+            <span>必要レベルと必要増加値 ※最適な素性の背景色が赤くなる</span>
         </div>
         <div class="container-body">
             <table class="sujo-and-hituyoti-table" border=1>
@@ -154,7 +172,208 @@
     </div>
 </script>
 
-<script type="text/ejs" id="jikyu-and-stamina">
-    
+<script type="text/ejs" id="jikyuryoku-and-stamina">
+    <div class="jikyuryoku-and-stamina-container">
+        <div class="container-header">
+            <ul>
+                <li>「寵愛n」は「寵愛の指輪+n」を装備した値を指す</li>
+                <li>虜囚の鎖は持久力+5</li>
+            </ul>
+        </div>
+        <div class="container-body">
+            <table border=1 class="jikyuryoku-and-stamina-table">
+                <thead>
+                    <tr>
+                        <td width=46 class="col-name-cell">持久力</td>
+                        <td width=56 class="col-name-cell">スタミナ</td>
+                        <td width=56 class="col-name-cell">寵愛0</td>
+                        <td width=56 class="col-name-cell">寵愛1</td>
+                        <td width=56 class="col-name-cell">寵愛2</td>
+                        <td width=56 class="col-name-cell">寵愛3</td>
+                </thead>
+                <tbody>
+                    [%
+                        var getBGColor = function(val) {
+                            val = parseFloat(val);
+                            if (val < 100) {
+                                return '#caf8ff';
+                            }
+                            if (val < 110) {
+                                return '#caffca';
+                            }
+                            if (val < 120) {
+                                return '#ffdede';
+                            }
+                            if (val < 130) {
+                                return '#ffd588';
+                            }
+                            return '#f0c5ff';
+                        }
+                    %]
+                    [% for (var i = 0,len = jikyuryokuList.length; i < len; i++) { %]
+                        [% var data = jikyuryokuList[i]; %]
+                        <tr>
+                            <td class="status-value-cell">[%= data.jikyuryoku %]</td>
+                            <td style="background-color:[%= getBGColor(data.stamina) %]" class="status-value-cell">[%= data.stamina %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai0) %]" class="status-value-cell">[%= data.tyouai0 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai1) %]" class="status-value-cell">[%= data.tyouai1 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai2) %]" class="status-value-cell">[%= data.tyouai2 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai3) %]" class="status-value-cell">[%= data.tyouai3 %]</td>
+                        </tr>
+                    [% } %]
+                </tbody>
+            </table>
+        </div>
+    </div>
 </script>
 
+<script type="text/ejs" id="tairyoku-and-weight">
+    <div class="tairyoku-and-weight-container">
+        <div class="container-header">
+            <ul>
+                <li>「ハベルn」は「ハベルの指輪+n」を装備した値を指す</li>
+                <li>「寵愛n」は「寵愛の指輪+n」を装備した値を指す</li>
+            </ul>
+        </div>
+        <div class="container-body">
+            <table border=1 class="tairyoku-and-weight-table">
+                <thead>
+                    <tr>
+                        <td width=46 class="col-name-cell">体力</td>
+                        <td width=56 class="col-name-cell">装備重量</td>
+                        <td width=56 class="col-name-cell">ハベル0</td>
+                        <td width=56 class="col-name-cell">ハベル1</td>
+                        <td width=56 class="col-name-cell">ハベル2</td>
+                        <td width=56 class="col-name-cell">ハベル3</td>
+                        <td width=56 class="col-name-cell">寵愛0</td>
+                        <td width=56 class="col-name-cell">寵愛1</td>
+                        <td width=56 class="col-name-cell">寵愛2</td>
+                        <td width=56 class="col-name-cell">寵愛3</td>
+                        <td width=64 class="col-name-cell">虜囚の鎖</td>
+                        <td width=86 class="col-name-cell">ハベル0寵愛0</td>
+                        <td width=86 class="col-name-cell">ハベル0寵愛3</td>
+                        <td width=66 class="col-name-cell">寵愛0虜囚</td>
+                        <td width=66 class="col-name-cell">寵愛3虜囚</td>
+                        <td width=80 class="col-name-cell">ハベル0虜囚</td>
+                        <td width=80 class="col-name-cell">ハベル3虜囚</td>
+                        <td width=60 class="col-name-cell">ALL</td>
+                </thead>
+                <tbody>
+                    [%
+                        var getBGColor = function(val) {
+                            val = parseFloat(val);
+                            if (val < 60) {
+                                return '#caf8ff';
+                            }
+                            if (val < 70) {
+                                return '#caffca';
+                            }
+                            if (val < 80) {
+                                return '#ffdede';
+                            }
+                            return '#ffd588';
+                        }
+                    %]
+                    [% for (var i = 0,len = tairyokuList.length; i < len; i++) { %]
+                        [% var data = tairyokuList[i]; %]
+                        <tr>
+                            <!-- 体力 -->
+                            <td class="status-value-cell">[%= data.tairyoku %]</td>
+                            <!-- 装備重量 -->
+                            <td style="background-color:[%= getBGColor(data.weight) %]" class="status-value-cell">[%= data.weight %]</td>
+                            
+                            <!-- ハベル0~3 -->
+                            <td style="background-color:[%= getBGColor(data.haberu0) %]" class="status-value-cell">[%= data.haberu0 %]</td>
+                            <td style="background-color:[%= getBGColor(data.haberu1) %]" class="status-value-cell">[%= data.haberu1 %]</td>
+                            <td style="background-color:[%= getBGColor(data.haberu2) %]" class="status-value-cell">[%= data.haberu2 %]</td>
+                            <td style="background-color:[%= getBGColor(data.haberu3) %]" class="status-value-cell">[%= data.haberu3 %]</td>
+                            
+                            <!-- 寵愛0~3 -->
+                            <td style="background-color:[%= getBGColor(data.tyouai0) %]" class="status-value-cell">[%= data.tyouai0 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai1) %]" class="status-value-cell">[%= data.tyouai1 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai2) %]" class="status-value-cell">[%= data.tyouai2 %]</td>
+                            <td style="background-color:[%= getBGColor(data.tyouai3) %]" class="status-value-cell">[%= data.tyouai3 %]</td>
+
+                            <!-- 虜囚 -->
+                            <td style="background-color:[%= getBGColor(data.ryosyu) %]" class="status-value-cell">[%= data.ryosyu %]</td>
+
+                            <!-- ハベル0寵愛0 -->
+                            <td style="background-color:[%= getBGColor(data.haberu0tyouai0) %]" class="status-value-cell">[%= data.haberu0tyouai0 %]</td>
+                            <!-- ハベル3寵愛3 -->
+                            <td style="background-color:[%= getBGColor(data.haberu3tyouai3) %]" class="status-value-cell">[%= data.haberu3tyouai3 %]</td>
+
+                            <!-- 寵愛0虜囚 -->
+                            <td style="background-color:[%= getBGColor(data.tyouai0ryosyu) %]" class="status-value-cell">[%= data.tyouai0ryosyu %]</td>
+                            <!-- 寵愛3虜囚 -->
+                            <td style="background-color:[%= getBGColor(data.tyouai3ryosyu) %]" class="status-value-cell">[%= data.tyouai3ryosyu %]</td>
+
+                            <!-- ハベル0虜囚 -->
+                            <td style="background-color:[%= getBGColor(data.haberu0ryosyu) %]" class="status-value-cell">[%= data.haberu0ryosyu %]</td>
+                            <!-- ハベル3虜囚 -->
+                            <td style="background-color:[%= getBGColor(data.haberu3ryosyu) %]" class="status-value-cell">[%= data.haberu3ryosyu %]</td>
+
+                            <!-- ALL -->
+                            <td style="background-color:[%= getBGColor(data.all) %]" class="status-value-cell">[%= data.all %]</td>
+                        </tr>
+                    [% } %]
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="syutyuryoku-and-fp">
+    <div class="syutyuryoku-and-fp-container">
+        <div class="container-header">
+            <span>集中力とFP</span>
+        </div>
+        <div class="container-body">
+            <table border=1 class="syutyuryoku-and-fp-table">
+                <thead>
+                    <tr>
+                        <td width=46 class="col-name-cell">集中力</td>
+                        <td width=56 class="col-name-cell">FP</td>
+                        <td width=56 class="col-name-cell">上昇量</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    [% for (var i = 0,len = syutyuryokuAndFPList.length; i < len; i++) { %]
+                        [% var data = syutyuryokuAndFPList[i]; %]
+                        <tr>
+                            <td class="status-value-cell">[%= data.syutyuryoku %]</td>
+                            <td class="status-value-cell">[%= data.fp %]</td>
+                            <td class="status-value-cell">[%= data.increase %]</td>
+                        </tr>
+                    [% } %]
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="syutyuryoku-and-slot">
+    <div class="syutyuryoku-and-slot-container">
+        <div class="container-header">
+            <span>集中力と記憶スロット</span>
+        </div>
+        <div class="container-body">
+            <table border=1 class="syutyuryoku-and-slot-table">
+                <thead>
+                    <tr>
+                        <td width=50 class="col-name-cell">集中力</td>
+                        <td width=56 class="col-name-cell">スロット</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    [% for (var i = 0,len = syutyuryokuAndSlotList.length; i < len; i++) { %]
+                        [% var data = syutyuryokuAndSlotList[i]; %]
+                        <tr>
+                            <td class="status-value-cell">[%= data.syutyuryoku %]</td>
+                            <td class="status-value-cell">[%= data.slot %]</td>
+                        </tr>
+                    [% } %]
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>

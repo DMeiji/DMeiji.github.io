@@ -24,10 +24,15 @@ html,body {
     padding: 2px 6px;
 }
 
-/* タブコンテンツ */
+/* タブコンテンツのルート要素 */
 .root-tab-contents {
     height: calc(100% - 23px);
     overflow: auto;
+}
+
+/* 各タブコンテンツのルート要素 */
+.root-tab-contents > div {
+    margin: 4px 0;
 }
 
 /* アクティブなタブの背景色を上書き */
@@ -38,11 +43,11 @@ html,body {
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-/* 素性とステータス */
+/* 共通項目 */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* コンテナのヘッダ */
-.container-header {
+.container-header > span {
     font-weight: bold;
 }
 
@@ -64,6 +69,10 @@ html,body {
     padding-right: 4px;
 }
 
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* 素性とステータス */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
 /* 素性と初期値コンテナ */
 .sujou-and-syokiti-container {
     padding-top: 4px;
@@ -82,4 +91,21 @@ html,body {
 /* 必要値コンテナ */
 .sujo-and-hituyoti-container {
     padding-top: 4px;
+}
+
+/* 必要値テーブルの最適素性の行 */
+.sujo-and-hituyoti-table .optimal-sujo {
+    background-color: #ffd7d7;
+}
+
+/* 必要値テーブルの最適素性の素性名セル */
+.sujo-and-hituyoti-table .optimal-sujo .sujo-name-cell {
+    background-color: initial;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* 持久力とスタミナ */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.jikyuryoku-and-stamina-container {
+    margin-top: 8px;
 }
