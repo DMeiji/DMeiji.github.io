@@ -6,7 +6,7 @@
         __name: 'ds3tool.controller.SeimeiryokuAndHPController',
 
         init: function () {
-            var seimeiryokuAndHPData = ds3tool.data.seimeiryokuAndHP;
+            var seimeiryokuAndHPData = ds3tool.data.status.seimeiryokuAndHP;
             this.view.append(this.rootElement, 'seimeiryoku-and-hp', {
                 seimeiryokuAndHPList: seimeiryokuAndHPData
             });

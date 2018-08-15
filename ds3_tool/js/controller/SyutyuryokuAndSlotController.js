@@ -6,7 +6,7 @@
         __name: 'ds3tool.controller.SyutyuryokuAndSlotController',
 
         init: function () {
-            var syutyuryokuAndSlot = ds3tool.data.syutyuryokuAndSlot;
+            var syutyuryokuAndSlot = ds3tool.data.status.syutyuryokuAndSlot;
             this.view.append(this.rootElement, 'syutyuryoku-and-slot', {
                 syutyuryokuAndSlotList: syutyuryokuAndSlot
             });

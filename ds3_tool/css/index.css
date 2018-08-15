@@ -109,3 +109,96 @@ html,body {
 .jikyuryoku-and-stamina-container {
     margin-top: 8px;
 }
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ビルドと装備重量 */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.armors-build-table {
+    display: table;
+    margin-top: 8px;
+}
+
+.armors-build-row {
+    display: table-row;
+}
+
+.armors-build-row .parts-cell {
+    display: table-cell;
+    width: 40px;
+    text-align: center;
+}
+
+.armors-build-row .equip-cell {
+    display: table-cell;
+    width: 170px;
+}
+
+.armors-build-row .equip-cell > select {
+    width: 100%;
+}
+
+.armors-build-row .weight-cell {
+    display: table-cell;
+    width: 40px;
+    text-align: center;
+}
+
+.armors-build-row .kyoujin-cell {
+    display: table-cell;
+    width: 40px;
+    text-align: center;
+}
+
+.weapons-build-table {
+    display: table;
+    margin-top: 8px;
+}
+
+.weapons-build-row {
+    display: table-row;
+}
+
+.weapons-build-row .parts-cell {
+    display: table-cell;
+    width: 40px;
+    text-align: center;
+}
+
+.weapons-build-row .genre-cell {
+    display: table-cell;
+    width: 85px;
+}
+
+.weapons-build-row .genre-cell select {
+    width: 100%;
+}
+
+.weapons-build-row .equip-cell {
+    display: table-cell;
+    width: 140px;
+    padding-left: 10px;
+}
+
+.weapons-build-row .equip-cell select {
+    width: 100%;
+}
+
+.weapons-build-row .weight-cell {
+    display: table-cell;
+    width: 30px;
+    text-align: center;
+}
+
+.total-table {
+    display: table;
+    margin-top: 8px;
+}
+
+.total-table-row {
+    display: table-row;
+}
+
+.total-table-cell {
+    display: table-cell;
+    width: 120px;
+}

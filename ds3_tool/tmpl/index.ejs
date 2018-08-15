@@ -20,6 +20,9 @@
         <li>
             <a data-toggle="tab" href="#tairyoku-and-weight">体力と装備重量</a>
         </li>
+        <li>
+            <a data-toggle="tab" href="#build-and-weight">ビルドと装備重量</a>
+        </li>
     </ul>
 
     <!-- タブコンテンツ -->
@@ -41,6 +44,9 @@
 
         <!-- 体力と装備重量 -->
         <div id="tairyoku-and-weight" class="tab-pane"></div>
+
+        <!-- ビルドと装備重量 -->
+        <div id="build-and-weight" class="tab-pane"></div>
     </div>
 </script>
 
@@ -434,6 +440,128 @@
                     [% } %]
                 </tbody>
             </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/ejs" id="build-and-weight">
+    <div class="build-and-weight-container">
+        [%
+            var i = 0;
+            var j = 0;
+            var len = 0;
+            var genreLen = 0;
+        %]
+        <div class="container-header">
+            <span>ビルドと必要装備重量</span>
+        </div>
+        <div class="container-body">
+            <div class="armors-build-table">
+                <div class="armors-build-row helm-row">
+                    <div class="parts-cell">部位</div>
+                    <div class="equip-cell">防具</div>
+                    <div class="weight-cell">重量</div>
+                    <div class="kyoujin-cell">強靭</div>
+                </div>
+
+                <div class="armors-build-row helm-row">
+                    <div class="parts-cell">頭</div>
+                    <div class="equip-cell">
+                        <select class="armor-select" data-parts-name="helm">
+                            [% for (i = 0, len = helmList.length; i < len; i++) { %]
+                                <option>
+                                    [%= helmList[i].name %]
+                                </option>
+                            [% } %]
+                        </select>
+                    </div>
+                    <div class="weight-cell" data-h5-bind="helmW"></div>
+                    <div class="kyoujin-cell" data-h5-bind="helmK"></div>
+                </div>
+
+                <div class="armors-build-row body-row">
+                    <div class="parts-cell">胴</div>
+                    <div class="equip-cell">
+                        <select class="armor-select" data-parts-name="body">
+                            [% for (i = 0, len = bodyList.length; i < len; i++) { %]
+                                <option>
+                                    [%= bodyList[i].name %]
+                                </option>
+                            [% } %]
+                        </select>
+                    </div>
+                    <div class="weight-cell" data-h5-bind="bodyW"></div>
+                    <div class="kyoujin-cell" data-h5-bind="bodyK"></div>
+                </div>
+
+                <div class="armors-build-row hand-row">
+                    <div class="parts-cell">手</div>
+                    <div class="equip-cell">
+                        <select class="armor-select" data-parts-name="hand">
+                            [% for (i = 0, len = handList.length; i < len; i++) { %]
+                                <option>
+                                    [%= handList[i].name %]
+                                </option>
+                            [% } %]
+                        </select>
+                    </div>
+                    <div class="weight-cell" data-h5-bind="handW"></div>
+                    <div class="kyoujin-cell" data-h5-bind="handK"></div>
+                </div>
+
+                <div class="armors-build-row leg-row">
+                    <div class="parts-cell">足</div>
+                    <div class="equip-cell">
+                        <select class="armor-select" data-parts-name="leg">
+                            [% for (i = 0, len = legList.length; i < len; i++) { %]
+                                <option>
+                                    [%= legList[i].name %]
+                                </option>
+                            [% } %]
+                        </select>
+                    </div>
+                    <div class="weight-cell" data-h5-bind="legW"></div>
+                    <div class="kyoujin-cell" data-h5-bind="legK"></div>
+                </div>
+
+                <div class="armors-build-row total-row">
+                    <div class="parts-cell">合計</div>
+                    <div class="equip-cell"></div>
+                    <div class="weight-cell" data-h5-bind="totalArmorW"></div>
+                    <div class="kyoujin-cell" data-h5-bind="totalArmorK"></div>
+                </div>
+            </div>
+
+            <div class="weapons-build-table">
+                [% for (i = 0, len = weaponsBuildList.length; i < len; i++) { %]
+                    [% var weaponsBuild = weaponsBuildList[i]; %]
+                    <div class="weapons-build-row [%= weaponsBuild.rowName %]-row">
+                        <div class="parts-cell">[%= weaponsBuild.partsName %]</div>
+                        <div class="genre-cell">
+                            <select class="genre-select">
+                                [% for (j = 0, genreLen = genreList.length; j < genreLen; j++) { %]
+                                    <option>[%= genreList[j] %]</option>
+                                [% } %]
+                            </select>
+                        </div>
+                        <div class="equip-cell">
+                            <select class="weapon-select"></select>
+                        </div>
+                        <div class="weight-cell" data-h5-bind="[%= weaponsBuild.weightBindName %]"></div>
+                    </div>
+                [% } %]
+            </div>
+
+            <div class="total-table">
+                <div class="total-table-row">
+                    <div class="total-table-cell">武器と防具の重量</div>
+                    <div class="total-table-cell" data-h5-bind="totalW"></div>
+                </div>
+                <div class="total-table-row">
+                    <div class="total-table-cell">必要な装備重量</div>
+                    <div class="total-table-cell" data-h5-bind="requiredPossessionW"></div>
+                </div>
+            </div>
         </div>
     </div>
 </script>

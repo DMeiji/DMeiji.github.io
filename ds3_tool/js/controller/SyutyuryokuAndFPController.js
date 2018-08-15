@@ -6,7 +6,7 @@
         __name: 'ds3tool.controller.SyutyuryokuAndFPController',
 
         init: function () {
-            var syutyuryokuAndFP = ds3tool.data.syutyuryokuAndFP;
+            var syutyuryokuAndFP = ds3tool.data.status.syutyuryokuAndFP;
             this.view.append(this.rootElement, 'syutyuryoku-and-fp', {
                 syutyuryokuAndFPList: syutyuryokuAndFP
             });

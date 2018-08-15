@@ -38,7 +38,7 @@
 
     var syokitiData = (function () {
         var obsAry = h5.core.data.createObservableArray();
-        var data = ds3tool.data.syokiti;
+        var data = ds3tool.data.status.syokiti;
         $.each(data, function (idx, sujoData) {
             var dataItem = sujoAndStatusModel.create({
                 id: 'syokiData' + idx,
@@ -83,7 +83,7 @@
 
     var hituyotiData = (function () {
         var obsAry = h5.core.data.createObservableArray();
-        var data = ds3tool.data.hituyoti;
+        var data = ds3tool.data.status.hituyoti;
         $.each(data, function (idx, sujoData) {
             var dataItem = sujoAndStatusModel.create({
                 id: 'hituyoData' + idx,

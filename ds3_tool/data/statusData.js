@@ -1,7 +1,7 @@
 (function ($) {
     'use strict';
 
-    h5.u.obj.expose('ds3tool.data', {
+    h5.u.obj.expose('ds3tool.data.status', {
         // 各素性の初期ステータス
         syokiti: [
             ['騎士', 9, 12, 10, 11, 15, 13, 12, 9, 9, 7],

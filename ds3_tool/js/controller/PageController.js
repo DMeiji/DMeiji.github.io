@@ -14,6 +14,7 @@
         _tairyokuAndWeightController: ds3tool.controller.TairyokuAndWeightController,
         _syutyuryokuAndFPController: ds3tool.controller.SyutyuryokuAndFPController,
         _syutyuryokuAndSlotController: ds3tool.controller.SyutyuryokuAndSlotController,
+        _calcBuildWeightController: ds3tool.controller.CalcBuildWeightController,
 
         __meta: {
             _sujoAndStatusController: {
@@ -33,6 +34,9 @@
             },
             _syutyuryokuAndSlotController: {
                 rootElement: '#syutyuryoku-and-slot'
+            },
+            _calcBuildWeightController: {
+                rootElement: '#build-and-weight'
             }
         },
 
@@ -43,18 +47,13 @@
         },
 
         __ready: function () {
-            // 「素性と要求値」を初期化
-            this._sujoAndStatusController.init();
-            // 「生命力とHP」を初期化
-            this._seimeiryokuAndHPController.init();
-            // 「持久とスタミナ」を初期化
-            this._jikyuryokuAndStaminaController.init();
-            // 「体力と装備重量」を初期化
-            this._tairyokuAndWeightController.init();
-            // 「集中力とFP」を初期化
-            this._syutyuryokuAndFPController.init();
-            // 「集中力と記憶スロット」を初期化
-            this._syutyuryokuAndSlotController.init();
+            this._sujoAndStatusController.init();// 「素性と要求値」を初期化
+            this._seimeiryokuAndHPController.init();// 「生命力とHP」を初期化
+            this._jikyuryokuAndStaminaController.init();// 「持久とスタミナ」を初期化
+            this._tairyokuAndWeightController.init();// 「体力と装備重量」を初期化
+            this._syutyuryokuAndFPController.init();// 「集中力とFP」を初期化
+            this._syutyuryokuAndSlotController.init();// 「集中力と記憶スロット」を初期化
+            this._calcBuildWeightController.init();// 「ビルドと装備重量」を初期化
         }
     };
 
