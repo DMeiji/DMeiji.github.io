@@ -533,6 +533,13 @@
             </div>
 
             <div class="weapons-build-table">
+                <div class="weapons-build-row">
+                    <div class="parts-cell">部位</div>
+                    <div class="genre-cell">ジャンル</div>
+                    <div class="equip-cell">装備</div>
+                    <div class="weight-cell">重量</div>
+                </div>
+
                 [% for (i = 0, len = weaponsBuildList.length; i < len; i++) { %]
                     [% var weaponsBuild = weaponsBuildList[i]; %]
                     <div class="weapons-build-row [%= weaponsBuild.rowName %]-row">
@@ -540,12 +547,12 @@
                         <div class="genre-cell">
                             <select class="genre-select">
                                 [% for (j = 0, genreLen = genreList.length; j < genreLen; j++) { %]
-                                    <option>[%= genreList[j] %]</option>
+                                    <option>[%= genreList[j].kanaName %]</option>
                                 [% } %]
                             </select>
                         </div>
                         <div class="equip-cell">
-                            <select class="weapon-select"></select>
+                            <select class="weapon-select" data-weapon-bind-name="[%= weaponsBuild.weightBindName %]"></select>
                         </div>
                         <div class="weight-cell" data-h5-bind="[%= weaponsBuild.weightBindName %]"></div>
                     </div>

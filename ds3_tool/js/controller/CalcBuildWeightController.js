@@ -10,14 +10,15 @@
             id: {
                 id: true
             },
-            helmW: { defaultValue: 0 },
-            bodyW: { defaultValue: 0 },
-            handW: { defaultValue: 0 },
-            legW: { defaultValue: 0 },
-            helmK: { defaultValue: 0 },
-            bodyK: { defaultValue: 0 },
-            handK: { defaultValue: 0 },
-            legK: { defaultValue: 0 },
+            helmW: { defaultValue: 0 },// 頭の重量
+            bodyW: { defaultValue: 0 },// 胴の重量
+            handW: { defaultValue: 0 },// 手の重量
+            legW: { defaultValue: 0 },// 足の重量
+            helmK: { defaultValue: 0 },// 頭の強靭
+            bodyK: { defaultValue: 0 },// 胴の強靭
+            handK: { defaultValue: 0 },// 手の強靭
+            legK: { defaultValue: 0 },// 足の強靭
+            // 防具の合計重量
             totalArmorW: {
                 depend: {
                     on: ['helmW', 'bodyW', 'handW', 'legW'],
@@ -30,6 +31,7 @@
                     }
                 }
             },
+            // 防具の合計強靭
             totalArmorK: {
                 depend: {
                     on: ['helmK', 'bodyK', 'handK', 'legK'],
@@ -42,12 +44,13 @@
                     }
                 }
             },
-            r1W: { defaultValue: 0 },
-            r2W: { defaultValue: 0 },
-            r3W: { defaultValue: 0 },
-            l1W: { defaultValue: 0 },
-            l2W: { defaultValue: 0 },
-            l3W: { defaultValue: 0 },
+            r1W: { defaultValue: 0 },// 右手1の重量
+            r2W: { defaultValue: 0 },// 右手2の重量
+            r3W: { defaultValue: 0 },// 右手3の重量
+            l1W: { defaultValue: 0 },// 左手1の重量
+            l2W: { defaultValue: 0 },// 左手2の重量
+            l3W: { defaultValue: 0 },// 左手3の重量
+            // 武器の合計重量
             totalWeaponW: {
                 depend: {
                     on: ['r1W', 'r2W', 'r3W', 'l1W', 'l2W', 'l3W'],
@@ -62,12 +65,7 @@
                     }
                 }
             },
-            r1W: { defaultValue: 0 },
-            r2W: { defaultValue: 0 },
-            r3W: { defaultValue: 0 },
-            l1W: { defaultValue: 0 },
-            l2W: { defaultValue: 0 },
-            l3W: { defaultValue: 0 },
+            // 武器・防具の合計重量
             totalW: {
                 depend: {
                     on: ['totalArmorW', 'totalWeaponW'],
@@ -78,6 +76,7 @@
                     }
                 }
             },
+            // 中ロリに必要な装備重量
             requiredPossessionW: {
                 depend: {
                     on: ['totalW'],
@@ -99,7 +98,11 @@
 
         _buildItem: calcBuildWeightItem,
 
+        /**
+         * 初期化
+         */
         init: function () {
+            // ejsから画面の大枠を生成
             this.view.append(this.rootElement, 'build-and-weight', {
                 helmList: equipData.helm,
                 bodyList: equipData.body,
@@ -116,17 +119,23 @@
                 genreList: equipData.genre
             });
 
+            //　初期選択状態の防具の重量、強靭を表示に反映する
             this._initArmorWeightAndKyoujin();
             this.view.bind(this.rootElement, this._buildItem);
+
+            // 初期選択状態の武器ジャンルに合わせて武器選択リストを更新
+            var $weaponSelects = this.$find('.weapon-select');
+            $.each($weaponSelects, this.own(function (idx, weaponSelect) {
+                var $weaponList = this._createWeaponListDOM('daggers');
+                this._updateWeaponListDOM($(weaponSelect), $weaponList);
+            }));
         },
 
-        _createWeaponSelectDOM: function () {
-
-        },
-
+        /**
+         * 初期選択状態の防具の重量と強靭を表示に反映
+         */
         _initArmorWeightAndKyoujin: function () {
             var $armorSelect = this.$find('.armor-select');
-            // 選択状態の防具の重量と強靭を表示に反映
             $.each($armorSelect, this.own(function (idx, select) {
                 var armorName = select.value;
                 var partsName = $(select).data('partsName');
@@ -135,6 +144,12 @@
             }));
         },
 
+        /**
+         * 指定した防具の情報を返す
+         * 
+         * @param armorName 防具名
+         * @param partsName 部位
+         */
         _getSelectedArmorData: function (armorName, partsName) {
             var selectedTypeArmors = equipData[partsName];
             var result = null;
@@ -147,16 +162,93 @@
             return result;
         },
 
+        /**
+         * 指定した部位の重量と強靭を更新する
+         * 
+         * @param armorData 防具の情報
+         * @param partsName 部位
+         */
         _updateDispWeightAndKyoujin: function (armorData, partsName) {
             this._buildItem.set(partsName + 'W', armorData.weight);
             this._buildItem.set(partsName + 'K', armorData.kyoujin);
         },
 
+        /**
+         * 防具の選択リストのchangeハンドラ<p>
+         * 選択した防具の重量・強靭を表示に反映する
+         */
         '.armor-select change': function (context, $el) {
             var armorName = $el.val();
             var partsName = $el.data('partsName');
             var armorData = this._getSelectedArmorData(armorName, partsName);
             this._updateDispWeightAndKyoujin(armorData, partsName);
+        },
+
+        /**
+         * 武器ジャンルの選択リストのchangeハンドラ<p>
+         * 武器リストを選択したジャンルの武器一覧に置き換える
+         */
+        '.genre-select change': function (context, $el) {
+            var genreKanaName = $el.val();
+            var genreName = this._getGenreName(genreKanaName);
+            var $weaponsList = this._createWeaponListDOM(genreName);
+
+            var $weaponsBuildRow = $el.parents('.weapons-build-row');
+            var $weaponSelect = $weaponsBuildRow.find('.weapon-select');
+            this._updateWeaponListDOM($weaponSelect, $weaponsList);
+        },
+
+        /**
+         * 指定したジャンル名(かな)に対応するジャンル名(英名)を返す
+         * 
+         * @param ジャンル名(かな)
+         */
+        _getGenreName: function (kanaName) {
+            var result = null;
+            $.each(equipData.genre, function (idx, genreData) {
+                if (genreData.kanaName === kanaName) {
+                    result = genreData.name;
+                    return false;
+                }
+            });
+            return result;
+        },
+
+        /**
+         * 指定したジャンルの武器一覧のDOMを生成して返す
+         * 
+         * @param genreName 武器ジャンル名(英名)
+         */
+        _createWeaponListDOM: function (genreName) {
+            var weaponsData = equipData[genreName];
+            var html = '';
+            $.each(weaponsData, function (idx, weaponData) {
+                var temp = '<option data-weight="' + weaponData.weight + '">';
+                temp += weaponData.name + '</option>';
+                html += temp;
+            });
+            return $(html);
+        },
+
+        /**
+         * 指定した武器リスト要素を新しい一覧に更新する
+         * 
+         * @param $targetSelect 更新対象のselect要素
+         * @param $weaponsList 新しい武器一覧要素
+         */
+        _updateWeaponListDOM: function ($targetSelect, $weaponsList) {
+            $targetSelect.empty();
+            $targetSelect.append($weaponsList);
+        },
+
+        /**
+         * 武器選択リストのchangeハンドラ<p>
+         * 選択した武器の重量を表示に反映する
+         */
+        '.weapon-select change': function (context, $el) {
+            var weaponBindName = $el.data('weaponBindName');
+            var weight = $el.find('option:selected').data('weight');
+            this._buildItem.set(weaponBindName, weight);
         }
     };
 

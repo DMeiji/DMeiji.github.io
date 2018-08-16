@@ -16,123 +16,151 @@
         ],
         // 武器ジャンル
         genre: [
-            '短剣', '直剣', '大剣', '特大剣', '曲剣', '大曲剣', '刺剣', '刀', '斧', '大斧', '槌', '大槌', '槍', '長槍', '斧槍', '鎌', 'ムチ', '拳', '爪', '弓', '大弓', 'クロスボウ', '杖', '呪術の火', 'タリスマン', '聖鈴', '松明', '小盾', '中盾', '大盾'
+            { kanaName: '短剣', name: 'daggers' },
+            { kanaName: '直剣', name: 'straightSwords' },
+            { kanaName: '大剣', name: 'greatSwords' },
+            { kanaName: '特大剣', name: 'ultraGreatswords' },
+            { kanaName: '曲剣', name: 'curvedSwords' },
+            { kanaName: '大曲剣', name: 'curvedGreatswords' },
+            { kanaName: '刺剣', name: 'thrustingSwords' },
+            { kanaName: '刀', name: 'katanas' },
+            { kanaName: '斧', name: 'axes' },
+            { kanaName: '大斧', name: 'greataxes' },
+            { kanaName: '槌', name: 'hammers' },
+            { kanaName: '大槌', name: 'greatHammers' },
+            { kanaName: '槍', name: 'spears' },
+            { kanaName: '長槍', name: 'longSpears' },
+            { kanaName: '斧槍', name: 'halberds' },
+            { kanaName: '鎌', name: 'scythe' },
+            { kanaName: 'ムチ', name: 'whips' },
+            { kanaName: '拳', name: 'fists' },
+            { kanaName: '爪', name: 'crow' },
+            { kanaName: '弓', name: 'bows' },
+            { kanaName: '大弓', name: 'greatbows' },
+            { kanaName: 'クロスボウ', name: 'crossbows' },
+            { kanaName: '杖', name: 'catalysts' },
+            { kanaName: 'タリスマン', name: 'talismans' },
+            { kanaName: '呪術の火', name: 'pyromancyFlames' },
+            { kanaName: '聖鈴', name: 'holyBells' },
+            { kanaName: '小盾', name: 'smallShields' },
+            { kanaName: '中盾', name: 'middleShields' },
+            { kanaName: '大盾', name: 'bigShields' }
         ],
         // 短剣
         daggers: [
-            { name: 'ダガー', weight: '1.5' }, { name: 'パリングダガー', weight: '1.0' }, { name: '鎧貫き', weight: '1.5' }, { name: 'ハルパー', weight: '1.5' }, { name: '盗人の短刀', weight: '1.5' }, { name: 'グルーの腐れ短刀', weight: '2.0' }, { name: '鴉人の大短刀', weight: '2.5' }, { name: '湿った手鎌', weight: '2.0' }, { name: '侍女の短剣', weight: '0.5' }, { name: '賢者の燭台', weight: '1.5' }, { name: '藍玉の短剣', weight: '1.5' }, { name: '尾骨の短剣', weight: '2.0' }, { name: '山賊の双短刀', weight: '2.5' }
+            { name: '', weight: '0' }, { name: 'ダガー', weight: '1.5' }, { name: 'パリングダガー', weight: '1.0' }, { name: '鎧貫き', weight: '1.5' }, { name: 'ハルパー', weight: '1.5' }, { name: '盗人の短刀', weight: '1.5' }, { name: 'グルーの腐れ短刀', weight: '2.0' }, { name: '鴉人の大短刀', weight: '2.5' }, { name: '湿った手鎌', weight: '2.0' }, { name: '侍女の短剣', weight: '0.5' }, { name: '賢者の燭台', weight: '1.5' }, { name: '藍玉の短剣', weight: '1.5' }, { name: '尾骨の短剣', weight: '2.0' }, { name: '山賊の双短刀', weight: '2.5' }
         ],
         // 直剣
         straightSwords: [
-            { name: 'ショートソード', weight: '2.0' }, { name: 'ロングソード', weight: '3.0' }, { name: 'ブロードソード', weight: '3.0' }, { name: '折れた直剣', weight: '1.0' }, { name: 'アストラの直剣', weight: '3.0' }, { name: 'ロスリック騎士の剣', weight: '4.0' }, { name: 'トゲの直剣', weight: '3.0' }, { name: 'ダークソード', weight: '4.5' }, { name: '聖者の燭台', weight: '2.0' }, { name: 'イルシールの直剣', weight: '4.0' }, { name: 'アンリの直剣', weight: '3.0' }, { name: '太陽の直剣', weight: '3.0' }, { name: 'モーリオンブレード', weight: '4.0' }, { name: '輪の騎士の直剣', weight: '4.5' }, { name: 'ロスリックの聖剣', weight: '4.0' }, { name: 'ゴットヒルトの双剣', weight: '6.5' }, { name: 'ヴァローハート', weight: '5.5' }
+            { name: '', weight: '0' }, { name: 'ショートソード', weight: '2.0' }, { name: 'ロングソード', weight: '3.0' }, { name: 'ブロードソード', weight: '3.0' }, { name: '折れた直剣', weight: '1.0' }, { name: 'アストラの直剣', weight: '3.0' }, { name: 'ロスリック騎士の剣', weight: '4.0' }, { name: 'トゲの直剣', weight: '3.0' }, { name: 'ダークソード', weight: '4.5' }, { name: '聖者の燭台', weight: '2.0' }, { name: 'イルシールの直剣', weight: '4.0' }, { name: 'アンリの直剣', weight: '3.0' }, { name: '太陽の直剣', weight: '3.0' }, { name: 'モーリオンブレード', weight: '4.0' }, { name: '輪の騎士の直剣', weight: '4.5' }, { name: 'ロスリックの聖剣', weight: '4.0' }, { name: 'ゴットヒルトの双剣', weight: '6.5' }, { name: 'ヴァローハート', weight: '5.5' }
         ],
         // 大剣
         greatSwords: [
-            { name: 'バスタードソード', weight: '8.0' }, { name: 'クレイモア', weight: '9.0' }, { name: 'フランベルジェ', weight: '8.5' }, { name: '竜血の大剣', weight: '6.0' }, { name: '処刑人の大剣', weight: '9.0' }, { name: '黒騎士の剣', weight: '10.0' }, { name: 'オーニクスブレード', weight: '9.0' }, { name: '亡者狩りの大剣', weight: '8.5' }, { name: 'ウォルニールの聖剣', weight: '7.5' }, { name: '裁きの大剣', weight: '9.0' }, { name: 'ストームルーラー', weight: '8.0' }, { name: '狼騎士の大剣', weight: '11.5' }, { name: '月光の大剣', weight: '10.5' }, { name: '火継ぎの大剣', weight: '9.0' }, { name: '双王子の大剣', weight: '9.5' }, { name: 'ゲールの大剣', weight: '9.0' }
+            { name: '', weight: '0' }, { name: 'バスタードソード', weight: '8.0' }, { name: 'クレイモア', weight: '9.0' }, { name: 'フランベルジェ', weight: '8.5' }, { name: '竜血の大剣', weight: '6.0' }, { name: '処刑人の大剣', weight: '9.0' }, { name: '黒騎士の剣', weight: '10.0' }, { name: 'オーニクスブレード', weight: '9.0' }, { name: '亡者狩りの大剣', weight: '8.5' }, { name: 'ウォルニールの聖剣', weight: '7.5' }, { name: '裁きの大剣', weight: '9.0' }, { name: 'ストームルーラー', weight: '8.0' }, { name: '狼騎士の大剣', weight: '11.5' }, { name: '月光の大剣', weight: '10.5' }, { name: '火継ぎの大剣', weight: '9.0' }, { name: '双王子の大剣', weight: '9.5' }, { name: 'ゲールの大剣', weight: '9.0' }
         ],
         // 特大剣
         ultraGreatswords: [
-            { name: 'ツヴァイヘンダー', weight: '10.0' }, { name: 'グレートソード', weight: '20.0' }, { name: 'アストラの大剣', weight: '8.0' }, { name: 'ロスリック騎士の大剣', weight: '16.5' }, { name: '聖堂騎士の大剣', weight: '15.0' }, { name: '黒騎士の大剣', weight: '16.0' }, { name: '煙の特大剣', weight: '25.5' }, { name: '罪の大剣', weight: '13.5' }, { name: 'ローリアンの大剣', weight: '14.0' }, { name: '輪の騎士の双大剣', weight: '22.5' }, { name: 'ファランの大剣', weight: '12.5' }
+            { name: '', weight: '0' }, { name: 'ツヴァイヘンダー', weight: '10.0' }, { name: 'グレートソード', weight: '20.0' }, { name: 'アストラの大剣', weight: '8.0' }, { name: 'ロスリック騎士の大剣', weight: '16.5' }, { name: '聖堂騎士の大剣', weight: '15.0' }, { name: '黒騎士の大剣', weight: '16.0' }, { name: '煙の特大剣', weight: '25.5' }, { name: '罪の大剣', weight: '13.5' }, { name: 'ローリアンの大剣', weight: '14.0' }, { name: '輪の騎士の双大剣', weight: '22.5' }, { name: 'ファランの大剣', weight: '12.5' }
         ],
         // 曲剣
         curvedSwords: [
-            { name: 'シミター', weight: '2.5' }, { name: 'ファルシオン', weight: '4.0' }, { name: 'ショーテル', weight: '2.5' }, { name: 'カーサスの曲刀', weight: '5.5' }, { name: 'カーサスの鉤刀', weight: '3.0' }, { name: 'グルーの腐れ曲刀', weight: '2.0' }, { name: '絵画使者の曲剣', weight: '1.5' }, { name: '幽鬼のサーベル', weight: '4.0' }, { name: '法王騎士の曲剣', weight: '3.5' }, { name: '欠け月の曲剣', weight: '2.5' }, { name: '嵐の曲剣', weight: '5.0' }, { name: 'デーモンの爪痕', weight: '0.5' }, { name: '傭兵の双刀', weight: '5.5' }, { name: '墓守の双刀', weight: '6.5' }, { name: '踊り子の双魔剣', weight: '8.5' }
+            { name: '', weight: '0' }, { name: 'シミター', weight: '2.5' }, { name: 'ファルシオン', weight: '4.0' }, { name: 'ショーテル', weight: '2.5' }, { name: 'カーサスの曲刀', weight: '5.5' }, { name: 'カーサスの鉤刀', weight: '3.0' }, { name: 'グルーの腐れ曲刀', weight: '2.0' }, { name: '絵画使者の曲剣', weight: '1.5' }, { name: '幽鬼のサーベル', weight: '4.0' }, { name: '法王騎士の曲剣', weight: '3.5' }, { name: '欠け月の曲剣', weight: '2.5' }, { name: '嵐の曲剣', weight: '5.0' }, { name: 'デーモンの爪痕', weight: '0.5' }, { name: '傭兵の双刀', weight: '5.5' }, { name: '墓守の双刀', weight: '6.5' }, { name: '踊り子の双魔剣', weight: '8.5' }
         ],
         // 大曲剣
         curvedGreatswords: [
-            { name: 'ムラクモ', weight: '11.0' }, { name: 'カーサスの大曲刀', weight: '10.5' }, { name: '流刑人の大刀', weight: '17.0' }, { name: 'ハーラルドの大曲剣', weight: '14.0' }, { name: '老狼の曲剣', weight: '13.0' }
+            { name: '', weight: '0' }, { name: 'ムラクモ', weight: '11.0' }, { name: 'カーサスの大曲刀', weight: '10.5' }, { name: '流刑人の大刀', weight: '17.0' }, { name: 'ハーラルドの大曲剣', weight: '14.0' }, { name: '老狼の曲剣', weight: '13.0' }
         ],
         // 刺剣
         thrustingSwords: [
-            { name: 'レイピア', weight: '2.0' }, { name: 'エストック', weight: '3.5' }, { name: 'リカールの刺剣', weight: '2.5' }, { name: 'イルシールの刺剣', weight: '3.0' }, { name: '結晶古老の刺剣', weight: '2.5' }, { name: '鴉羽', weight: '4.0' }
+            { name: '', weight: '0' }, { name: 'レイピア', weight: '2.0' }, { name: 'エストック', weight: '3.5' }, { name: 'リカールの刺剣', weight: '2.5' }, { name: 'イルシールの刺剣', weight: '3.0' }, { name: '結晶古老の刺剣', weight: '2.5' }, { name: '鴉羽', weight: '4.0' }
         ],
         // 刀
         katanas: [
-            { name: '打刀', weight: '5.5' }, { name: '物干し竿', weight: '8.5' }, { name: '黒刀', weight: '6.5' }, { name: '血狂い', weight: '5.0' }, { name: '混沌の刃', weight: '6.0' }, { name: '闇朧', weight: '3.5' }, { name: '綻び刀', weight: '8.0' }, { name: '鬼切と姥断', weight: '8.5' }
+            { name: '', weight: '0' }, { name: '打刀', weight: '5.5' }, { name: '物干し竿', weight: '8.5' }, { name: '黒刀', weight: '6.5' }, { name: '血狂い', weight: '5.0' }, { name: '混沌の刃', weight: '6.0' }, { name: '闇朧', weight: '3.5' }, { name: '綻び刀', weight: '8.0' }, { name: '鬼切と姥断', weight: '8.5' }
         ],
         // 斧
         axes: [
-            { name: 'ハンドアクス', weight: '2.5' }, { name: '奴隷の手斧', weight: '1.5' }, { name: 'バトルアクス', weight: '4.0' }, { name: '山賊の斧', weight: '3.0' }, { name: '竜断の斧', weight: '4.0' }, { name: 'ミルウッドの戦斧', weight: '6.5' }, { name: '蛇人の鉈', weight: '4.0' }, { name: '肉断ち包丁', weight: '7.0' }, { name: 'エレオノーラ', weight: '6.5' }, { name: '羽の騎士の断頭斧', weight: '8.5' }
+            { name: '', weight: '0' }, { name: 'ハンドアクス', weight: '2.5' }, { name: '奴隷の手斧', weight: '1.5' }, { name: 'バトルアクス', weight: '4.0' }, { name: '山賊の斧', weight: '3.0' }, { name: '竜断の斧', weight: '4.0' }, { name: 'ミルウッドの戦斧', weight: '6.5' }, { name: '蛇人の鉈', weight: '4.0' }, { name: '肉断ち包丁', weight: '7.0' }, { name: 'エレオノーラ', weight: '6.5' }, { name: '羽の騎士の断頭斧', weight: '8.5' }
         ],
         // 大斧
         greataxes: [
-            { name: 'グレートアクス', weight: '16.0' }, { name: '大鉈', weight: '14.0' }, { name: '黒騎士の大斧', weight: '19.5' }, { name: 'デーモンの大斧', weight: '14.5' }, { name: '竜狩りの大斧', weight: '20.0' }, { name: 'ヨームの大鉈', weight: '19.0' }, { name: 'アースシーカー', weight: '17.0' }
+            { name: '', weight: '0' }, { name: 'グレートアクス', weight: '16.0' }, { name: '大鉈', weight: '14.0' }, { name: '黒騎士の大斧', weight: '19.5' }, { name: 'デーモンの大斧', weight: '14.5' }, { name: '竜狩りの大斧', weight: '20.0' }, { name: 'ヨームの大鉈', weight: '19.0' }, { name: 'アースシーカー', weight: '17.0' }
         ],
         // 槌
         hammers: [
-            { name: 'クラブ', weight: '2.5' }, { name: '強化クラブ', weight: '4.0' }, { name: 'メイス', weight: '5.0' }, { name: 'モーニングスター', weight: '5.0' }, { name: 'ウォーピック', weight: '4.5' }, { name: '鍛冶屋の金槌', weight: '5.0' }, { name: 'ヘイゼルのつるはし', weight: '4.5' }, { name: 'ドランの双槌', weight: '9.0' }
+            { name: '', weight: '0' }, { name: 'クラブ', weight: '2.5' }, { name: '強化クラブ', weight: '4.0' }, { name: 'メイス', weight: '5.0' }, { name: 'モーニングスター', weight: '5.0' }, { name: 'ウォーピック', weight: '4.5' }, { name: '鍛冶屋の金槌', weight: '5.0' }, { name: 'ヘイゼルのつるはし', weight: '4.5' }, { name: 'ドランの双槌', weight: '9.0' }
         ],
         // 大槌
         greatHammers: [
-            { name: 'ラージクラブ', weight: '10.0' }, { name: 'グレートクラブ', weight: '12.0' }, { name: 'グレートメイス', weight: '18.0' }, { name: 'スパイクメイス', weight: '16.0' }, { name: 'つるはし', weight: '8.0' }, { name: '大木槌', weight: '6.0' }, { name: 'ガーゴイルの灯火槌', weight: '11.0' }, { name: 'モーンの大槌', weight: '24.0' }, { name: 'スモウの大槌', weight: '24.0' }, { name: '地鳴りの岩石槌', weight: '15.0' }, { name: 'レドの大槌', weight: '28.0' }, { name: 'ボルドの大槌', weight: '17.0' }, { name: '老王の大槌', weight: '18.5' }, { name: '大竜牙', weight: '21.0' }
+            { name: '', weight: '0' }, { name: 'ラージクラブ', weight: '10.0' }, { name: 'グレートクラブ', weight: '12.0' }, { name: 'グレートメイス', weight: '18.0' }, { name: 'スパイクメイス', weight: '16.0' }, { name: 'つるはし', weight: '8.0' }, { name: '大木槌', weight: '6.0' }, { name: 'ガーゴイルの灯火槌', weight: '11.0' }, { name: 'モーンの大槌', weight: '24.0' }, { name: 'スモウの大槌', weight: '24.0' }, { name: '地鳴りの岩石槌', weight: '15.0' }, { name: 'レドの大槌', weight: '28.0' }, { name: 'ボルドの大槌', weight: '17.0' }, { name: '老王の大槌', weight: '18.5' }, { name: '大竜牙', weight: '21.0' }
         ],
         // 槍
         spears: [
-            { name: 'スピア', weight: '4.5' }, { name: 'ウィングドスピア', weight: '6.0' }, { name: 'パルチザン', weight: '6.5' }, { name: 'グルーの腐れ槍', weight: '5.5' }, { name: '四又鋤', weight: '6.5' }, { name: '聖者の二股槍', weight: '8.5' }, { name: '幽鬼のジャベリン', weight: '4.0' }, { name: 'ガーゴイルの灯火槍', weight: '9.5' }, { name: '焼きごて', weight: '5.0' }, { name: 'ヨルシカの槍', weight: '6.5' }, { name: '竜狩りの槍', weight: '9.5' }, { name: '金枝の杖槍', weight: '3.0' }, { name: '尾骨の槍', weight: '4.5' }, { name: 'アルスターの槍', weight: '6.5' }, { name: '竜狩りの剣槍', weight: '14.5' }, { name: 'ドランの双槍', weight: '8.0' }
+            { name: '', weight: '0' }, { name: 'スピア', weight: '4.5' }, { name: 'ウィングドスピア', weight: '6.0' }, { name: 'パルチザン', weight: '6.5' }, { name: 'グルーの腐れ槍', weight: '5.5' }, { name: '四又鋤', weight: '6.5' }, { name: '聖者の二股槍', weight: '8.5' }, { name: '幽鬼のジャベリン', weight: '4.0' }, { name: 'ガーゴイルの灯火槍', weight: '9.5' }, { name: '焼きごて', weight: '5.0' }, { name: 'ヨルシカの槍', weight: '6.5' }, { name: '竜狩りの槍', weight: '9.5' }, { name: '金枝の杖槍', weight: '3.0' }, { name: '尾骨の槍', weight: '4.5' }, { name: 'アルスターの槍', weight: '6.5' }, { name: '竜狩りの剣槍', weight: '14.5' }, { name: 'ドランの双槍', weight: '8.0' }
         ],
         // 長槍
         longSpears: [
-            { name: 'パイク', weight: '7.5' }, { name: 'グレートランス', weight: '10.5' }, { name: 'ロスリック騎士の長槍', weight: '8.0' }, { name: 'ロスリックの戦旗', weight: '5.0' }, { name: '輪の騎士の槍', weight: '9.0' }
+            { name: '', weight: '0' }, { name: 'パイク', weight: '7.5' }, { name: 'グレートランス', weight: '10.5' }, { name: 'ロスリック騎士の長槍', weight: '8.0' }, { name: 'ロスリックの戦旗', weight: '5.0' }, { name: '輪の騎士の槍', weight: '9.0' }
         ],
         // 斧槍
         halberds: [
-            { name: 'ハルバード', weight: '8.0' }, { name: '赤柄のハルバード', weight: '8.0' }, { name: 'ルッツエルン', weight: '7.5' }, { name: 'グレイブ', weight: '11.0' }, { name: '三日月斧', weight: '6.0' }, { name: '羽の騎士の斧槍', weight: '14.0' }, { name: '半葉の大刀', weight: '13.5' }, { name: '黒騎士のグレイブ', weight: '9.0' }, { name: '狂王の磔', weight: '12.0' }, { name: '火刑の芒', weight: '10.0' }, { name: 'グンダの斧槍', weight: '13.0' }
+            { name: '', weight: '0' }, { name: 'ハルバード', weight: '8.0' }, { name: '赤柄のハルバード', weight: '8.0' }, { name: 'ルッツエルン', weight: '7.5' }, { name: 'グレイブ', weight: '11.0' }, { name: '三日月斧', weight: '6.0' }, { name: '羽の騎士の斧槍', weight: '14.0' }, { name: '半葉の大刀', weight: '13.5' }, { name: '黒騎士のグレイブ', weight: '9.0' }, { name: '狂王の磔', weight: '12.0' }, { name: '火刑の芒', weight: '10.0' }, { name: 'グンダの斧槍', weight: '13.0' }
         ],
         // 鎌
         scythe: [
-            { name: '大鎌', weight: '7.0' }, { name: '鴉人の大鎌', weight: '9.0' }, { name: '法王騎士の大鎌', weight: '7.5' }, { name: 'フリーデの大鎌', weight: '13.0' }
+            { name: '', weight: '0' }, { name: '大鎌', weight: '7.0' }, { name: '鴉人の大鎌', weight: '9.0' }, { name: '法王騎士の大鎌', weight: '7.5' }, { name: 'フリーデの大鎌', weight: '13.0' }
         ],
         // 鞭
         whips: [
-            { name: 'ウィップ', weight: '2.0' }, { name: 'イバラムチ', weight: '2.0' }, { name: 'まだらムチ', weight: '2.5' }, { name: '魔女の黒髪', weight: '3.0' }, { name: 'アリアンデルの薔薇', weight: '3.5' }
+            { name: '', weight: '0' }, { name: 'ウィップ', weight: '2.0' }, { name: 'イバラムチ', weight: '2.0' }, { name: 'まだらムチ', weight: '2.5' }, { name: '魔女の黒髪', weight: '3.0' }, { name: 'アリアンデルの薔薇', weight: '3.5' }
         ],
         // 拳
         fists: [
-            { name: 'セスタス', weight: '0.5' }, { name: 'デーモンナックル', weight: '5.5' }, { name: 'ダークハンド', weight: '0.0' }
+            { name: '', weight: '0' }, { name: 'セスタス', weight: '0.5' }, { name: 'デーモンナックル', weight: '5.5' }, { name: 'ダークハンド', weight: '0' }
         ],
         // 爪
         crow: [
-            { name: 'かぎ爪', weight: '1.5' }, { name: '傀儡の鉤爪', weight: '1.5' }, { name: '鴉爪', weight: '3.0' }
+            { name: '', weight: '0' }, { name: 'かぎ爪', weight: '1.5' }, { name: '傀儡の鉤爪', weight: '1.5' }, { name: '鴉爪', weight: '3.0' }
         ],
         // 弓
         bows: [
-            { name: 'ショートボウ', weight: '2.0' }, { name: 'コンポジットボウ', weight: '3.5' }, { name: 'ロングボウ', weight: '4.0' }, { name: 'ファリスの弓', weight: '3.0' }, { name: '白木の弓', weight: '2.5' }, { name: '竜騎兵の弓', weight: '6.5' }, { name: '暗月の長弓', weight: '4.5' }
+            { name: '', weight: '0' }, { name: 'ショートボウ', weight: '2.0' }, { name: 'コンポジットボウ', weight: '3.5' }, { name: 'ロングボウ', weight: '4.0' }, { name: 'ファリスの弓', weight: '3.0' }, { name: '白木の弓', weight: '2.5' }, { name: '竜騎兵の弓', weight: '6.5' }, { name: '暗月の長弓', weight: '4.5' }
         ],
         // 大弓
         greatbows: [
-            { name: '竜狩りの大弓', weight: '10.0' }, { name: '鬼討ちの大弓', weight: '7.5' }, { name: 'ミルウッドの大弓', weight: '9.0' }
+            { name: '', weight: '0' }, { name: '竜狩りの大弓', weight: '10.0' }, { name: '鬼討ちの大弓', weight: '7.5' }, { name: 'ミルウッドの大弓', weight: '9.0' }
         ],
         // クロスボウ
         crossbows: [
-            { name: 'ライトクロスボウ', weight: '3.0' }, { name: 'ヘビークロスボウ', weight: '4.5' }, { name: 'スナイパークロス', weight: '7.5' }, { name: 'アーバレスト', weight: '6.0' }, { name: '騎士のクロスボウ', weight: '4.0' }, { name: 'アヴェリン', weight: '7.5' }, { name: '連射クロスボウ', weight: '7.5' }
+            { name: '', weight: '0' }, { name: 'ライトクロスボウ', weight: '3.0' }, { name: 'ヘビークロスボウ', weight: '4.5' }, { name: 'スナイパークロス', weight: '7.5' }, { name: 'アーバレスト', weight: '6.0' }, { name: '騎士のクロスボウ', weight: '4.0' }, { name: 'アヴェリン', weight: '7.5' }, { name: '連射クロスボウ', weight: '7.5' }
         ],
         // 杖
         catalysts: [
-            { name: '魔術師の杖', weight: '2.0' }, { name: '異端の杖', weight: '3.0' }, { name: '宮廷魔術師の杖', weight: '2.0' }, { name: '妖木の枝', weight: '2.0' }, { name: '語り部の杖', weight: '2.5' }, { name: '托鉢の杖', weight: '2.5' }, { name: '湿った長杖', weight: '3.0' }, { name: 'イザリスの杖', weight: '3.0' }, { name: '大主教の大杖', weight: '2.5' }, { name: '蛆人の杖', weight: '3.0' }, { name: '説教者の右腕', weight: '2.0' }, { name: '古老の結晶杖', weight: '2.5' }
+            { name: '', weight: '0' }, { name: '魔術師の杖', weight: '2.0' }, { name: '異端の杖', weight: '3.0' }, { name: '宮廷魔術師の杖', weight: '2.0' }, { name: '妖木の枝', weight: '2.0' }, { name: '語り部の杖', weight: '2.5' }, { name: '托鉢の杖', weight: '2.5' }, { name: '湿った長杖', weight: '3.0' }, { name: 'イザリスの杖', weight: '3.0' }, { name: '大主教の大杖', weight: '2.5' }, { name: '蛆人の杖', weight: '3.0' }, { name: '説教者の右腕', weight: '2.0' }, { name: '古老の結晶杖', weight: '2.5' }
         ],
         // タリスマン
         talismans: [
-            { name: 'タリスマン(触媒)', weight: '0.5' }, { name: '粗布のタリスマン', weight: '0.5' }, { name: '聖女のタリスマン', weight: '0.5' }, { name: '太陽のタリスマン', weight: '0.5' }, { name: '薄暮のタリスマン', weight: '0.5' }, { name: '白髪のタリスマン', weight: '0.5' }
+            { name: '', weight: '0' }, { name: 'タリスマン(触媒)', weight: '0.5' }, { name: '粗布のタリスマン', weight: '0.5' }, { name: '聖女のタリスマン', weight: '0.5' }, { name: '太陽のタリスマン', weight: '0.5' }, { name: '薄暮のタリスマン', weight: '0.5' }, { name: '白髪のタリスマン', weight: '0.5' }
         ],
         // 呪術の火
         pyromancyFlames: [
-            { name: '呪術の火(触媒)', weight: '0.0' }, { name: '呪術の送り火', weight: '0.0' }
+            { name: '', weight: '0' }, { name: '呪術の火(触媒)', weight: '0' }, { name: '呪術の送り火', weight: '0' }
         ],
         // 聖鈴
         holyBells: [
-            { name: '聖職の聖鈴', weight: '0.5' }, { name: '祭司の聖鈴', weight: '0.5' }, { name: '聖木の鈴草', weight: '0.5' }, { name: 'ヨルシカの聖鈴', weight: '0.5' }, { name: 'クァトの鈴', weight: '0.5' }, { name: '結晶の聖鈴', weight: '0.5' }, { name: 'フィリアノールの聖鈴', weight: '0.5' }
+            { name: '', weight: '0' }, { name: '聖職の聖鈴', weight: '0.5' }, { name: '祭司の聖鈴', weight: '0.5' }, { name: '聖木の鈴草', weight: '0.5' }, { name: 'ヨルシカの聖鈴', weight: '0.5' }, { name: 'クァトの鈴', weight: '0.5' }, { name: '結晶の聖鈴', weight: '0.5' }, { name: 'フィリアノールの聖鈴', weight: '0.5' }
         ],
         // 小盾
         smallShields: [
-            { name: 'バックラー', weight: '1.5' }, { name: 'ターゲットシールド', weight: '2.0' }, { name: 'スモールレザーシールド', weight: '2.0' }, { name: 'レザーシールド', weight: '1.5' }, { name: '紅の円盾', weight: '1.5' }, { name: '紅白の円盾', weight: '1.5' }, { name: '双蛇の円盾', weight: '1.5' }, { name: '鹿角の円盾', weight: '1.5' }, { name: '戦士の円盾', weight: '1.5' }, { name: '木板の盾', weight: '1.0' }, { name: 'グルーの腐れ盾', weight: '1.5' }, { name: '鉄の円盾', weight: '2.0' }, { name: 'ホークウッドの盾', weight: '2.0' }, { name: 'リンドの盾', weight: '3.0' }, { name: '東の鉄盾', weight: '3.0' }, { name: '金鷹の小盾', weight: '2.5' }, { name: '聖花の盾', weight: '1.5' }, { name: '竜首の盾', weight: '4.5' }
+            { name: '', weight: '0' }, { name: 'バックラー', weight: '1.5' }, { name: 'ターゲットシールド', weight: '2.0' }, { name: 'スモールレザーシールド', weight: '2.0' }, { name: 'レザーシールド', weight: '1.5' }, { name: '紅の円盾', weight: '1.5' }, { name: '紅白の円盾', weight: '1.5' }, { name: '双蛇の円盾', weight: '1.5' }, { name: '鹿角の円盾', weight: '1.5' }, { name: '戦士の円盾', weight: '1.5' }, { name: '木板の盾', weight: '1.0' }, { name: 'グルーの腐れ盾', weight: '1.5' }, { name: '鉄の円盾', weight: '2.0' }, { name: 'ホークウッドの盾', weight: '2.0' }, { name: 'リンドの盾', weight: '3.0' }, { name: '東の鉄盾', weight: '3.0' }, { name: '金鷹の小盾', weight: '2.5' }, { name: '聖花の盾', weight: '1.5' }, { name: '竜首の盾', weight: '4.5' }
         ],
         // 中盾
         middleShields: [
-            { name: 'ラージレザーシールド', weight: '3.5' }, { name: 'カーサスの盾', weight: '2.5' }, { name: '双鳥の木盾', weight: '2.0' }, { name: '青の木盾', weight: '2.5' }, { name: 'ラウンドシールド', weight: '3.5' }, { name: 'ウッドシールド', weight: '2.5' }, { name: '戦神の木盾', weight: '4.0' }, { name: '幽鬼の盾', weight: '3.5' }, { name: 'カイトシールド', weight: '4.5' }, { name: '銀鷲のカイトシールド', weight: '5.0' }, { name: '騎士の盾', weight: '4.5' }, { name: 'ロスリック騎士の盾', weight: '6.0' }, { name: '蜘蛛の盾', weight: '3.5' }, { name: '黄昏の盾', weight: '5.0' }, { name: '太陽の盾', weight: '5.5' }, { name: '石の円盾', weight: '7.0' }, { name: 'トゲの盾', weight: '3.5' }, { name: 'ピアスシールド', weight: '3.5' }, { name: '隷獣の盾', weight: '4.5' }, { name: '草紋の盾', weight: '4.5' }, { name: '紋章の盾', weight: '5.0' }, { name: '竜紋章の盾', weight: '5.0' }, { name: '聖樹紋章の盾', weight: '5.0' }, { name: '金翼紋章の盾', weight: '5.5' }, { name: '法王騎士の盾', weight: '3.5' }, { name: '黒騎士の盾', weight: '7.5' }, { name: '銀騎士の盾', weight: '6.5' }, { name: '霊樹の盾', weight: '5.0' }, { name: '渇望の盾', weight: '5.5' }
+            { name: '', weight: '0' }, { name: 'ラージレザーシールド', weight: '3.5' }, { name: 'カーサスの盾', weight: '2.5' }, { name: '双鳥の木盾', weight: '2.0' }, { name: '青の木盾', weight: '2.5' }, { name: 'ラウンドシールド', weight: '3.5' }, { name: 'ウッドシールド', weight: '2.5' }, { name: '戦神の木盾', weight: '4.0' }, { name: '幽鬼の盾', weight: '3.5' }, { name: 'カイトシールド', weight: '4.5' }, { name: '銀鷲のカイトシールド', weight: '5.0' }, { name: '騎士の盾', weight: '4.5' }, { name: 'ロスリック騎士の盾', weight: '6.0' }, { name: '蜘蛛の盾', weight: '3.5' }, { name: '黄昏の盾', weight: '5.0' }, { name: '太陽の盾', weight: '5.5' }, { name: '石の円盾', weight: '7.0' }, { name: 'トゲの盾', weight: '3.5' }, { name: 'ピアスシールド', weight: '3.5' }, { name: '隷獣の盾', weight: '4.5' }, { name: '草紋の盾', weight: '4.5' }, { name: '紋章の盾', weight: '5.0' }, { name: '竜紋章の盾', weight: '5.0' }, { name: '聖樹紋章の盾', weight: '5.0' }, { name: '金翼紋章の盾', weight: '5.5' }, { name: '法王騎士の盾', weight: '3.5' }, { name: '黒騎士の盾', weight: '7.5' }, { name: '銀騎士の盾', weight: '6.5' }, { name: '霊樹の盾', weight: '5.0' }, { name: '渇望の盾', weight: '5.5' }
         ],
         // 大盾
-        bidShields: [
-            { name: '双竜の大盾', weight: '7.0' }, { name: '黒鉄の大盾', weight: '14.5' }, { name: 'ロスリック騎士の大盾', weight: '15.0' }, { name: '聖堂騎士の大盾', weight: '15.5' }, { name: '石の大盾', weight: '18.0' }, { name: '骸骨車輪の盾', weight: '15.0' }, { name: '古竜画の大盾', weight: '6.5' }, { name: '栄誉の大盾', weight: '18.5' }, { name: '呻きの盾', weight: '21.5' }, { name: '狼騎士の大盾', weight: '11.0' }, { name: 'ハベルの大盾', weight: '28.0' }, { name: '抗呪の大盾', weight: '17.0' }, { name: '竜狩りの大盾', weight: '26.0' }, { name: 'ヨームの大盾', weight: '20.5' }, { name: '竜首の大盾', weight: '18.0' }, { name: '大扉の盾', weight: '21.5' }
+        bigShields: [
+            { name: '', weight: '0' }, { name: '双竜の大盾', weight: '7.0' }, { name: '黒鉄の大盾', weight: '14.5' }, { name: 'ロスリック騎士の大盾', weight: '15.0' }, { name: '聖堂騎士の大盾', weight: '15.5' }, { name: '石の大盾', weight: '18.0' }, { name: '骸骨車輪の盾', weight: '15.0' }, { name: '古竜画の大盾', weight: '6.5' }, { name: '栄誉の大盾', weight: '18.5' }, { name: '呻きの盾', weight: '21.5' }, { name: '狼騎士の大盾', weight: '11.0' }, { name: 'ハベルの大盾', weight: '28.0' }, { name: '抗呪の大盾', weight: '17.0' }, { name: '竜狩りの大盾', weight: '26.0' }, { name: 'ヨームの大盾', weight: '20.5' }, { name: '竜首の大盾', weight: '18.0' }, { name: '大扉の盾', weight: '21.5' }
         ]
     });
 

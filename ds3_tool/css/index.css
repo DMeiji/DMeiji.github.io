@@ -122,6 +122,11 @@ html,body {
     display: table-row;
 }
 
+.armors-build-row:nth-child(1) {
+    background-color: #d1f0ff;
+    margin-bottom: 2px;
+}
+
 .armors-build-row .parts-cell {
     display: table-cell;
     width: 40px;
@@ -139,13 +144,13 @@ html,body {
 
 .armors-build-row .weight-cell {
     display: table-cell;
-    width: 40px;
+    width: 48px;
     text-align: center;
 }
 
 .armors-build-row .kyoujin-cell {
     display: table-cell;
-    width: 40px;
+    width: 48px;
     text-align: center;
 }
 
@@ -156,6 +161,11 @@ html,body {
 
 .weapons-build-row {
     display: table-row;
+}
+
+.weapons-build-row:nth-child(1) {
+    background-color: #d1f0ff;
+    margin-bottom: 2px;
 }
 
 .weapons-build-row .parts-cell {
