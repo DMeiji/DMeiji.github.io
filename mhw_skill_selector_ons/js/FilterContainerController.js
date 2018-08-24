@@ -40,6 +40,7 @@
         'jakuten',// 弱点特効
         'tyousensya',// 挑戦者
         'hurutya-ji',// ﾌﾙﾁｬｰｼﾞ
+        'konsin',// 渾身
         'tyoukaisin',// 超会心
         'mimisen',// 耳栓
         'tuujoudankyouka',// 通常弾強化
