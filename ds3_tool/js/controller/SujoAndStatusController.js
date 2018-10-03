@@ -143,7 +143,7 @@
             for (var i = 0, len = this._hituyotiDataItemList.length; i < len; i++) {
                 var sujoSyokitiDataItem = this._syokitiDataItemList.get(i);//　素性の初期値データアイテム
                 var sujoHituyotiDataItem = this._hituyotiDataItemList.get(i);// 素性の必要値データアイテム
-                var newHituyoLv = 0;
+                var newHituyoLv = sujoSyokitiDataItem.get('level');
                 $.each(STATUS_LIST, this.own(function (idx, statusName) {
                     var syokiti = sujoSyokitiDataItem.get(statusName);
                     var mokuhyoti = this._mokuhyotiDataItem.get(statusName);
