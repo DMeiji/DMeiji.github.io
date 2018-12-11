@@ -1,0 +1,37 @@
+<script type="text/ejs" id="SelectSkillDataRow">
+    <div class="select-skill-data-row" data-h5-bind="item">
+        <div class="data-cell skill-name-cell">
+            <select data-h5-bind="name" name="name" class="select-skill">
+                [% $.each(skillDataArray, function(idx, data) { %]
+                    <option value="[%= data.name %]">[%= data.kanaName %]</option>
+                [% }); %]
+            </select>
+        </div>
+        <div class="data-cell active-skill-name-cell">
+
+        </div>
+        <div class="data-cell melee-skill-lv-cell">
+            <input type="number" data-h5-bind="melee" name="melee" max=10 min=-10 class="input-lv-cell input-melee-skill-lv">
+        </div>
+        <div class="data-cell gun-skill-lv-cell">
+            <input type="number" data-h5-bind="gun" name="gun" max=10 min=-10 class="input-lv-cell input-gun-skill-lv">
+        </div>
+        <div class="data-cell shield-skill-lv-cell">
+            <input type="number" data-h5-bind="shield" name="shield" max=10 min=-10 class="input-lv-cell input-shield-skill-lv">
+        </div>
+        <div class="data-cell enhance-part-skill-lv-cell">
+            <input type="number" data-h5-bind="enhancePart" name="enhancePart" max=10 min=-10 class="input-lv-cell input-enhance-part-skill-lv">
+        </div>
+        <div class="data-cell controller-unit-skill-lv-cell">
+            <input type="number" data-h5-bind="controllerUnit" name="controllerUnit" max=10 min=-10 class="input-lv-cell input-controller-unit-skill-lv">
+        </div>
+        <div class="data-cell bikou-cell">
+            <textarea data-h5-bind="bikou" name="bikou" class="input-bikou-cell"></textarea>
+        </div>
+        <div class="data-cell delete-cell">
+            <button class="btn btn-danger btn-xs delete-skill-row-btn">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+</script>

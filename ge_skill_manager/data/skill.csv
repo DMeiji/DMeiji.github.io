@@ -1,0 +1,12 @@
+name,kanaName,max,min,plus,minus
+,***単体スキル***,,,,
+meleeAttackPower,近接攻撃力,10,-10,meleeAttackPower,
+uniqueMeleeAttackPower,近接特殊攻撃威力,10,-10,uniqueMeleeAttackPower,
+comboMaster,コンボマスター,10,-10,comboMaster,
+gunAttackPower,銃攻撃力,10,-10,gunAttackPower,
+athlete,アスリート,10,-10,athlete,
+saving,節約,10,-10,saving,
+burstMeleeAttackPower,【B】近接攻撃力,10,,burstMeleeAttackPower,
+,***複合スキル***,,,,
+infinity,インフィニティ,10,-10,athlete@saving,
+swordMaster,剣聖,10,,burstMeleeAttackPower@uniqueMeleeAttackPower@meleeAttackPower@comboMaster,

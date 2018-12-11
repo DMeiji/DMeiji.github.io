@@ -1,0 +1,268 @@
+html,body {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Meiryo;
+    font-size: 12px;
+}
+
+.background {
+    background-color: #fdfffc;
+}
+
+.root-container {
+    padding: 8px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* スキル選択リスト */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.select-skill-container {
+    margin-bottom: 10px;
+}
+
+.select-skill-list-wrapper {
+    display: flex;
+}
+
+.add-skill-row-btn-wrapper {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: flex-end;
+    padding: 0 4px;
+}
+
+.select-skill-list {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.select-skill-list > .skill-list-header-row {
+    display: flex;
+}
+
+.skill-list-header-row > .header-cell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-left: solid 1px;
+    padding: 2px 4px;
+    text-align: center;
+    background-color: #ddedf1;
+}
+
+.skill-list-header-row > .header-cell.skill-name-cell {
+    flex-basis: 200px;
+}
+
+.skill-list-header-row > .header-cell.active-skill-name-cell {
+    flex-basis: 180px;
+}
+
+.skill-list-header-row > .header-cell.melee-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.skill-list-header-row > .header-cell.gun-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.skill-list-header-row > .header-cell.shield-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.skill-list-header-row > .header-cell.enhance-part-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.skill-list-header-row > .header-cell.controller-unit-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.skill-list-header-row > .header-cell.bikou-cell {
+    flex-basis: 200px;
+}
+
+.skill-list-header-row > .header-cell.delete-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+}
+
+/* ＝＝＝＝＝ スキル選択リスト データ行 ＝＝＝＝＝*/
+.select-skill-data-row {
+    display: flex;
+}
+
+.select-skill-data-row > .data-cell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-bottom: solid 1px;
+    border-left: solid 1px;
+    text-align: center;
+    position: relative;
+}
+
+.select-skill-data-row > .data-cell.skill-name-cell {
+    flex-basis: 200px;
+    padding: 2px 10px;
+}
+
+.select-skill-data-row > .data-cell.active-skill-name-cell {
+    flex-basis: 180px;
+    text-align: left;
+    min-height: 32px;
+    padding: 2px 8px;
+}
+
+.select-skill-data-row .select-skill {
+    height: 22px;
+    width: 180px;
+    position: absolute;
+    left: calc(50% - 90px);
+    top: calc(50% - 12px);
+}
+
+.select-skill-data-row > .data-cell.melee-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.select-skill-data-row > .data-cell.gun-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.select-skill-data-row > .data-cell.shield-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.select-skill-data-row > .data-cell.enhance-part-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.select-skill-data-row > .data-cell.controller-unit-skill-lv-cell {
+    flex-basis: 60px;
+}
+
+.select-skill-data-row > .data-cell.bikou-cell {
+    flex-basis: 200px;
+}
+
+.select-skill-data-row > .data-cell.delete-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+    position: relative;
+}
+
+.select-skill-data-row .delete-skill-row-btn {
+    position: absolute;
+    left: calc(50% - 12px);
+    top: calc(50% - 11px);
+}
+
+.select-skill-data-row .input-lv-cell {
+    height: 22px;
+    width: 30px;
+    position: absolute;
+    left: calc(50% - 15px);
+    top: calc(50% - 11px);
+    text-align: center;
+}
+
+.select-skill-data-row .input-bikou-cell {
+    width: 180px;
+    height: 23px;
+    resize: none;
+    position: absolute;
+    left: calc(50% - 90px);
+    top: calc(50% - 11px);
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* 選択したスキル表 */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.selected-skill-container {
+    margin-left: 42px;
+}
+
+/* ＝＝＝＝＝ ヘッダ行 ＝＝＝＝＝ */
+.selected-skill-header-row {
+    display: flex;
+}
+
+.selected-skill-header-row > .header-cell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    padding: 2px 4px;
+    text-align: center;
+    background-color: #ddedf1;
+}
+
+.selected-skill-header-row > .skill-name-cell {
+    flex-basis: 140px;
+    border-left: solid 1px;
+}
+
+.selected-skill-header-row > .skill-lv-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+    margin-right: 8px;
+}
+
+.selected-skill-header-row > .active-skill-name-cell {
+    flex-basis: 140px;
+    border-left: solid 1px;
+}
+
+.selected-skill-header-row > .active-skill-lv-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+}
+
+/* ＝＝＝＝＝ データ行 ＝＝＝＝＝ */
+.selected-skill-data-row {
+    display: flex;
+}
+
+.selected-skill-data-row > .data-cell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-bottom: solid 1px;
+    padding: 2px 8px;
+    text-align: center;
+    min-height: 30px;
+}
+
+.selected-skill-data-row > .skill-name-cell {
+    flex-basis: 140px;
+    border-left: solid 1px;
+    text-align: left;
+}
+
+.selected-skill-data-row > .skill-lv-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+    margin-right: 8px;
+}
+
+.selected-skill-data-row > .active-skill-name-cell {
+    flex-basis: 140px;
+    border-left: solid 1px;
+    text-align: left;
+}
+
+.selected-skill-data-row > .active-skill-lv-cell {
+    flex-basis: 60px;
+    border-right: solid 1px;
+}
