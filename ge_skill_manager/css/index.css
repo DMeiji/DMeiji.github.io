@@ -1,5 +1,5 @@
 html,body {
-    box-sizing: content-box;
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -15,9 +15,10 @@ body {
 }
 
 .root-container {
-    padding: 4px 0;
+    padding: 4px;
 }
 
+/* input[type=number]のスピンボタンを非表示 */
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
@@ -26,38 +27,19 @@ input[type="number"]::-webkit-inner-spin-button {
 /* スキル選択リスト */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .select-skill-container {
-    margin-bottom: 10px;
-}
-
-.select-skill-list-wrapper {
-    display: flex;
-}
-
-.add-skill-row-btn-wrapper {
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
-    align-self: flex-end;
-    padding-right: 4px;
-}
-
-.select-skill-list {
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
+    margin-bottom: 6px;
 }
 
 /* ＝＝＝＝＝ スキル選択リスト ヘッダ行 ＝＝＝＝＝*/
 .select-skill-list > .skill-list-header-row {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .skill-list-header-row > .header-cell {
-    flex-grow: 0;
-    flex-shrink: 0;
-    border-top: solid 1px;
-    border-bottom: solid 1px;
-    border-left: solid 1px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    border: solid 1px;
     padding: 2px 4px;
     text-align: center;
     background-color: #ddedf1;
@@ -106,19 +88,20 @@ input[type="number"]::-webkit-inner-spin-button {
 /* 削除 */
 .skill-list-header-row > .header-cell.delete-cell {
     flex-basis: 44px;
-    border-right: solid 1px;
 }
 
 /* ＝＝＝＝＝ スキル選択リスト データ行 ＝＝＝＝＝*/
 .select-skill-data-row {
     display: flex;
+    flex-wrap: wrap;
+    margin-top: 6px;
 }
 
 .select-skill-data-row > .data-cell {
-    flex-grow: 0;
-    flex-shrink: 0;
-    border-bottom: solid 1px;
-    border-left: solid 1px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    border: groove 1px;
+    min-height: 32px;
     text-align: center;
     position: relative;
 }
@@ -140,7 +123,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .select-skill-data-row > .data-cell.active-skill-name-cell {
     flex-basis: 154px;
     text-align: left;
-    min-height: 32px;
     padding: 2px 8px;
 }
 
@@ -172,22 +154,21 @@ input[type="number"]::-webkit-inner-spin-button {
 /* 備考 */
 .select-skill-data-row > .data-cell.bikou-cell {
     flex-basis: 160px;
+    padding: 0 4px;
 }
 
 .select-skill-data-row .input-bikou-cell {
-    width: 140px;
+    width: calc(100% - 8px);
     height: 23px;
     resize: none;
     position: absolute;
-    left: calc(50% - 70px);
+    left: 4px;
     top: calc(50% - 11px);
 }
 
 /* 削除 */
 .select-skill-data-row > .data-cell.delete-cell {
     flex-basis: 44px;
-    border-right: solid 1px;
-    position: relative;
 }
 
 .select-skill-data-row .delete-skill-row-btn {
@@ -207,10 +188,19 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* スキル選択行追加ボタン */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.add-skill-row-btn-wrapper {
+    margin-top: 6px;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* 選択したスキル表 */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.selected-skill-container {
-    margin-left: 38px;
+
+/* 行の背景色を変更 */
+.select-skill-data-row:nth-child(2n+1) {
+    background-color: #f6f3fe;
 }
 
 /* ＝＝＝＝＝ ヘッダ行 ＝＝＝＝＝ */
