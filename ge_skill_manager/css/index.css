@@ -15,7 +15,7 @@ body {
 }
 
 .root-container {
-    padding: 8px;
+    padding: 4px 0;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -38,7 +38,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-grow: 0;
     flex-shrink: 0;
     align-self: flex-end;
-    padding: 0 4px;
+    padding-right: 4px;
 }
 
 .select-skill-list {
@@ -47,6 +47,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-shrink: 1;
 }
 
+/* ＝＝＝＝＝ スキル選択リスト ヘッダ行 ＝＝＝＝＝*/
 .select-skill-list > .skill-list-header-row {
     display: flex;
 }
@@ -62,40 +63,49 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #ddedf1;
 }
 
+/* スキル */
 .skill-list-header-row > .header-cell.skill-name-cell {
-    flex-basis: 200px;
+    flex-basis: 154px;
 }
 
+/* 発動スキル */
 .skill-list-header-row > .header-cell.active-skill-name-cell {
-    flex-basis: 180px;
+    flex-basis: 154px;
 }
 
+/* 近接 */
 .skill-list-header-row > .header-cell.melee-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 銃 */
 .skill-list-header-row > .header-cell.gun-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 盾 */
 .skill-list-header-row > .header-cell.shield-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 強化パーツ */
 .skill-list-header-row > .header-cell.enhance-part-skill-lv-cell {
     flex-basis: 60px;
 }
 
+/* 制御ユニット */
 .skill-list-header-row > .header-cell.controller-unit-skill-lv-cell {
     flex-basis: 60px;
 }
 
+/* 備考 */
 .skill-list-header-row > .header-cell.bikou-cell {
-    flex-basis: 200px;
+    flex-basis: 160px;
 }
 
+/* 削除 */
 .skill-list-header-row > .header-cell.delete-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
     border-right: solid 1px;
 }
 
@@ -113,52 +123,69 @@ input[type="number"]::-webkit-inner-spin-button {
     position: relative;
 }
 
+/* スキル */
 .select-skill-data-row > .data-cell.skill-name-cell {
-    flex-basis: 200px;
-    padding: 2px 10px;
+    flex-basis: 154px;
 }
 
+.select-skill-data-row .select-skill {
+    height: 22px;
+    width: 144px;
+    position: absolute;
+    left: calc(50% - 72px);
+    top: calc(50% - 12px);
+}
+
+/* 発動スキル */
 .select-skill-data-row > .data-cell.active-skill-name-cell {
-    flex-basis: 180px;
+    flex-basis: 154px;
     text-align: left;
     min-height: 32px;
     padding: 2px 8px;
 }
 
-.select-skill-data-row .select-skill {
-    height: 22px;
-    width: 180px;
-    position: absolute;
-    left: calc(50% - 90px);
-    top: calc(50% - 12px);
-}
-
+/* 近接 */
 .select-skill-data-row > .data-cell.melee-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 銃 */
 .select-skill-data-row > .data-cell.gun-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 盾 */
 .select-skill-data-row > .data-cell.shield-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
 }
 
+/* 強化パーツ */
 .select-skill-data-row > .data-cell.enhance-part-skill-lv-cell {
     flex-basis: 60px;
 }
 
+/* 制御ユニット */
 .select-skill-data-row > .data-cell.controller-unit-skill-lv-cell {
     flex-basis: 60px;
 }
 
+/* 備考 */
 .select-skill-data-row > .data-cell.bikou-cell {
-    flex-basis: 200px;
+    flex-basis: 160px;
 }
 
+.select-skill-data-row .input-bikou-cell {
+    width: 140px;
+    height: 23px;
+    resize: none;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: calc(50% - 11px);
+}
+
+/* 削除 */
 .select-skill-data-row > .data-cell.delete-cell {
-    flex-basis: 60px;
+    flex-basis: 44px;
     border-right: solid 1px;
     position: relative;
 }
@@ -169,6 +196,7 @@ input[type="number"]::-webkit-inner-spin-button {
     top: calc(50% - 11px);
 }
 
+/* 近接/銃/盾/強化パーツ/制御ユニットの入力要素 */
 .select-skill-data-row .input-lv-cell {
     height: 22px;
     width: 30px;
@@ -178,20 +206,11 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.select-skill-data-row .input-bikou-cell {
-    width: 180px;
-    height: 23px;
-    resize: none;
-    position: absolute;
-    left: calc(50% - 90px);
-    top: calc(50% - 11px);
-}
-
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* 選択したスキル表 */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .selected-skill-container {
-    margin-left: 42px;
+    margin-left: 38px;
 }
 
 /* ＝＝＝＝＝ ヘッダ行 ＝＝＝＝＝ */
@@ -209,25 +228,31 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #ddedf1;
 }
 
+/* スキル */
 .selected-skill-header-row > .skill-name-cell {
     flex-basis: 140px;
     border-left: solid 1px;
 }
 
+/* スキルLv */
 .selected-skill-header-row > .skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 30px;
     border-right: solid 1px;
+    padding-left: 0;
     margin-right: 8px;
 }
 
+/* 発動スキル */
 .selected-skill-header-row > .active-skill-name-cell {
     flex-basis: 140px;
     border-left: solid 1px;
 }
 
+/* 発動スキルLv */
 .selected-skill-header-row > .active-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 30px;
     border-right: solid 1px;
+    padding-left: 0;
 }
 
 /* ＝＝＝＝＝ データ行 ＝＝＝＝＝ */
@@ -244,25 +269,31 @@ input[type="number"]::-webkit-inner-spin-button {
     min-height: 30px;
 }
 
+/* スキル */
 .selected-skill-data-row > .skill-name-cell {
     flex-basis: 140px;
     border-left: solid 1px;
     text-align: left;
 }
 
+/* スキルLv */
 .selected-skill-data-row > .skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 30px;
     border-right: solid 1px;
+    padding-left: 0;
     margin-right: 8px;
 }
 
+/* 発動スキル */
 .selected-skill-data-row > .active-skill-name-cell {
     flex-basis: 140px;
     border-left: solid 1px;
     text-align: left;
 }
 
+/* 発動スキルLv */
 .selected-skill-data-row > .active-skill-lv-cell {
-    flex-basis: 60px;
+    flex-basis: 30px;
     border-right: solid 1px;
+    padding-left: 0;
 }
