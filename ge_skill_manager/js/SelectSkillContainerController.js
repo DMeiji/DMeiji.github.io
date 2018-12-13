@@ -2,7 +2,7 @@
     'use strict';
 
     var manager = h5.core.data.createManager('GESkillManager');
-    var model = manager.createModel({
+    var skillModel = manager.createModel({
         name: 'GESkillModel',
         schema: {
             id: {
@@ -15,6 +15,19 @@
             enhancePart: null,
             controllerUnit: null,
             bikou: null
+        }
+    });
+    var countModel = manager.createModel({
+        name: 'GECountModel',
+        schema: {
+            id: {
+                id: true
+            },
+            countMelee: null,
+            countGun: null,
+            countShield: null,
+            countEnhancePart: null,
+            countControllerUnit: null
         }
     });
 
@@ -32,6 +45,8 @@
         _skillDataItems: [],
         _skillDataItemSeq: 0,
 
+        _countItem: null,
+
         /**
          * 初期設定
          * 
@@ -43,6 +58,18 @@
 
             this._skillDataArray = skillDataArray;
             this._skillDataMap = skillDataMap;
+
+            this._countItem = countModel.create({
+                id: 'CountItem',
+                countMelee: 0,
+                countGun: 0,
+                countShield: 0,
+                countEnhancePart: 0,
+                countControllerUnit: 0
+            });
+            this.view.bind('.count-data-row', {
+                countItem: this._countItem
+            });
 
             this._appendSelectSkillRow();
         },
@@ -69,7 +96,7 @@
          * スキルデータアイテムを生成して返す
          */
         _createSkillDataItem: function () {
-            var item = model.create({
+            var item = skillModel.create({
                 id: 'SkillDataItem' + this._skillDataItemSeq,
                 name: null
             });
@@ -106,6 +133,8 @@
             this._skillDataItems.splice(rowIdx, 1);// 削除対象のスキル行にバインドしたデータアイテムを除去
 
             $skillRow.remove();//　削除太陽のスキル行要素を削除
+
+            this._updateSkillCount();
         },
 
         /**
@@ -169,10 +198,48 @@
         _updateDataItem: function (rowIdx, propName, val) {
             var item = this._skillDataItems[rowIdx];
             item.set(propName, val);
+
+            this._updateSkillCount();
+
             this.trigger('updateSkillDataItem', {
                 skillDataItems: this._skillDataItems
             });
         },
+
+        /**
+         * スキルカウントを更新
+         */
+        _updateSkillCount: function () {
+            var newData = {
+                countMelee: 0,
+                countGun: 0,
+                countShield: 0,
+                countEnhancePart: 0,
+                countControllerUnit: 0
+            };
+            $.each(this._skillDataItems, function (idx, skillDataItem) {
+                var item = skillDataItem.get();
+                if (item.name === '' || item.name == null) {
+                    // ラベル選択肢であれば計算対象外とみなす
+                    return;
+                }
+
+                var calcCount = function (valStr) {
+                    var val = parseInt(valStr);
+                    return isNaN(val) ? 0 : (val < 0) ? 0 : 1;
+                }
+
+                newData.countMelee += calcCount(item.melee);
+                newData.countGun += calcCount(item.gun);
+                newData.countShield += calcCount(item.shield);
+                newData.countEnhancePart += calcCount(item.enhancePart);
+                newData.countControllerUnit += calcCount(item.controllerUnit);
+            });
+            $.each(newData, this.own(function (key, val) {
+                this._countItem.set(key, val);
+            }));
+        },
+
 
         _updateActiveSkillBySkillName: function ($skillRow, skillName) {
             var $activeSkillNameCell = $skillRow.find('.active-skill-name-cell');
@@ -215,7 +282,7 @@
             });
             window.URL = window.URL || window.webkitURL;
 
-            var downloadBtnHTML = '<button class="btn btn-default btn-sm download-btn">';
+            var downloadBtnHTML = '<button class="btn btn-default btn-xs download-btn">';
             downloadBtnHTML += '<a id="download-link" href="#" target="_blank" download="GE_Skill.json">Download</a>';
             downloadBtnHTML += '</button>';
             var $btn = $(downloadBtnHTML);
@@ -232,7 +299,7 @@
             this.$find('.input-file').click();
         },
 
-        '.input-file change': function (context) {
+        '.input-file change': function (context, $el) {
             var file = context.event.target.files[0];
             var reader = new FileReader();
 
@@ -274,6 +341,10 @@
                 this.trigger('updateSkillDataItem', {
                     skillDataItems: this._skillDataItems
                 });
+
+                this._updateSkillCount();
+
+                $el.val(null);// 同一ファイルを読み込めるよう、要素の値を初期化
             });
 
             reader.readAsText(file);

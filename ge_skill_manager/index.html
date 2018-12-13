@@ -51,17 +51,38 @@
                         <div class="header-cell delete-cell">削除</div>
                     </div>
                 </div>
-                <div class="add-skill-row-btn-wrapper">
-                    <button class="btn btn-primary btn-sm add-skill-row-btn">
+
+                <div class="part-skill-count-container">
+                    <div class="count-table-label">スキル数</div>
+                    <div class="count-table-wrapepr">
+                        <div class="count-header-row">
+                            <div class="count-header-cell">近接</div>
+                            <div class="count-header-cell">銃</div>
+                            <div class="count-header-cell">盾</div>
+                            <div class="count-header-cell">強化ﾊﾟｰﾂ</div>
+                            <div class="count-header-cell">制御ﾕﾆｯﾄ</div>
+                        </div>
+                        <div data-h5-context="countItem" class="count-data-row">
+                            <div data-h5-bind="countMelee" class="count-data-cell count-melee-cell"></div>
+                            <div data-h5-bind="countGun" class="count-data-cell count-gun-cell"></div>
+                            <div data-h5-bind="countShield" class="count-data-cell count-shield-cell"></div>
+                            <div data-h5-bind="countEnhancePart" class="count-data-cell count-enhance-part-cell"></div>
+                            <div data-h5-bind="countControllerUnit" class="count-data-cell count-controller-unit-cell"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-row-wrapper">
+                    <button class="btn btn-primary btn-xs add-skill-row-btn">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                     
-                    <button class="btn btn-success btn-sm create-file-btn">
+                    <button class="btn btn-success btn-xs create-file-btn">
                         DLファイル生成
                     </button>
                     
                     <input type="file" class="input-file hidden">
-                    <button class="btn btn-success btn-sm import-btn">
+                    <button class="btn btn-success btn-xs import-btn">
                         ファイル読込
                     </button>
                 </div>

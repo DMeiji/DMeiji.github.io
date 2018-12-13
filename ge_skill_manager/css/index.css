@@ -190,7 +190,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* スキル選択行追加ボタン */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.add-skill-row-btn-wrapper {
+.btn-row-wrapper {
     margin-top: 6px;
 }
 
@@ -199,6 +199,46 @@ input[type="number"]::-webkit-inner-spin-button {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .download-btn {
     margin-left: 4px;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* スキルカウント表 */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.part-skill-count-container {
+    display: flex;
+    margin-top: 6px;
+}
+
+.count-table-label {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 4px;
+    align-self: flex-end;
+}
+
+.count-table-wrapepr {
+    text-align: center;
+}
+
+.count-table-wrapper {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.count-header-cell {
+    display: inline-block;
+    width: 50px;
+    background-color: #ddedf1;
+}
+
+.count-data-cell {
+    display: inline-block;
+    width: 50px;
+    border-right: solid 1px #dfdfdf;
+    border-bottom: solid 1px #dfdfdf;
+    border-left: solid 1px #dfdfdf;
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
