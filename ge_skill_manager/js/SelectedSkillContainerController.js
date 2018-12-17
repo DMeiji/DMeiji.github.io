@@ -38,9 +38,10 @@
             var skillMap = {};
             var activeSkillMap = {};
 
-            $.each(skillDataItems, this.own(function (idx, item) {
-                var skillName = item.get('name');
-                if (skillName == null ||skillName === '') {
+            $.each(skillDataItems, this.own(function (idx, skillDataItem) {
+                var item = skillDataItem.get();
+                var skillName = item.name;
+                if (skillName == null || skillName === '') {
                     // nameがnullまたは空文字列の場合（＝スキル未選択orラベル選択肢を選択）は無視する
                     return;
                 }
@@ -99,12 +100,10 @@
                 var result = parseInt(strVal);
                 return isNaN(result) ? 0 : result;
             }
-            var melee = parseNum(item.get('melee'));
-            var gun = parseNum(item.get('gun'));
-            var shield = parseNum(item.get('shield'));
-            var enhanceParts = parseNum(item.get('enhancePart'));
-            var controllerUnit = parseNum(item.get('controllerUnit'));
-            return melee + gun + shield + enhanceParts + controllerUnit;
+            var melee = item.canSetMelee ? parseNum(item.melee) : 0;
+            var gun = item.canSetGun ? parseNum(item.gun) : 0;
+            var shield = item.canSetShield ? parseNum(item.shield) : 0;
+            return melee + gun + shield;
         },
 
         _getActiveSkillNames: function (skillName) {

@@ -12,8 +12,9 @@
             melee: null,
             gun: null,
             shield: null,
-            enhancePart: null,
-            controllerUnit: null,
+            canSetMelee: null,
+            canSetGun: null,
+            canSetShield: null,
             bikou: null
         }
     });
@@ -25,9 +26,7 @@
             },
             countMelee: null,
             countGun: null,
-            countShield: null,
-            countEnhancePart: null,
-            countControllerUnit: null
+            countShield: null
         }
     });
 
@@ -63,9 +62,7 @@
                 id: 'CountItem',
                 countMelee: 0,
                 countGun: 0,
-                countShield: 0,
-                countEnhancePart: 0,
-                countControllerUnit: 0
+                countShield: 0
             });
             this.view.bind('.count-data-row', {
                 countItem: this._countItem
@@ -111,6 +108,8 @@
          */
         '.add-skill-row-btn click': function (context, $el) {
             this._appendSelectSkillRow();
+
+            this._updateDownloadLink();// DLリンクのhref属性を更新
         },
 
         /**
@@ -126,13 +125,15 @@
             this.trigger('updateSkillDataItem', {
                 skillDataItems: this._skillDataItems
             });
+
+            this._updateDownloadLink();// DLリンクのhref属性を更新
         },
 
         _deleteSkillRow: function ($skillRow) {
             var rowIdx = this._getSkillRowIndex($skillRow);//　削除対象のスキル行のindex
             this._skillDataItems.splice(rowIdx, 1);// 削除対象のスキル行にバインドしたデータアイテムを除去
 
-            $skillRow.remove();//　削除太陽のスキル行要素を削除
+            $skillRow.remove();//　削除対象のスキル行要素を削除
 
             this._updateSkillCount();
         },
@@ -165,6 +166,7 @@
             var propName = $el[0].name;
             var val = $el.val();
             this._updateDataItem(rowIdx, propName, val);
+            this._updateDownloadLink();// DLリンクのhref属性を更新
         },
 
         /**
@@ -184,8 +186,33 @@
             // スキル詳細を更新
             this._updateActiveSkillBySkillName($skillRow, val);
 
+            // スキルLv項目の更新
+            this._updateSkillLvItemsBySkillName($skillRow, val);
+
             // データアイテムを更新し、スキル合計表更新イベントを発火
             this._updateDataItem(rowIdx, propName, val);
+
+            this._updateDownloadLink();// DLリンクのhref属性を更新
+        },
+
+        _updateSkillLvItemsBySkillName: function ($skillRow, skillName) {
+            var $meleeLv = $skillRow.find('.input-melee-skill-lv');
+            var $gunLv = $skillRow.find('.input-gun-skill-lv');
+            var $shiledLv = $skillRow.find('.input-shield-skill-lv');
+
+            if (skillName === '') {
+                $meleeLv.prop('disabled', false);
+                $gunLv.prop('disabled', false);
+                $shiledLv.prop('disabled', false);
+                return;
+            }
+            var skillData = this._skillDataMap[skillName];
+            // 近接Lv項目の活性/非活性切り替え
+            $meleeLv.prop('disabled', !skillData.canSetMelee);
+            // 銃Lv項目の活性/非活性切り替え
+            $gunLv.prop('disabled', !skillData.canSetGun);
+            // 盾Lv項目の活性/非活性切り替え
+            $shiledLv.prop('disabled', !skillData.canSetShield);
         },
 
         /**
@@ -198,6 +225,13 @@
         _updateDataItem: function (rowIdx, propName, val) {
             var item = this._skillDataItems[rowIdx];
             item.set(propName, val);
+
+            if (propName === 'name') {
+                var skillData = this._skillDataMap[val];
+                item.set('canSetMelee', skillData.canSetMelee);
+                item.set('canSetGun', skillData.canSetGun);
+                item.set('canSetShield', skillData.canSetShield);
+            }
 
             this._updateSkillCount();
 
@@ -214,8 +248,6 @@
                 countMelee: 0,
                 countGun: 0,
                 countShield: 0,
-                countEnhancePart: 0,
-                countControllerUnit: 0
             };
             $.each(this._skillDataItems, function (idx, skillDataItem) {
                 var item = skillDataItem.get();
@@ -224,16 +256,17 @@
                     return;
                 }
 
-                var calcCount = function (valStr) {
+                var calcCount = function (valStr, canSet) {
+                    if (!canSet) {
+                        return 0;
+                    }
                     var val = parseInt(valStr);
                     return isNaN(val) ? 0 : (val < 0) ? 0 : 1;
                 }
 
-                newData.countMelee += calcCount(item.melee);
-                newData.countGun += calcCount(item.gun);
-                newData.countShield += calcCount(item.shield);
-                newData.countEnhancePart += calcCount(item.enhancePart);
-                newData.countControllerUnit += calcCount(item.controllerUnit);
+                newData.countMelee += calcCount(item.melee, item.canSetMelee);
+                newData.countGun += calcCount(item.gun, item.canSetGun);
+                newData.countShield += calcCount(item.shield, item.canSetShield);
             });
             $.each(newData, this.own(function (key, val) {
                 this._countItem.set(key, val);
@@ -270,9 +303,7 @@
             $activeSkillNameCell.append(resultStr);
         },
 
-        '.create-file-btn click': function (context, $el) {
-            this.$find('.download-btn').remove();// 既にダウンロードボタンが存在する場合は除去
-
+        _updateDownloadLink: function () {
             var skillDataArray = $.map(this._skillDataItems, function (skillDataItem) {
                 return skillDataItem.get();
             });
@@ -281,17 +312,8 @@
                 type: 'text/json'
             });
             window.URL = window.URL || window.webkitURL;
-
-            var downloadBtnHTML = '<button class="btn btn-default btn-xs download-btn">';
-            downloadBtnHTML += '<a id="download-link" href="#" target="_blank" download="GE_Skill.json">Download</a>';
-            downloadBtnHTML += '</button>';
-            var $btn = $(downloadBtnHTML);
-            $btn.find('a').attr('href', window.URL.createObjectURL(blob));
-            $el.after($btn);
-        },
-
-        '#download-link click': function (context, $el) {
-            $el.parent('.download-btn').remove();// ダウンロードリンクが押されたら、ダウンロードボタンを除去
+            var $link = this.$find('#export-link');
+            $link.attr('href', window.URL.createObjectURL(blob));
         },
 
         '.import-btn click': function () {
@@ -308,24 +330,28 @@
 
                 this._deleteAllSkillRow();// スキル行を全削除
                 $.each(dataArray, this.own(function (idx, data) {
+                    if (data.name == null || data.name === '') {
+                        // nameがnull(＝ラベル選択肢を保存したケース)の場合、行は追加しない
+                        return;
+                    }
                     this._appendSelectSkillRow();
-                    var $row = this.$find('.select-skill-data-row').eq(idx);
-                    var item = this._skillDataItems[idx];
+                    var $row = this.$find('.select-skill-data-row').eq(this._skillDataItemSeq - 1);
+                    var item = this._skillDataItems[this._skillDataItemSeq - 1];
                     var name = data.name;
                     var melee = data.melee;
                     var gun = data.gun;
                     var shield = data.shield;
-                    var enhancePart = data.enhancePart;
-                    var controllerUnit = data.controllerUnit;
                     var bikou = data.bikou;
+                    var canSetMelee = data.canSetMelee;
+                    var canSetGun = data.canSetGun;
+                    var canSetShield = data.canSetShield;
 
                     $row.find('.select-skill').val(name);
-                    $row.find('.input-melee-skill-lv').val(melee);
-                    $row.find('.input-gun-skill-lv').val(gun);
-                    $row.find('.input-shield-skill-lv').val(shield);
-                    $row.find('.input-enhance-part-skill-lv').val(enhancePart);
-                    $row.find('.input-controller-unit-skill-lv').val(controllerUnit);
+                    $row.find('.input-melee-skill-lv').val(melee).prop('disabled', !canSetMelee);
+                    $row.find('.input-gun-skill-lv').val(gun).prop('disabled', !canSetGun);
+                    $row.find('.input-shield-skill-lv').val(shield).prop('disabled', !canSetShield);
                     $row.find('.input-bikou-skill-lv').val(bikou);
+                    $row.find('')
 
                     this._updateActiveSkillBySkillName($row, name);
 
@@ -333,9 +359,10 @@
                     item.set('melee', melee);
                     item.set('gun', gun);
                     item.set('shield', shield);
-                    item.set('enhancePart', enhancePart);
-                    item.set('controllerUnit', controllerUnit);
                     item.set('bikou', bikou);
+                    item.set('canSetMelee', canSetMelee);
+                    item.set('canSetGun', canSetGun);
+                    item.set('canSetShield', canSetShield);
                 }));
 
                 this.trigger('updateSkillDataItem', {
@@ -345,6 +372,8 @@
                 this._updateSkillCount();
 
                 $el.val(null);// 同一ファイルを読み込めるよう、要素の値を初期化
+
+                this._updateDownloadLink();// DLリンクのhref属性を更新
             });
 
             reader.readAsText(file);
@@ -356,6 +385,7 @@
                 var $row = $(rowElem);
                 this._deleteSkillRow($row);
             }));
+            this._skillDataItemSeq = 0;
             this.trigger('updateSkillDataItem', {
                 skillDataItems: this._skillDataItems
             });

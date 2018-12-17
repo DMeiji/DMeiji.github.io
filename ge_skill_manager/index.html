@@ -45,8 +45,6 @@
                         <div class="header-cell melee-skill-lv-cell">近接</div>
                         <div class="header-cell gun-skill-lv-cell">銃</div>
                         <div class="header-cell shield-skill-lv-cell">盾</div>
-                        <div class="header-cell enhance-part-skill-lv-cell">強化ﾊﾟｰﾂ</div>
-                        <div class="header-cell controller-unit-skill-lv-cell">制御ﾕﾆｯﾄ</div>
                         <div class="header-cell bikou-cell">備考</div>
                         <div class="header-cell delete-cell">削除</div>
                     </div>
@@ -59,15 +57,11 @@
                             <div class="count-header-cell">近接</div>
                             <div class="count-header-cell">銃</div>
                             <div class="count-header-cell">盾</div>
-                            <div class="count-header-cell">強化ﾊﾟｰﾂ</div>
-                            <div class="count-header-cell">制御ﾕﾆｯﾄ</div>
                         </div>
                         <div data-h5-context="countItem" class="count-data-row">
                             <div data-h5-bind="countMelee" class="count-data-cell count-melee-cell"></div>
                             <div data-h5-bind="countGun" class="count-data-cell count-gun-cell"></div>
                             <div data-h5-bind="countShield" class="count-data-cell count-shield-cell"></div>
-                            <div data-h5-bind="countEnhancePart" class="count-data-cell count-enhance-part-cell"></div>
-                            <div data-h5-bind="countControllerUnit" class="count-data-cell count-controller-unit-cell"></div>
                         </div>
                     </div>
                 </div>
@@ -77,14 +71,12 @@
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                     
-                    <button class="btn btn-success btn-xs create-file-btn">
-                        DLファイル生成
+                    <button class="btn btn-success btn-xs export-btn">
+                        <a id="export-link" href="#" target="_blank" download="GE_Skill.json">エクスポート</a>
                     </button>
                     
                     <input type="file" class="input-file hidden">
-                    <button class="btn btn-success btn-xs import-btn">
-                        ファイル読込
-                    </button>
+                    <button class="btn btn-success btn-xs import-btn">インポート</button>
                 </div>
             </div>
 

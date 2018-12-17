@@ -30,15 +30,16 @@
                 var dataAry = dataStr.split(',');
 
                 var name = dataAry[0];
-                var minus = dataAry[5];
-                minus = minus.charCodeAt() === 13 ? '' : minus;
                 result[name] = {
                     name: name,
                     kanaName: dataAry[1],
                     max: dataAry[2],
                     min: dataAry[3],
                     plus: dataAry[4],
-                    minus: minus
+                    minus: dataAry[5],
+                    canSetMelee: dataAry[6] === '1',
+                    canSetGun: dataAry[7] === '1',
+                    canSetShield: dataAry[8][0] === '1'
                 };
             });
 
