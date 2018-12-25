@@ -170,6 +170,20 @@
         },
 
         /**
+         * 備考のchangeハンドラ
+         * <p>
+         * データアイテムを更新
+         */
+        '.input-bikou-cell change': function (context, $el) {
+            var $skillRow = this._getSkillRowElem($el);
+            var rowIdx = this._getSkillRowIndex($skillRow);
+            var propName = $el[0].name;
+            var val = $el.val();
+            this._updateDataItem(rowIdx, propName, val);
+            this._updateDownloadLink();// DLリンクのhref属性を更新
+        },
+
+        /**
          * スキル選択要素のchangeハンドラ
          * <p>
          * データアイテムを更新し、スキル合計表更新イベントを発火
@@ -184,7 +198,7 @@
             var val = $el.val();
 
             // スキル詳細を更新
-            this._updateActiveSkillBySkillName($skillRow, val);
+            // this._updateActiveSkillBySkillName($skillRow, val);
 
             // スキルLv項目の更新
             this._updateSkillLvItemsBySkillName($skillRow, val);
@@ -274,34 +288,34 @@
         },
 
 
-        _updateActiveSkillBySkillName: function ($skillRow, skillName) {
-            var $activeSkillNameCell = $skillRow.find('.active-skill-name-cell');
-            if (skillName === '') {
-                // ラベル選択肢を指定した場合は、発動スキル表示要素を空にして処理を抜ける
-                $activeSkillNameCell.empty();
-                return;
-            }
-
-            var skillData = this._skillDataMap[skillName];
-
-            var plusSkills = skillData.plus;
-            plusSkills = plusSkills.split('@');
-            var minusSkills = skillData.minus;
-            minusSkills = minusSkills === '' ? [] : minusSkills.split('@');
-
-            var resultStr = '';
-            $.each(plusSkills, this.own(function (idx, plusSkill) {
-                var skillKanaName = this._skillDataMap[plusSkill].kanaName;
-                resultStr += '<div> + ' + skillKanaName + '</div>';
-            }));
-            $.each(minusSkills, this.own(function (idx, minusSkill) {
-                var skillKanaName = this._skillDataMap[minusSkill].kanaName;
-                resultStr += '<div> - ' + skillKanaName + '</div>';
-            }));
-
-            $activeSkillNameCell.empty();
-            $activeSkillNameCell.append(resultStr);
-        },
+        // _updateActiveSkillBySkillName: function ($skillRow, skillName) {
+        //     var $activeSkillNameCell = $skillRow.find('.active-skill-name-cell');
+        //     if (skillName === '') {
+        //         // ラベル選択肢を指定した場合は、発動スキル表示要素を空にして処理を抜ける
+        //         $activeSkillNameCell.empty();
+        //         return;
+        //     }
+        // 
+        //     var skillData = this._skillDataMap[skillName];
+        // 
+        //     var plusSkills = skillData.plus;
+        //     plusSkills = plusSkills.split('@');
+        //     var minusSkills = skillData.minus;
+        //     minusSkills = minusSkills === '' ? [] : minusSkills.split('@');
+        // 
+        //     var resultStr = '';
+        //     $.each(plusSkills, this.own(function (idx, plusSkill) {
+        //         var skillKanaName = this._skillDataMap[plusSkill].kanaName;
+        //         resultStr += '<div> + ' + skillKanaName + '</div>';
+        //     }));
+        //     $.each(minusSkills, this.own(function (idx, minusSkill) {
+        //         var skillKanaName = this._skillDataMap[minusSkill].kanaName;
+        //         resultStr += '<div> - ' + skillKanaName + '</div>';
+        //     }));
+        // 
+        //     $activeSkillNameCell.empty();
+        //     $activeSkillNameCell.append(resultStr);
+        // },
 
         _updateDownloadLink: function () {
             var skillDataArray = $.map(this._skillDataItems, function (skillDataItem) {
@@ -350,10 +364,9 @@
                     $row.find('.input-melee-skill-lv').val(melee).prop('disabled', !canSetMelee);
                     $row.find('.input-gun-skill-lv').val(gun).prop('disabled', !canSetGun);
                     $row.find('.input-shield-skill-lv').val(shield).prop('disabled', !canSetShield);
-                    $row.find('.input-bikou-skill-lv').val(bikou);
-                    $row.find('')
+                    $row.find('.input-bikou-cell').text(bikou);
 
-                    this._updateActiveSkillBySkillName($row, name);
+                    // this._updateActiveSkillBySkillName($row, name);
 
                     item.set('name', name);
                     item.set('melee', melee);

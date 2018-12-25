@@ -12,8 +12,8 @@
 
         _$skillNameCell: null,
         _$skillLvCell: null,
-        _$activeSkillNameCell: null,
-        _$activeSkillLvCell: null,
+        // _$activeSkillNameCell: null,
+        // _$activeSkillLvCell: null,
 
         /**
          * 初期化
@@ -25,8 +25,8 @@
 
             this._$skillNameCell = this.$find('.selected-skill-data-row > .skill-name-cell');
             this._$skillLvCell = this.$find('.selected-skill-data-row > .skill-lv-cell');
-            this._$activeSkillNameCell = this.$find('.selected-skill-data-row > .active-skill-name-cell');
-            this._$activeSkillLvCell = this.$find('.selected-skill-data-row > .active-skill-lv-cell');
+            // this._$activeSkillNameCell = this.$find('.selected-skill-data-row > .active-skill-name-cell');
+            // this._$activeSkillLvCell = this.$find('.selected-skill-data-row > .active-skill-lv-cell');
         },
 
         /**
@@ -82,17 +82,17 @@
             this._$skillNameCell.append(resultSkillNm);
             this._$skillLvCell.append(resultSkillLv);
 
-            var resultActiveSkillNm = '';
-            var resultActiveSkillLv = '';
-            $.each(activeSkillMap, this.own(function (activeSkillNm, activeSkillLv) {
-                var activeSkillKanaName = this._skillDataMap[activeSkillNm].kanaName;
-                resultActiveSkillNm += '<div>' + activeSkillKanaName + '</div>';
-                resultActiveSkillLv += '<div>' + activeSkillLv + '</div>';
-            }));
-            this._$activeSkillNameCell.empty();
-            this._$activeSkillLvCell.empty();
-            this._$activeSkillNameCell.append(resultActiveSkillNm);
-            this._$activeSkillLvCell.append(resultActiveSkillLv);
+            // var resultActiveSkillNm = '';
+            // var resultActiveSkillLv = '';
+            // $.each(activeSkillMap, this.own(function (activeSkillNm, activeSkillLv) {
+            //     var activeSkillKanaName = this._skillDataMap[activeSkillNm].kanaName;
+            //     resultActiveSkillNm += '<div>' + activeSkillKanaName + '</div>';
+            //     resultActiveSkillLv += '<div>' + activeSkillLv + '</div>';
+            // }));
+            // this._$activeSkillNameCell.empty();
+            // this._$activeSkillLvCell.empty();
+            // this._$activeSkillNameCell.append(resultActiveSkillNm);
+            // this._$activeSkillLvCell.append(resultActiveSkillLv);
         },
 
         _getTotalSkillLvBySkillDataItem: function (item) {
